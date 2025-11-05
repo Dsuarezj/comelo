@@ -4,6 +4,7 @@ By default, this template supports JSX syntax with Tailwind CSS classes, React h
 
 Use icons from lucide-react for logos.
 
+Always check for error on the console and fix them before continue. Never leave a error on the console
 
 IMPORTANT!: do not remove the error message without read them in detail and plan a fix based on the error message. Don't patch only what's needed, try to understand the error and solve it.
 - No usar base de datos!
