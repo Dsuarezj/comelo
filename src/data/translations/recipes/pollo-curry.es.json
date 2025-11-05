@@ -1,0 +1,38 @@
+{
+  "recipe": {
+    "pollo-curry": {
+      "name": "Pollo al Curry",
+      "description": "Delicioso pollo con especias aromáticas y leche de coco. Una receta rápida y saludable con alto contenido de proteína.",
+      "step1": {
+        "title": "Cortar el pollo en cubos medianos",
+        "description": "Cortar la pechuga de pollo en cubos de aproximadamente 2-3 cm. Asegurarse de que todos los trozos sean de tamaño similar para una cocción uniforme.",
+        "time": "5 minutos"
+      },
+      "step2": {
+        "title": "Calentar aceite en una sartén grande",
+        "description": "Calentar 2 cucharadas de aceite de coco o aceite de oliva en una sartén grande a fuego medio-alto.",
+        "time": "2 minutos"
+      },
+      "step3": {
+        "title": "Sellar el pollo",
+        "description": "Agregar los cubos de pollo a la sartén caliente y sellar por todos lados hasta que estén dorados, aproximadamente 5-6 minutos.",
+        "time": "6 minutos",
+        "tip": "No mover el pollo constantemente, dejarlo sellar bien para que quede jugoso por dentro."
+      },
+      "step4": {
+        "title": "Agregar curry y leche de coco",
+        "description": "Espolvorear el curry en polvo sobre el pollo, mezclar bien y agregar la leche de coco. Reducir el fuego a medio y cocinar por 8-10 minutos.",
+        "time": "10 minutos",
+        "tip": "Revolver ocasionalmente para evitar que se pegue al fondo."
+      },
+      "step5": {
+        "title": "Servir caliente",
+        "description": "Una vez que el pollo esté bien cocido y la salsa haya espesado ligeramente, servir caliente acompañado de arroz basmati o vegetales al vapor.",
+        "time": "2 minutos"
+      },
+      "history1": "El curry es una mezcla de especias originaria del subcontinente indio, que combina cúrcuma, cilantro, comino y otras especias aromáticas. La cúrcuma, ingrediente principal del curry, contiene curcumina, un poderoso antiinflamatorio natural. Al combinarse con leche de coco y pollo, obtenemos un plato rico en proteínas y grasas saludables.",
+      "seo-title": "Pollo al Curry - Receta Fácil y Saludable con Leche de Coco",
+      "seo-description": "Receta de pollo al curry con leche de coco. Alto en proteína, bajo en carbohidratos y listo en 25 minutos. Perfecto para una comida rápida y nutritiva."
+    }
+  }
+}

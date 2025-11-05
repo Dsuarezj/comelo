@@ -10,7 +10,13 @@
     "almonds": "Almendras",
     "cinnamon": "Canela",
     "greek-yogurt": "Yogur Griego",
-    "water": "Agua"
+    "water": "Agua",
+    "chicken-breast": "Pechuga de Pollo",
+    "quinoa": "Quinoa",
+    "avocado": "Aguacate",
+    "cherry-tomato": "Tomate Cherry",
+    "curry-powder": "Curry en Polvo",
+    "coconut-milk": "Leche de Coco"
   },
   "category": {
     "vegetables": "Verduras",
@@ -21,7 +27,10 @@
     "spices": "Especias",
     "dairy": "Lácteos",
     "beverages": "Bebidas",
-    "breakfast": "Desayunos"
+    "breakfast": "Desayunos",
+    "proteins": "Proteínas",
+    "main-dish": "Plato Principal",
+    "salads": "Ensaladas"
   },
   "tag": {
     "high-protein": "Alta Proteína",
@@ -31,7 +40,8 @@
     "vegan": "Vegano",
     "gluten-free": "Sin Gluten",
     "low-carb": "Bajo en Carbohidratos",
-    "low-calorie": "Bajo en Calorías"
+    "low-calorie": "Bajo en Calorías",
+    "dairy-free": "Sin Lácteos"
   },
   "storage": {
     "refrigerated": "Refrigerado",
@@ -71,19 +81,28 @@
     "low-calories": "Bajo en calorías",
     "very-low-calories": "Muy bajo en calorías",
     "zero-calories": "Sin calorías",
-    "excellent-iron": "Excelente fuente de hierro"
+    "excellent-iron": "Excelente fuente de hierro",
+    "exceptional-protein": "Excepcional en proteína"
   },
   "tool": {
     "medium-pot": "Olla mediana",
     "fine-strainer": "Colador fino",
     "serving-bowls": "Bowls para servir",
     "knife": "Cuchillo",
-    "cutting-board": "Tabla de cortar"
+    "cutting-board": "Tabla de cortar",
+    "large-pan": "Sartén Grande",
+    "wooden-spoon": "Cuchara de Madera",
+    "large-bowl": "Bowl Grande"
   },
   "seo": {
     "amaranth-bowl": "bowl amaranto",
     "healthy-breakfast": "desayuno saludable",
     "complete-proteins": "proteínas completas",
-    "high-iron": "alto hierro"
+    "high-iron": "alto hierro",
+    "curry-chicken": "pollo al curry",
+    "healthy-recipe": "receta saludable",
+    "quinoa-salad": "ensalada de quinoa",
+    "healthy-salad": "ensalada saludable",
+    "vegan-recipe": "receta vegana"
   }
 }

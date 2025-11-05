@@ -1,0 +1,38 @@
+{
+  "recipe": {
+    "pollo-curry": {
+      "name": "Curry Chicken",
+      "description": "Delicious chicken with aromatic spices and coconut milk. A quick and healthy recipe with high protein content.",
+      "step1": {
+        "title": "Cut chicken into medium cubes",
+        "description": "Cut chicken breast into approximately 2-3 cm cubes. Make sure all pieces are similar in size for even cooking.",
+        "time": "5 minutes"
+      },
+      "step2": {
+        "title": "Heat oil in a large pan",
+        "description": "Heat 2 tablespoons of coconut oil or olive oil in a large pan over medium-high heat.",
+        "time": "2 minutes"
+      },
+      "step3": {
+        "title": "Sear the chicken",
+        "description": "Add chicken cubes to the hot pan and sear on all sides until golden brown, approximately 5-6 minutes.",
+        "time": "6 minutes",
+        "tip": "Don't move the chicken constantly, let it sear well to keep it juicy inside."
+      },
+      "step4": {
+        "title": "Add curry and coconut milk",
+        "description": "Sprinkle curry powder over the chicken, mix well and add coconut milk. Reduce heat to medium and cook for 8-10 minutes.",
+        "time": "10 minutes",
+        "tip": "Stir occasionally to prevent sticking to the bottom."
+      },
+      "step5": {
+        "title": "Serve hot",
+        "description": "Once chicken is fully cooked and sauce has thickened slightly, serve hot with basmati rice or steamed vegetables.",
+        "time": "2 minutes"
+      },
+      "history1": "Curry is a spice blend originating from the Indian subcontinent, combining turmeric, coriander, cumin and other aromatic spices. Turmeric, the main ingredient in curry, contains curcumin, a powerful natural anti-inflammatory. When combined with coconut milk and chicken, we get a dish rich in proteins and healthy fats.",
+      "seo-title": "Curry Chicken - Easy and Healthy Recipe with Coconut Milk",
+      "seo-description": "Curry chicken recipe with coconut milk. High in protein, low in carbs and ready in 25 minutes. Perfect for a quick and nutritious meal."
+    }
+  }
+}

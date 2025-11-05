@@ -10,7 +10,13 @@
     "almonds": "Almonds",
     "cinnamon": "Cinnamon",
     "greek-yogurt": "Greek Yogurt",
-    "water": "Water"
+    "water": "Water",
+    "chicken-breast": "Chicken Breast",
+    "quinoa": "Quinoa",
+    "avocado": "Avocado",
+    "cherry-tomato": "Cherry Tomato",
+    "curry-powder": "Curry Powder",
+    "coconut-milk": "Coconut Milk"
   },
   "category": {
     "vegetables": "Vegetables",
@@ -21,7 +27,10 @@
     "spices": "Spices",
     "dairy": "Dairy",
     "beverages": "Beverages",
-    "breakfast": "Breakfast"
+    "breakfast": "Breakfast",
+    "proteins": "Proteins",
+    "main-dish": "Main Dish",
+    "salads": "Salads"
   },
   "tag": {
     "high-protein": "High Protein",
@@ -31,7 +40,8 @@
     "vegan": "Vegan",
     "gluten-free": "Gluten Free",
     "low-carb": "Low Carb",
-    "low-calorie": "Low Calorie"
+    "low-calorie": "Low Calorie",
+    "dairy-free": "Dairy Free"
   },
   "storage": {
     "refrigerated": "Refrigerated",
@@ -71,19 +81,28 @@
     "low-calories": "Low in calories",
     "very-low-calories": "Very low in calories",
     "zero-calories": "No calories",
-    "excellent-iron": "Excellent source of iron"
+    "excellent-iron": "Excellent source of iron",
+    "exceptional-protein": "Exceptional protein"
   },
   "tool": {
     "medium-pot": "Medium pot",
     "fine-strainer": "Fine mesh strainer",
     "serving-bowls": "Serving bowls",
     "knife": "Knife",
-    "cutting-board": "Cutting board"
+    "cutting-board": "Cutting board",
+    "large-pan": "Large Pan",
+    "wooden-spoon": "Wooden Spoon",
+    "large-bowl": "Large Bowl"
   },
   "seo": {
     "amaranth-bowl": "amaranth bowl",
     "healthy-breakfast": "healthy breakfast",
     "complete-proteins": "complete proteins",
-    "high-iron": "high iron"
+    "high-iron": "high iron",
+    "curry-chicken": "curry chicken",
+    "healthy-recipe": "healthy recipe",
+    "quinoa-salad": "quinoa salad",
+    "healthy-salad": "healthy salad",
+    "vegan-recipe": "vegan recipe"
   }
 }

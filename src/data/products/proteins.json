@@ -1,0 +1,428 @@
+[
+  {
+    "id": "chicken_breast_020",
+    "nameKey": "product.chicken-breast",
+    "categoryKey": "category.proteins",
+    "image": "https://images.pexels.com/photos/2338407/pexels-photo-2338407.jpeg?w=400",
+    "rating": 8.9,
+    "seasonalityMonths": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "shelfLife": {
+      "days": 2,
+      "storage": "storage.refrigerated"
+    },
+    "nutrition": {
+      "servingSize": 100,
+      "servingUnit": "g",
+      "protein": {
+        "total": 31.0,
+        "caloriesFrom": 124,
+        "dailyPercentage": 62,
+        "healthRanking": 10,
+        "descriptionKey": "nutrition.exceptional-protein"
+      },
+      "carbs": {
+        "total": 0,
+        "caloriesFrom": 0,
+        "dailyPercentage": 0,
+        "healthRanking": 10,
+        "descriptionKey": "nutrition.zero-carbs"
+      },
+      "fats": {
+        "total": 3.6,
+        "caloriesFrom": 32.4,
+        "dailyPercentage": 6,
+        "healthRanking": 10,
+        "descriptionKey": "nutrition.very-low-fats"
+      },
+      "fiber": {
+        "total": 0,
+        "caloriesFrom": 0,
+        "dailyPercentage": 0,
+        "healthRanking": 1,
+        "descriptionKey": "nutrition.zero-fiber"
+      },
+      "calories": {
+        "total": 165,
+        "fromCarbs": 0,
+        "fromProtein": 124,
+        "fromFat": 32.4,
+        "descriptionKey": "nutrition.low-calories"
+      },
+      "vitamins": {
+        "vitamin_b6": {
+          "amount": 0.6,
+          "unit": "mg",
+          "dailyPercentage": 32
+        },
+        "niacin": {
+          "amount": 13.7,
+          "unit": "mg",
+          "dailyPercentage": 69
+        }
+      },
+      "minerals": {
+        "phosphorus": {
+          "amount": 228,
+          "unit": "mg",
+          "dailyPercentage": 23
+        },
+        "selenium": {
+          "amount": 27.6,
+          "unit": "µg",
+          "dailyPercentage": 40
+        }
+      }
+    }
+  },
+  {
+    "id": "quinoa_025",
+    "nameKey": "product.quinoa",
+    "categoryKey": "category.grains",
+    "image": "https://images.pexels.com/photos/1059905/pexels-photo-1059905.jpeg?w=400",
+    "rating": 9.2,
+    "seasonalityMonths": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "shelfLife": {
+      "days": 730,
+      "storage": "storage.pantry-dry"
+    },
+    "nutrition": {
+      "servingSize": 100,
+      "servingUnit": "g",
+      "protein": {
+        "total": 14.1,
+        "caloriesFrom": 56.4,
+        "dailyPercentage": 28,
+        "healthRanking": 10,
+        "descriptionKey": "nutrition.excellent-protein"
+      },
+      "carbs": {
+        "total": 64.2,
+        "caloriesFrom": 256.8,
+        "dailyPercentage": 21,
+        "healthRanking": 7,
+        "descriptionKey": "nutrition.moderate-carbs"
+      },
+      "fats": {
+        "total": 6.1,
+        "caloriesFrom": 54.9,
+        "dailyPercentage": 9,
+        "healthRanking": 9,
+        "descriptionKey": "nutrition.low-fats"
+      },
+      "fiber": {
+        "total": 7.0,
+        "caloriesFrom": 0,
+        "dailyPercentage": 28,
+        "healthRanking": 9,
+        "descriptionKey": "nutrition.high-fiber"
+      },
+      "calories": {
+        "total": 368,
+        "fromCarbs": 256.8,
+        "fromProtein": 56.4,
+        "fromFat": 54.9,
+        "descriptionKey": "nutrition.high-calories"
+      },
+      "vitamins": {
+        "folate": {
+          "amount": 184,
+          "unit": "µg",
+          "dailyPercentage": 46
+        },
+        "vitamin_b6": {
+          "amount": 0.5,
+          "unit": "mg",
+          "dailyPercentage": 24
+        }
+      },
+      "minerals": {
+        "iron": {
+          "amount": 4.6,
+          "unit": "mg",
+          "dailyPercentage": 26
+        },
+        "magnesium": {
+          "amount": 197,
+          "unit": "mg",
+          "dailyPercentage": 49
+        },
+        "phosphorus": {
+          "amount": 457,
+          "unit": "mg",
+          "dailyPercentage": 46
+        },
+        "zinc": {
+          "amount": 3.1,
+          "unit": "mg",
+          "dailyPercentage": 21
+        }
+      }
+    }
+  },
+  {
+    "id": "avocado_015",
+    "nameKey": "product.avocado",
+    "categoryKey": "category.fruits",
+    "image": "https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?w=400",
+    "rating": 9.3,
+    "seasonalityMonths": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "shelfLife": {
+      "days": 5,
+      "storage": "storage.room-temperature"
+    },
+    "nutrition": {
+      "servingSize": 100,
+      "servingUnit": "g",
+      "protein": {
+        "total": 2.0,
+        "caloriesFrom": 8,
+        "dailyPercentage": 4,
+        "healthRanking": 6,
+        "descriptionKey": "nutrition.moderate-protein"
+      },
+      "carbs": {
+        "total": 8.5,
+        "caloriesFrom": 34,
+        "dailyPercentage": 3,
+        "healthRanking": 9,
+        "descriptionKey": "nutrition.low-carbs"
+      },
+      "fats": {
+        "total": 14.7,
+        "caloriesFrom": 132.3,
+        "dailyPercentage": 23,
+        "healthRanking": 8,
+        "descriptionKey": "nutrition.moderate-fats"
+      },
+      "fiber": {
+        "total": 6.7,
+        "caloriesFrom": 0,
+        "dailyPercentage": 27,
+        "healthRanking": 9,
+        "descriptionKey": "nutrition.high-fiber"
+      },
+      "calories": {
+        "total": 160,
+        "fromCarbs": 34,
+        "fromProtein": 8,
+        "fromFat": 132.3,
+        "descriptionKey": "nutrition.moderate-calories"
+      },
+      "vitamins": {
+        "vitamin_k": {
+          "amount": 21,
+          "unit": "µg",
+          "dailyPercentage": 26
+        },
+        "folate": {
+          "amount": 81,
+          "unit": "µg",
+          "dailyPercentage": 20
+        },
+        "vitamin_c": {
+          "amount": 10,
+          "unit": "mg",
+          "dailyPercentage": 17
+        }
+      },
+      "minerals": {
+        "potassium": {
+          "amount": 485,
+          "unit": "mg",
+          "dailyPercentage": 10
+        }
+      }
+    }
+  },
+  {
+    "id": "cherry_tomato_018",
+    "nameKey": "product.cherry-tomato",
+    "categoryKey": "category.vegetables",
+    "image": "https://images.unsplash.com/photo-1546094096-0df4bcaaa337?w=400",
+    "rating": 8.8,
+    "seasonalityMonths": [5, 6, 7, 8, 9],
+    "shelfLife": {
+      "days": 7,
+      "storage": "storage.refrigerated"
+    },
+    "nutrition": {
+      "servingSize": 100,
+      "servingUnit": "g",
+      "protein": {
+        "total": 0.9,
+        "caloriesFrom": 3.6,
+        "dailyPercentage": 2,
+        "healthRanking": 4,
+        "descriptionKey": "nutrition.very-low-protein"
+      },
+      "carbs": {
+        "total": 3.9,
+        "caloriesFrom": 15.6,
+        "dailyPercentage": 1,
+        "healthRanking": 10,
+        "descriptionKey": "nutrition.very-low-carbs"
+      },
+      "fats": {
+        "total": 0.2,
+        "caloriesFrom": 1.8,
+        "dailyPercentage": 0,
+        "healthRanking": 10,
+        "descriptionKey": "nutrition.very-low-fats"
+      },
+      "fiber": {
+        "total": 1.2,
+        "caloriesFrom": 0,
+        "dailyPercentage": 5,
+        "healthRanking": 7,
+        "descriptionKey": "nutrition.moderate-fiber"
+      },
+      "calories": {
+        "total": 18,
+        "fromCarbs": 15.6,
+        "fromProtein": 3.6,
+        "fromFat": 1.8,
+        "descriptionKey": "nutrition.very-low-calories"
+      },
+      "vitamins": {
+        "vitamin_c": {
+          "amount": 13.7,
+          "unit": "mg",
+          "dailyPercentage": 23
+        },
+        "vitamin_a": {
+          "amount": 833,
+          "unit": "IU",
+          "dailyPercentage": 17
+        }
+      },
+      "minerals": {
+        "potassium": {
+          "amount": 237,
+          "unit": "mg",
+          "dailyPercentage": 5
+        }
+      }
+    }
+  },
+  {
+    "id": "curry_powder_035",
+    "nameKey": "product.curry-powder",
+    "categoryKey": "category.spices",
+    "image": "https://images.unsplash.com/photo-1596040033229-a0b13b1f8c6a?w=400",
+    "rating": 8.6,
+    "seasonalityMonths": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "shelfLife": {
+      "days": 730,
+      "storage": "storage.pantry-dry"
+    },
+    "nutrition": {
+      "servingSize": 100,
+      "servingUnit": "g",
+      "protein": {
+        "total": 14.3,
+        "caloriesFrom": 57.2,
+        "dailyPercentage": 29,
+        "healthRanking": 9,
+        "descriptionKey": "nutrition.excellent-protein"
+      },
+      "carbs": {
+        "total": 55.8,
+        "caloriesFrom": 223.2,
+        "dailyPercentage": 19,
+        "healthRanking": 6,
+        "descriptionKey": "nutrition.moderate-carbs"
+      },
+      "fats": {
+        "total": 14.0,
+        "caloriesFrom": 126,
+        "dailyPercentage": 22,
+        "healthRanking": 7,
+        "descriptionKey": "nutrition.moderate-fats"
+      },
+      "fiber": {
+        "total": 53.2,
+        "caloriesFrom": 0,
+        "dailyPercentage": 213,
+        "healthRanking": 10,
+        "descriptionKey": "nutrition.exceptional-fiber"
+      },
+      "calories": {
+        "total": 325,
+        "fromCarbs": 223.2,
+        "fromProtein": 57.2,
+        "fromFat": 126,
+        "descriptionKey": "nutrition.high-calories"
+      },
+      "minerals": {
+        "iron": {
+          "amount": 29.6,
+          "unit": "mg",
+          "dailyPercentage": 164
+        }
+      }
+    }
+  },
+  {
+    "id": "coconut_milk_036",
+    "nameKey": "product.coconut-milk",
+    "categoryKey": "category.dairy",
+    "image": "https://images.unsplash.com/photo-1585238341710-4166743de6cc?w=400",
+    "rating": 8.5,
+    "seasonalityMonths": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "shelfLife": {
+      "days": 730,
+      "storage": "storage.pantry-dry"
+    },
+    "nutrition": {
+      "servingSize": 100,
+      "servingUnit": "ml",
+      "protein": {
+        "total": 2.3,
+        "caloriesFrom": 9.2,
+        "dailyPercentage": 5,
+        "healthRanking": 5,
+        "descriptionKey": "nutrition.low-protein"
+      },
+      "carbs": {
+        "total": 5.5,
+        "caloriesFrom": 22,
+        "dailyPercentage": 2,
+        "healthRanking": 9,
+        "descriptionKey": "nutrition.low-carbs"
+      },
+      "fats": {
+        "total": 23.8,
+        "caloriesFrom": 214.2,
+        "dailyPercentage": 37,
+        "healthRanking": 5,
+        "descriptionKey": "nutrition.high-fats"
+      },
+      "fiber": {
+        "total": 2.2,
+        "caloriesFrom": 0,
+        "dailyPercentage": 9,
+        "healthRanking": 8,
+        "descriptionKey": "nutrition.good-fiber"
+      },
+      "calories": {
+        "total": 230,
+        "fromCarbs": 22,
+        "fromProtein": 9.2,
+        "fromFat": 214.2,
+        "descriptionKey": "nutrition.high-calories"
+      },
+      "minerals": {
+        "iron": {
+          "amount": 3.3,
+          "unit": "mg",
+          "dailyPercentage": 18
+        },
+        "magnesium": {
+          "amount": 37,
+          "unit": "mg",
+          "dailyPercentage": 9
+        }
+      }
+    }
+  }
+]

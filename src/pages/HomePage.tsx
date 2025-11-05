@@ -3,7 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Recipe, ShoppingList } from '../types';
-import recipesData from '../data/recipes.json';
+import recipe1 from '../data/recipes/bowl-amaranto-frutas.json';
+import recipe2 from '../data/recipes/pollo-curry.json';
+import recipe3 from '../data/recipes/ensalada-quinoa.json';
 import { shoppingListService } from '../services/ShoppingListService';
 import { Text, Card } from '../elements';
 import { RecipeGrid, ListSection } from '../modules';
@@ -12,7 +14,7 @@ export default function HomePage() {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [lists, setLists] = useState<ShoppingList[]>([]);
-  const [recipes] = useState<Recipe[]>(recipesData as Recipe[]);
+  const [recipes] = useState<Recipe[]>([recipe1, recipe2, recipe3] as Recipe[]);
   const [favorites, setFavorites] = useState<string[]>([]);
 
   useEffect(() => {

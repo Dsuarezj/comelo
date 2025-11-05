@@ -1,0 +1,95 @@
+{
+  "id": "pollo-curry",
+  "nameKey": "recipe.pollo-curry.name",
+  "descriptionKey": "recipe.pollo-curry.description",
+  "categoryKey": "category.main-dish",
+  "tags": ["tag.high-protein", "tag.gluten-free", "tag.dairy-free"],
+  "difficulty": "easy",
+  "prepTime": 10,
+  "cookTime": 15,
+  "totalTime": 25,
+  "servings": 4,
+  "publishedAt": "2025-01-20",
+  "rating": 4.8,
+  "featuredImage": "https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "toolsKeys": [
+    "tool.large-pan",
+    "tool.knife",
+    "tool.cutting-board",
+    "tool.wooden-spoon"
+  ],
+  "stepsKeys": [
+    "recipe.pollo-curry.step1",
+    "recipe.pollo-curry.step2",
+    "recipe.pollo-curry.step3",
+    "recipe.pollo-curry.step4",
+    "recipe.pollo-curry.step5"
+  ],
+  "historyKeys": [
+    "recipe.pollo-curry.history1"
+  ],
+  "references": [
+    "https://www.healthline.com/nutrition/turmeric-and-black-pepper"
+  ],
+  "nutrition": {
+    "calories": {
+      "total": 285,
+      "fromCarbs": 18,
+      "fromProtein": 124,
+      "fromFat": 149,
+      "descriptionKey": "nutrition.moderate-calories"
+    },
+    "protein": {
+      "total": 31,
+      "dailyPercentage": 62,
+      "healthRanking": 10,
+      "descriptionKey": "nutrition.exceptional-protein"
+    },
+    "carbs": {
+      "total": 4.5,
+      "dailyPercentage": 2,
+      "healthRanking": 10,
+      "descriptionKey": "nutrition.very-low-carbs"
+    },
+    "fats": {
+      "total": 16.5,
+      "dailyPercentage": 25,
+      "healthRanking": 7,
+      "descriptionKey": "nutrition.moderate-fats"
+    },
+    "fiber": {
+      "total": 1.5,
+      "dailyPercentage": 6,
+      "healthRanking": 6,
+      "descriptionKey": "nutrition.moderate-fiber"
+    }
+  },
+  "seo": {
+    "titleKey": "recipe.pollo-curry.seo-title",
+    "descriptionKey": "recipe.pollo-curry.seo-description",
+    "keywordsKeys": [
+      "seo.curry-chicken",
+      "seo.healthy-recipe",
+      "seo.high-protein",
+      "seo.gluten-free"
+    ]
+  },
+  "ingredients": [
+    {
+      "productId": "chicken_breast_020",
+      "quantity": 500,
+      "unit": "g"
+    },
+    {
+      "productId": "curry_powder_035",
+      "quantity": 15,
+      "unit": "g",
+      "notes": "2 tablespoons"
+    },
+    {
+      "productId": "coconut_milk_036",
+      "quantity": 400,
+      "unit": "ml"
+    }
+  ]
+}

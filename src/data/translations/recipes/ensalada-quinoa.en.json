@@ -1,0 +1,44 @@
+{
+  "recipe": {
+    "ensalada-quinoa": {
+      "name": "Quinoa Salad",
+      "description": "Nutritious salad with quinoa, avocado and fresh vegetables. Rich in complete proteins, fiber and healthy fats. Perfect for vegans.",
+      "step1": {
+        "title": "Rinse the quinoa",
+        "description": "Measure 200g of quinoa and rinse in a fine mesh strainer under cold water for 2 minutes to remove saponins.",
+        "time": "3 minutes",
+        "tip": "This step removes the natural bitter taste of quinoa."
+      },
+      "step2": {
+        "title": "Cook the quinoa",
+        "description": "In a medium pot, boil 480ml of water with a pinch of salt. Add quinoa, reduce to medium-low heat and cook covered for 15 minutes.",
+        "time": "15 minutes",
+        "tip": "Quinoa is ready when the grains become translucent and you see a small white spiral."
+      },
+      "step3": {
+        "title": "Cool the quinoa",
+        "description": "Once cooked, remove from heat, uncover and let cool to room temperature for 10 minutes. Fluff with a fork.",
+        "time": "10 minutes"
+      },
+      "step4": {
+        "title": "Prepare the vegetables",
+        "description": "While quinoa cools, wash and cut cherry tomatoes in half. Peel and cut avocado into medium cubes.",
+        "time": "5 minutes"
+      },
+      "step5": {
+        "title": "Mix ingredients",
+        "description": "In a large bowl, combine cooled quinoa, cherry tomatoes and avocado. Mix gently to avoid mashing the avocado.",
+        "time": "2 minutes"
+      },
+      "step6": {
+        "title": "Serve",
+        "description": "Serve immediately or refrigerate for up to 2 days. Can be accompanied with a drizzle of lemon and olive oil.",
+        "time": "1 minute",
+        "tip": "Add avocado just before serving if storing the salad to prevent oxidation."
+      },
+      "history1": "Quinoa, considered a 'supergrain', was first cultivated over 5,000 years ago in the Andes. The Incas called it 'mother grain' and considered it sacred. Unlike other grains, quinoa is a complete protein, containing all 9 essential amino acids. It's ideal for vegan and vegetarian diets.",
+      "seo-title": "Quinoa Salad with Avocado - High Protein Vegan Recipe",
+      "seo-description": "Fresh quinoa salad with avocado and cherry tomatoes. Complete protein, high fiber and ready in 25 minutes. Vegan and gluten-free recipe."
+    }
+  }
+}

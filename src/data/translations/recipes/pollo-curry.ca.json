@@ -1,0 +1,38 @@
+{
+  "recipe": {
+    "pollo-curry": {
+      "name": "Pollastre al Curry",
+      "description": "Deliciós pollastre amb espècies aromàtiques i llet de coco. Una recepta ràpida i saludable amb alt contingut de proteïna.",
+      "step1": {
+        "title": "Tallar el pollastre en cubs mitjans",
+        "description": "Tallar la pit de pollastre en cubs d'aproximadament 2-3 cm. Assegurar-se que tots els trossos siguin de mida similar per a una cocció uniforme.",
+        "time": "5 minuts"
+      },
+      "step2": {
+        "title": "Escalfar oli en una paella gran",
+        "description": "Escalfar 2 cullerades d'oli de coco o oli d'oliva en una paella gran a foc mitjà-alt.",
+        "time": "2 minuts"
+      },
+      "step3": {
+        "title": "Segellar el pollastre",
+        "description": "Afegir els cubs de pollastre a la paella calenta i segellar per tots els costats fins que estiguin daurats, aproximadament 5-6 minuts.",
+        "time": "6 minuts",
+        "tip": "No moure el pollastre constantment, deixar-lo segellar bé perquè quedi suc per dins."
+      },
+      "step4": {
+        "title": "Afegir curry i llet de coco",
+        "description": "Espolvoritzar el curry en pols sobre el pollastre, barrejar bé i afegir la llet de coco. Reduir el foc a mitjà i cuinar per 8-10 minuts.",
+        "time": "10 minuts",
+        "tip": "Remoure ocasionalment per evitar que s'enganxi al fons."
+      },
+      "step5": {
+        "title": "Servir calent",
+        "description": "Un cop el pollastre estigui ben cuit i la salsa hagi espessit lleugerament, servir calent acompanyat d'arròs basmati o verdures al vapor.",
+        "time": "2 minuts"
+      },
+      "history1": "El curry és una mescla d'espècies originària del subcontinent indi, que combina cúrcuma, coriandre, comí i altres espècies aromàtiques. La cúrcuma, ingredient principal del curry, conté curcumina, un potent antiinflamatori natural. En combinar-se amb llet de coco i pollastre, obtenim un plat ric en proteïnes i greixos saludables.",
+      "seo-title": "Pollastre al Curry - Recepta Fàcil i Saludable amb Llet de Coco",
+      "seo-description": "Recepta de pollastre al curry amb llet de coco. Alt en proteïna, baix en carbohidrats i llest en 25 minuts. Perfecte per a un àpat ràpid i nutritiu."
+    }
+  }
+}

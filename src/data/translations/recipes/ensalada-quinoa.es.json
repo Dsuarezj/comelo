@@ -1,0 +1,44 @@
+{
+  "recipe": {
+    "ensalada-quinoa": {
+      "name": "Ensalada de Quinoa",
+      "description": "Ensalada nutritiva con quinoa, aguacate y vegetales frescos. Rica en proteínas completas, fibra y grasas saludables. Perfecta para veganos.",
+      "step1": {
+        "title": "Enjuagar la quinoa",
+        "description": "Medir 200g de quinoa y enjuagar en un colador de malla fina bajo agua fría durante 2 minutos para eliminar las saponinas.",
+        "time": "3 minutos",
+        "tip": "Este paso elimina el sabor amargo natural de la quinoa."
+      },
+      "step2": {
+        "title": "Cocinar la quinoa",
+        "description": "En una olla mediana, hervir 480ml de agua con una pizca de sal. Agregar la quinoa, reducir a fuego medio-bajo y cocinar tapado por 15 minutos.",
+        "time": "15 minutos",
+        "tip": "La quinoa está lista cuando los granos se vuelven translúcidos y se ve un pequeño espiral blanco."
+      },
+      "step3": {
+        "title": "Enfriar la quinoa",
+        "description": "Una vez cocida, retirar del fuego, destapar y dejar enfriar a temperatura ambiente por 10 minutos. Esponjar con un tenedor.",
+        "time": "10 minutos"
+      },
+      "step4": {
+        "title": "Preparar los vegetales",
+        "description": "Mientras la quinoa se enfría, lavar y cortar los tomates cherry por la mitad. Pelar y cortar el aguacate en cubos medianos.",
+        "time": "5 minutos"
+      },
+      "step5": {
+        "title": "Mezclar ingredientes",
+        "description": "En un bowl grande, combinar la quinoa fría, los tomates cherry y el aguacate. Mezclar suavemente para no aplastar el aguacate.",
+        "time": "2 minutos"
+      },
+      "step6": {
+        "title": "Servir",
+        "description": "Servir inmediatamente o refrigerar por hasta 2 días. Se puede acompañar con un chorrito de limón y aceite de oliva.",
+        "time": "1 minuto",
+        "tip": "Agregar el aguacate justo antes de servir si vas a guardar la ensalada para evitar que se oxide."
+      },
+      "history1": "La quinoa, considerada un 'supergrano', fue cultivada por primera vez hace más de 5,000 años en los Andes. Los incas la llamaban 'grano madre' y la consideraban sagrada. A diferencia de otros granos, la quinoa es una proteína completa, conteniendo los 9 aminoácidos esenciales. Es ideal para dietas veganas y vegetarianas.",
+      "seo-title": "Ensalada de Quinoa con Aguacate - Receta Vegana Rica en Proteína",
+      "seo-description": "Ensalada fresca de quinoa con aguacate y tomates cherry. Proteína completa, alta fibra y lista en 25 minutos. Receta vegana y sin gluten."
+    }
+  }
+}

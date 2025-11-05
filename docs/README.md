@@ -164,3 +164,14 @@ Si encuentras algo confuso o faltante:
    - Carga bajo demanda (lazy loading)
    - **Léelo** antes de crear recetas o productos
 
+
+### 📝 Reglas y Guías
+
+**[📝 RECIPE_RULES.md](./RECIPE_RULES.md)**
+   - Reglas completas para agregar nuevas recetas
+   - Proceso paso a paso
+   - Convenciones de nomenclatura
+   - Checklist de validación
+   - Ejemplos y errores comunes
+   - **Léelo** ANTES de agregar cualquier receta nueva
+

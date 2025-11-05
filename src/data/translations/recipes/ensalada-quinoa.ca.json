@@ -1,0 +1,44 @@
+{
+  "recipe": {
+    "ensalada-quinoa": {
+      "name": "Amanida de Quinoa",
+      "description": "Amanida nutritiva amb quinoa, alvocat i vegetals frescos. Rica en proteïnes completes, fibra i greixos saludables. Perfecta per a vegans.",
+      "step1": {
+        "title": "Esbandir la quinoa",
+        "description": "Mesurar 200g de quinoa i esbandir en un colador de malla fina sota aigua freda durant 2 minuts per eliminar les saponines.",
+        "time": "3 minuts",
+        "tip": "Aquest pas elimina el sabor amarg natural de la quinoa."
+      },
+      "step2": {
+        "title": "Cuinar la quinoa",
+        "description": "En una olla mitjana, bullir 480ml d'aigua amb una mica de sal. Afegir la quinoa, reduir a foc mitjà-baix i cuinar tapat per 15 minuts.",
+        "time": "15 minuts",
+        "tip": "La quinoa està llesta quan els grans es tornen translúcids i es veu un petit espiral blanc."
+      },
+      "step3": {
+        "title": "Refredar la quinoa",
+        "description": "Un cop cuita, retirar del foc, destapar i deixar refredar a temperatura ambient per 10 minuts. Esponjir amb una forquilla.",
+        "time": "10 minuts"
+      },
+      "step4": {
+        "title": "Preparar els vegetals",
+        "description": "Mentre la quinoa es refreda, rentar i tallar els tomàquets cherry per la meitat. Pelar i tallar l'alvocat en cubs mitjans.",
+        "time": "5 minuts"
+      },
+      "step5": {
+        "title": "Barrejar ingredients",
+        "description": "En un bol gran, combinar la quinoa freda, els tomàquets cherry i l'alvocat. Barrejar suaument per no aplanar l'alvocat.",
+        "time": "2 minuts"
+      },
+      "step6": {
+        "title": "Servir",
+        "description": "Servir immediatament o refrigerar per fins a 2 dies. Es pot acompanyar amb un rajolí de llimona i oli d'oliva.",
+        "time": "1 minut",
+        "tip": "Afegir l'alvocat just abans de servir si guardaràs l'amanida per evitar que s'oxidi."
+      },
+      "history1": "La quinoa, considerada un 'supergra', va ser cultivada per primera vegada fa més de 5.000 anys als Andes. Els inques la anomenaven 'gra mare' i la consideraven sagrada. A diferència d'altres grans, la quinoa és una proteïna completa, contenint els 9 aminoàcids essencials. És ideal per a dietes veganes i vegetarianes.",
+      "seo-title": "Amanida de Quinoa amb Alvocat - Recepta Vegana Rica en Proteïna",
+      "seo-description": "Amanida fresca de quinoa amb alvocat i tomàquets cherry. Proteïna completa, alta fibra i llesta en 25 minuts. Recepta vegana i sense gluten."
+    }
+  }
+}
