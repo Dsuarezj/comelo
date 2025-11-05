@@ -1,7 +1,8 @@
 import { Heart, Star } from 'lucide-react';
 import { Recipe } from '../types';
 import { useTranslation } from 'react-i18next';
-import { Card, IconButton, Text, Image, Badge } from '../elements';
+import { Card, IconButton, Text, Image } from '../elements';
+import { getRecipeName, getRecipeImage } from '../utils/translations';
 
 interface RecipeCardProps {
   recipe: Recipe;
@@ -17,12 +18,15 @@ export default function RecipeCard({
   const { i18n, t } = useTranslation();
   const currentLang = i18n.language as 'es' | 'en' | 'ca';
 
+  const recipeName = getRecipeName(recipe, currentLang);
+  const recipeImage = getRecipeImage(recipe);
+
   return (
     <Card padding="none" className="w-40 flex-shrink-0 overflow-hidden">
       <div className="relative">
         <Image
-          src={recipe.image}
-          alt={recipe.name[currentLang]}
+          src={recipeImage}
+          alt={recipeName}
           aspectRatio="4:3"
           rounded="none"
           className="h-32"
@@ -42,7 +46,7 @@ export default function RecipeCard({
 
       <div className="p-3 space-y-2">
         <Text variant="small" className="font-semibold line-clamp-2">
-          {recipe.name[currentLang]}
+          {recipeName}
         </Text>
 
         <Text variant="caption" color="muted">

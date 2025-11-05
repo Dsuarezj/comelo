@@ -81,11 +81,11 @@ class SessionService {
     await this.init();
     if (!this.db) throw new Error('Database not initialized');
 
-    await this.db.put('cache', key, {
+    await this.db.put('cache', {
       data,
       timestamp: Date.now(),
       expiresAt: ttl ? Date.now() + ttl : undefined,
-    });
+    }, key);
   }
 
   async getCache(key: string): Promise<any | null> {

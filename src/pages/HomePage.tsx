@@ -11,7 +11,7 @@ import { Text, Card } from '../elements';
 import { RecipeGrid, ListSection } from '../modules';
 
 export default function HomePage() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [lists, setLists] = useState<ShoppingList[]>([]);
   const [recipes] = useState<Recipe[]>([recipe1, recipe2, recipe3] as Recipe[]);
