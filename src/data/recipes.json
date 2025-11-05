@@ -1,0 +1,70 @@
+[
+  {
+    "id": "recipe-1",
+    "name": {
+      "es": "Pollo al curry",
+      "en": "Curry chicken",
+      "ca": "Pollastre al curry"
+    },
+    "description": {
+      "es": "Delicioso pollo con especias aromáticas y leche de coco",
+      "en": "Delicious chicken with aromatic spices and coconut milk",
+      "ca": "Deliciós pollastre amb espècies aromàtiques i llet de coco"
+    },
+    "image": "https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg?auto=compress&cs=tinysrgb&w=400",
+    "prepTime": 20,
+    "rating": 4.8,
+    "difficulty": "easy",
+    "ingredients": [
+      {
+        "name": "Pechuga de pollo",
+        "quantity": 500,
+        "unit": "g"
+      },
+      {
+        "name": "Curry en polvo",
+        "quantity": 2,
+        "unit": "cucharadas"
+      },
+      {
+        "name": "Leche de coco",
+        "quantity": 400,
+        "unit": "ml"
+      }
+    ]
+  },
+  {
+    "id": "recipe-2",
+    "name": {
+      "es": "Ensalada de quinoa",
+      "en": "Quinoa salad",
+      "ca": "Amanida de quinoa"
+    },
+    "description": {
+      "es": "Ensalada nutritiva con quinoa, aguacate y vegetales frescos",
+      "en": "Nutritious salad with quinoa, avocado and fresh vegetables",
+      "ca": "Amanida nutritiva amb quinoa, alvocat i vegetals frescos"
+    },
+    "image": "https://images.pexels.com/photos/1059905/pexels-photo-1059905.jpeg?auto=compress&cs=tinysrgb&w=400",
+    "prepTime": 15,
+    "rating": 4.6,
+    "difficulty": "easy",
+    "ingredients": [
+      {
+        "name": "Quinoa",
+        "quantity": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Aguacate",
+        "quantity": 1,
+        "unit": "unidad"
+      },
+      {
+        "name": "Tomates cherry",
+        "quantity": 150,
+        "unit": "g"
+      }
+    ]
+  }
+]

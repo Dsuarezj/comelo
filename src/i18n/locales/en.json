@@ -1,0 +1,57 @@
+{
+  "app": {
+    "name": "Comelo",
+    "tagline": "Your nutrition assistant"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "search": "Search",
+    "close": "Close",
+    "back": "Back"
+  },
+  "home": {
+    "greeting": "Hello!",
+    "subtitle": "Create your shopping list and discover delicious recipes.",
+    "myLists": "My lists:",
+    "createListButton": "Create a list for your shopping!",
+    "recommendedRecipes": "Recommended Recipes:",
+    "viewMoreRecipes": "View more recipes"
+  },
+  "nav": {
+    "home": "Home",
+    "lists": "Lists",
+    "recipes": "Recipes",
+    "profile": "Profile"
+  },
+  "lists": {
+    "title": "My Shopping Lists",
+    "empty": "You don't have any lists yet",
+    "createFirst": "Create your first shopping list",
+    "newList": "New List",
+    "listName": "List name",
+    "itemsCount": "{{count}} items",
+    "completedCount": "{{completed}} of {{total}} completed"
+  },
+  "recipes": {
+    "title": "Healthy Recipes",
+    "prepTime": "{{time}} min.",
+    "difficulty": {
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    }
+  },
+  "profile": {
+    "title": "My Profile",
+    "allergens": "Allergens",
+    "language": "Language",
+    "sync": "Synchronization",
+    "signOut": "Sign out"
+  }
+}

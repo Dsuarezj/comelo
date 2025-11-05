@@ -1,0 +1,57 @@
+{
+  "app": {
+    "name": "Comelo",
+    "tagline": "Tu asistente de nutrición"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "add": "Añadir",
+    "search": "Buscar",
+    "close": "Cerrar",
+    "back": "Volver"
+  },
+  "home": {
+    "greeting": "Hola!",
+    "subtitle": "Crea tu lista de compras y descubre recetas deliciosas.",
+    "myLists": "Mis listas:",
+    "createListButton": "Crea una lista para tus compras!",
+    "recommendedRecipes": "Recetas Recomendadas:",
+    "viewMoreRecipes": "Ver más recetas"
+  },
+  "nav": {
+    "home": "Inicio",
+    "lists": "Listas",
+    "recipes": "Recetas",
+    "profile": "Perfil"
+  },
+  "lists": {
+    "title": "Mis Listas de Compras",
+    "empty": "No tienes listas todavía",
+    "createFirst": "Crea tu primera lista de compras",
+    "newList": "Nueva Lista",
+    "listName": "Nombre de la lista",
+    "itemsCount": "{{count}} productos",
+    "completedCount": "{{completed}} de {{total}} completados"
+  },
+  "recipes": {
+    "title": "Recetas Saludables",
+    "prepTime": "{{time}} min.",
+    "difficulty": {
+      "easy": "Fácil",
+      "medium": "Media",
+      "hard": "Difícil"
+    }
+  },
+  "profile": {
+    "title": "Mi Perfil",
+    "allergens": "Alérgenos",
+    "language": "Idioma",
+    "sync": "Sincronización",
+    "signOut": "Cerrar sesión"
+  }
+}

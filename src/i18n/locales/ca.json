@@ -1,0 +1,57 @@
+{
+  "app": {
+    "name": "Comelo",
+    "tagline": "El teu assistent de nutrició"
+  },
+  "common": {
+    "loading": "Carregant...",
+    "error": "Error",
+    "save": "Desar",
+    "cancel": "Cancel·lar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "add": "Afegir",
+    "search": "Cercar",
+    "close": "Tancar",
+    "back": "Tornar"
+  },
+  "home": {
+    "greeting": "Hola!",
+    "subtitle": "Crea la teva llista de compres i descobreix receptes delicioses.",
+    "myLists": "Les meves llistes:",
+    "createListButton": "Crea una llista per a les teves compres!",
+    "recommendedRecipes": "Receptes Recomanades:",
+    "viewMoreRecipes": "Veure més receptes"
+  },
+  "nav": {
+    "home": "Inici",
+    "lists": "Llistes",
+    "recipes": "Receptes",
+    "profile": "Perfil"
+  },
+  "lists": {
+    "title": "Les Meves Llistes de Compres",
+    "empty": "Encara no tens llistes",
+    "createFirst": "Crea la teva primera llista de compres",
+    "newList": "Nova Llista",
+    "listName": "Nom de la llista",
+    "itemsCount": "{{count}} productes",
+    "completedCount": "{{completed}} de {{total}} completats"
+  },
+  "recipes": {
+    "title": "Receptes Saludables",
+    "prepTime": "{{time}} min.",
+    "difficulty": {
+      "easy": "Fàcil",
+      "medium": "Mitjana",
+      "hard": "Difícil"
+    }
+  },
+  "profile": {
+    "title": "El Meu Perfil",
+    "allergens": "Al·lèrgens",
+    "language": "Idioma",
+    "sync": "Sincronització",
+    "signOut": "Tancar sessió"
+  }
+}
