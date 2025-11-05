@@ -1,0 +1,63 @@
+{
+  "recipe": {
+    "bowl-amaranto-frutas": {
+      "name": "Bol d'Amarant amb Fruites",
+      "description": "Un esmorzar o berenar nutritiu basat en amarant, un pseudocereal ancestral ric en proteïnes completes i ferro. Aquesta recepta combina la textura suau de l'amarant cuit amb la frescor de les fruites i el cruixent de les fruites seques.",
+      "step1": {
+        "title": "Esbandir l'amarant sota aigua freda",
+        "description": "Mesurar 1 tassa d'amarant i esbandir en colador de malla fina sota aigua freda durant 2 minuts.",
+        "time": "3 minuts",
+        "tip": "Aquest pas elimina qualsevol sabor terrós residual."
+      },
+      "step2": {
+        "title": "En una olla, bullir 2 tasses d'aigua",
+        "description": "En una olla de fons gruixut, bullir 2½ tasses d'aigua amb una mica de sal.",
+        "time": "5 minuts"
+      },
+      "step3": {
+        "title": "Afegir l'amarant i cuinar a foc mitjà per 20 minuts fins que estigui tendre",
+        "description": "Afegir l'amarant esbandida a l'aigua bullint, reduir a foc mitjà-baix i cuinar semi-tapat.",
+        "time": "20-25 minuts",
+        "tip": "Remoure ocasionalment per evitar que s'enganxi."
+      },
+      "step4": {
+        "title": "Escórrer l'excés d'aigua i deixar refredar lleugerament",
+        "description": "Quan l'amarant hagi absorbit el líquid, retirar del foc i deixar reposar 5 minuts tapat.",
+        "time": "5 minuts"
+      },
+      "step5": {
+        "title": "Tallar el plàtan en rodanxes",
+        "description": "Pelar el plàtan i tallar en rodanxes d'1 cm de gruix.",
+        "time": "1 minut"
+      },
+      "step6": {
+        "title": "Rentar les maduixes i tallar-les per la meitat",
+        "description": "Mentrestant, rentar les maduixes en aigua freda i tallar-les per la meitat amb ganivet paring. Rentar delicadament els nabius i seleccionar només els més ferms.",
+        "time": "6 minuts"
+      },
+      "step7": {
+        "title": "En bols, servir l'amarant tebià",
+        "description": "Servir l'amarant tebià en bols de ceràmica.",
+        "time": "1 minut"
+      },
+      "step8": {
+        "title": "Decorar amb fruites, fruites seques i canyella",
+        "description": "Decorar amb fruites i espolsar canyella.",
+        "time": "1 minut",
+        "tip": "La temperatura tèbia realça els sabors naturals."
+      },
+      "step9": {
+        "title": "Ruixar amb mel i afegir iogurt si es desitja",
+        "time": "30 segons"
+      },
+      "step10": {
+        "title": "Servir immediatament",
+        "time": "30 segons"
+      },
+      "history1": "L'amarant ha estat cultivat i consumit per les civilitzacions mesoamericanes durant més de 8.000 anys. Els asteques el consideraven un aliment sagrat i l'utilitzaven tant per a alimentació com per a cerimònies religioses. Aquest pseudocereal era tan valorat que formava part del tribut pagat a l'imperi asteca.",
+      "history2": "A diferència dels cereals tradicionals, l'amarant conté tots els aminoàcids essencials, convertint-lo en una proteïna completa similar a la carn o els ous. Per a aquesta recepta, recomanem amarant orgànic certificat que conserva totes les seves propietats nutricionals ancestrals.",
+      "seo-title": "Bol d'Amarant amb Fruites - Esmorzar Ric en Proteïnes i Ferro",
+      "seo-description": "Recepta de bol d'amarant amb fruites fresques. Pseudocereal ric en proteïnes completes, ferro i fibra per a un esmorzar nutritiu."
+    }
+  }
+}

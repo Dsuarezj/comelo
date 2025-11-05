@@ -2,7 +2,7 @@ import { Heart, Star } from 'lucide-react';
 import { Recipe } from '../types';
 import { useTranslation } from 'react-i18next';
 import { Card, IconButton, Text, Image } from '../elements';
-import { getRecipeName, getRecipeImage } from '../utils/translations';
+import { getRecipeNameSync, getRecipeImage } from '../utils/recipeHelpers';
 
 interface RecipeCardProps {
   recipe: Recipe;
@@ -18,7 +18,7 @@ export default function RecipeCard({
   const { i18n, t } = useTranslation();
   const currentLang = i18n.language as 'es' | 'en' | 'ca';
 
-  const recipeName = getRecipeName(recipe, currentLang);
+  const recipeName = getRecipeNameSync(recipe, currentLang);
   const recipeImage = getRecipeImage(recipe);
 
   return (

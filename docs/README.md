@@ -165,6 +165,17 @@ Si encuentras algo confuso o faltante:
    - **Léelo** antes de crear recetas o productos
 
 
+### 🌍 Sistema de Traducciones
+
+**[🌍 TRANSLATION_ARCHITECTURE.md](./TRANSLATION_ARCHITECTURE.md)**
+   - Arquitectura completa de traducciones
+   - Separación traducciones core vs datos
+   - TranslationService unificado
+   - Selector de idioma (ES, EN, CA)
+   - Preparado para contenido de usuarios y Dropbox
+   - **Léelo** para entender cómo funcionan las traducciones
+
+
 ### 📝 Reglas y Guías
 
 **[📝 RECIPE_RULES.md](./RECIPE_RULES.md)**
