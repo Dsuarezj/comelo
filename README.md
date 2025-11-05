@@ -24,6 +24,11 @@ Progressive Web Application para gestión de listas de compras y descubrimiento 
 
 ```
 comelo-app/
+├── docs/                        # 📚 Documentación detallada
+│   ├── INDEXEDDB_EXPLAINED.md   # Guía completa de IndexedDB
+│   ├── QUICK_START.md           # Inicio rápido
+│   ├── SETUP_GUIDE.md           # Guía de configuración
+│   └── DROPBOX_INTEGRATION.md   # Integración con Dropbox
 ├── public/
 │   ├── sw.js                    # Service Worker con Queue System
 │   ├── manifest.json            # PWA Manifest
@@ -60,8 +65,18 @@ comelo-app/
 ├── package.json
 ├── vite.config.ts               # Configuración Vite + PWA
 ├── tsconfig.json
-└── README.md
+├── .env                         # Variables de entorno (Dropbox keys)
+└── README.md                    # Este archivo
 ```
+
+## 📚 Documentación Adicional
+
+Toda la documentación detallada está en la carpeta `docs/`:
+
+- **[📘 INDEXEDDB_EXPLAINED.md](./docs/INDEXEDDB_EXPLAINED.md)** - Guía completa sobre qué es IndexedDB, dónde se guardan los datos y cómo funciona
+- **[🚀 QUICK_START.md](./docs/QUICK_START.md)** - Inicio rápido para desarrolladores (2 minutos)
+- **[⚙️ SETUP_GUIDE.md](./docs/SETUP_GUIDE.md)** - Guía detallada de configuración y arquitectura
+- **[☁️ DROPBOX_INTEGRATION.md](./docs/DROPBOX_INTEGRATION.md)** - Plan completo de integración OAuth con Dropbox
 
 ## 🚀 Instalación y Configuración
 
@@ -101,9 +116,12 @@ La aplicación estará disponible en `http://localhost:5173`
 
 ### PWA y Offline
 - **vite-plugin-pwa** con Workbox
-- **IndexedDB** (vía idb) para cola persistente
-- **LocalStorage** para datos ligeros
+- **IndexedDB** (vía idb) para cola persistente - Base de datos en el navegador, guardada localmente en tu disco duro
+- **LocalStorage** para datos ligeros (configuración, favoritos)
 - **Service Worker custom** con sistema de sincronización
+- **Sin base de datos externa** - Todo funciona 100% offline
+
+> 💡 **¿Qué es IndexedDB?** Es una base de datos que vive en tu navegador, guardada en tu computadora/móvil. Lee la [guía completa aquí](./docs/INDEXEDDB_EXPLAINED.md)
 
 ### Internacionalización
 - **react-i18next** + i18next
