@@ -1,0 +1,92 @@
+[
+  {
+    "id": "amaranth_031",
+    "nameKey": "product.amaranth",
+    "categoryKey": "category.grains",
+    "image": "https://images.unsplash.com/photo-1586201375799-47cd24c3f595?w=400",
+    "rating": 9.3,
+    "seasonalityMonths": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "shelfLife": {
+      "days": 365,
+      "storage": "storage.pantry-dry"
+    },
+    "nutrition": {
+      "servingSize": 100,
+      "servingUnit": "g",
+      "protein": {
+        "total": 13.6,
+        "caloriesFrom": 54.4,
+        "dailyPercentage": 27,
+        "healthRanking": 10,
+        "descriptionKey": "nutrition.excellent-protein"
+      },
+      "carbs": {
+        "total": 65.2,
+        "caloriesFrom": 260.8,
+        "dailyPercentage": 22,
+        "healthRanking": 7,
+        "descriptionKey": "nutrition.moderate-carbs"
+      },
+      "fats": {
+        "total": 7.0,
+        "caloriesFrom": 63,
+        "dailyPercentage": 11,
+        "healthRanking": 8,
+        "descriptionKey": "nutrition.low-fats"
+      },
+      "fiber": {
+        "total": 6.7,
+        "caloriesFrom": 0,
+        "dailyPercentage": 27,
+        "healthRanking": 9,
+        "descriptionKey": "nutrition.high-fiber"
+      },
+      "calories": {
+        "total": 371,
+        "fromCarbs": 260.8,
+        "fromProtein": 54.4,
+        "fromFat": 63,
+        "descriptionKey": "nutrition.high-calories"
+      },
+      "vitamins": {
+        "folate": {
+          "amount": 82,
+          "unit": "µg",
+          "dailyPercentage": 21
+        },
+        "vitamin_b6": {
+          "amount": 0.6,
+          "unit": "mg",
+          "dailyPercentage": 29
+        }
+      },
+      "minerals": {
+        "iron": {
+          "amount": 7.6,
+          "unit": "mg",
+          "dailyPercentage": 42
+        },
+        "magnesium": {
+          "amount": 248,
+          "unit": "mg",
+          "dailyPercentage": 62
+        },
+        "phosphorus": {
+          "amount": 557,
+          "unit": "mg",
+          "dailyPercentage": 56
+        },
+        "calcium": {
+          "amount": 159,
+          "unit": "mg",
+          "dailyPercentage": 16
+        },
+        "zinc": {
+          "amount": 2.9,
+          "unit": "mg",
+          "dailyPercentage": 19
+        }
+      }
+    }
+  }
+]

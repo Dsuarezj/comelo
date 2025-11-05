@@ -1,0 +1,222 @@
+[
+  {
+    "id": "banana_010",
+    "nameKey": "product.banana",
+    "categoryKey": "category.fruits",
+    "image": "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400",
+    "rating": 8.9,
+    "seasonalityMonths": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "shelfLife": {
+      "days": 5,
+      "storage": "storage.room-temperature"
+    },
+    "nutrition": {
+      "servingSize": 100,
+      "servingUnit": "g",
+      "protein": {
+        "total": 1.1,
+        "caloriesFrom": 4.4,
+        "dailyPercentage": 2,
+        "healthRanking": 5,
+        "descriptionKey": "nutrition.low-protein"
+      },
+      "carbs": {
+        "total": 22.8,
+        "caloriesFrom": 91.2,
+        "dailyPercentage": 8,
+        "healthRanking": 6,
+        "descriptionKey": "nutrition.moderate-carbs"
+      },
+      "fats": {
+        "total": 0.3,
+        "caloriesFrom": 2.7,
+        "dailyPercentage": 0,
+        "healthRanking": 10,
+        "descriptionKey": "nutrition.very-low-fats"
+      },
+      "fiber": {
+        "total": 2.6,
+        "caloriesFrom": 0,
+        "dailyPercentage": 10,
+        "healthRanking": 8,
+        "descriptionKey": "nutrition.good-fiber"
+      },
+      "calories": {
+        "total": 89,
+        "fromCarbs": 91.2,
+        "fromProtein": 4.4,
+        "fromFat": 2.7,
+        "descriptionKey": "nutrition.low-calories"
+      },
+      "vitamins": {
+        "vitamin_b6": {
+          "amount": 0.4,
+          "unit": "mg",
+          "dailyPercentage": 20
+        },
+        "vitamin_c": {
+          "amount": 8.7,
+          "unit": "mg",
+          "dailyPercentage": 15
+        }
+      },
+      "minerals": {
+        "potassium": {
+          "amount": 358,
+          "unit": "mg",
+          "dailyPercentage": 8
+        },
+        "magnesium": {
+          "amount": 27,
+          "unit": "mg",
+          "dailyPercentage": 7
+        }
+      }
+    }
+  },
+  {
+    "id": "strawberry_032",
+    "nameKey": "product.strawberry",
+    "categoryKey": "category.fruits",
+    "image": "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=400",
+    "rating": 9.1,
+    "seasonalityMonths": [4, 5, 6, 7],
+    "shelfLife": {
+      "days": 4,
+      "storage": "storage.refrigerated"
+    },
+    "nutrition": {
+      "servingSize": 100,
+      "servingUnit": "g",
+      "protein": {
+        "total": 0.7,
+        "caloriesFrom": 2.8,
+        "dailyPercentage": 1,
+        "healthRanking": 4,
+        "descriptionKey": "nutrition.very-low-protein"
+      },
+      "carbs": {
+        "total": 7.7,
+        "caloriesFrom": 30.8,
+        "dailyPercentage": 3,
+        "healthRanking": 9,
+        "descriptionKey": "nutrition.low-carbs"
+      },
+      "fats": {
+        "total": 0.3,
+        "caloriesFrom": 2.7,
+        "dailyPercentage": 0,
+        "healthRanking": 10,
+        "descriptionKey": "nutrition.very-low-fats"
+      },
+      "fiber": {
+        "total": 2.0,
+        "caloriesFrom": 0,
+        "dailyPercentage": 8,
+        "healthRanking": 8,
+        "descriptionKey": "nutrition.good-fiber"
+      },
+      "calories": {
+        "total": 32,
+        "fromCarbs": 30.8,
+        "fromProtein": 2.8,
+        "fromFat": 2.7,
+        "descriptionKey": "nutrition.very-low-calories"
+      },
+      "vitamins": {
+        "vitamin_c": {
+          "amount": 58.8,
+          "unit": "mg",
+          "dailyPercentage": 98
+        },
+        "folate": {
+          "amount": 24,
+          "unit": "µg",
+          "dailyPercentage": 6
+        }
+      },
+      "minerals": {
+        "potassium": {
+          "amount": 153,
+          "unit": "mg",
+          "dailyPercentage": 3
+        },
+        "manganese": {
+          "amount": 0.4,
+          "unit": "mg",
+          "dailyPercentage": 18
+        }
+      }
+    }
+  },
+  {
+    "id": "blueberries_005",
+    "nameKey": "product.blueberry",
+    "categoryKey": "category.fruits",
+    "image": "https://images.unsplash.com/photo-1498557850523-fd3d118b962e?w=400",
+    "rating": 9.4,
+    "seasonalityMonths": [6, 7, 8, 9],
+    "shelfLife": {
+      "days": 7,
+      "storage": "storage.refrigerated"
+    },
+    "nutrition": {
+      "servingSize": 100,
+      "servingUnit": "g",
+      "protein": {
+        "total": 0.7,
+        "caloriesFrom": 2.8,
+        "dailyPercentage": 1,
+        "healthRanking": 4,
+        "descriptionKey": "nutrition.very-low-protein"
+      },
+      "carbs": {
+        "total": 14.5,
+        "caloriesFrom": 58,
+        "dailyPercentage": 5,
+        "healthRanking": 8,
+        "descriptionKey": "nutrition.low-carbs"
+      },
+      "fats": {
+        "total": 0.3,
+        "caloriesFrom": 2.7,
+        "dailyPercentage": 0,
+        "healthRanking": 10,
+        "descriptionKey": "nutrition.very-low-fats"
+      },
+      "fiber": {
+        "total": 2.4,
+        "caloriesFrom": 0,
+        "dailyPercentage": 10,
+        "healthRanking": 8,
+        "descriptionKey": "nutrition.good-fiber"
+      },
+      "calories": {
+        "total": 57,
+        "fromCarbs": 58,
+        "fromProtein": 2.8,
+        "fromFat": 2.7,
+        "descriptionKey": "nutrition.very-low-calories"
+      },
+      "vitamins": {
+        "vitamin_k": {
+          "amount": 19.3,
+          "unit": "µg",
+          "dailyPercentage": 24
+        },
+        "vitamin_c": {
+          "amount": 9.7,
+          "unit": "mg",
+          "dailyPercentage": 16
+        }
+      },
+      "minerals": {
+        "manganese": {
+          "amount": 0.3,
+          "unit": "mg",
+          "dailyPercentage": 17
+        }
+      }
+    }
+  }
+]

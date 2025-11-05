@@ -1,0 +1,89 @@
+{
+  "product": {
+    "broccoli": "Brócoli",
+    "spinach": "Espinaca",
+    "banana": "Plátano",
+    "strawberry": "Fresa",
+    "blueberry": "Arándano",
+    "amaranth": "Amaranto",
+    "honey": "Miel",
+    "almonds": "Almendras",
+    "cinnamon": "Canela",
+    "greek-yogurt": "Yogur Griego",
+    "water": "Agua"
+  },
+  "category": {
+    "vegetables": "Verduras",
+    "fruits": "Frutas",
+    "grains": "Granos y Cereales",
+    "sweeteners": "Endulzantes",
+    "nuts-seeds": "Nueces y Semillas",
+    "spices": "Especias",
+    "dairy": "Lácteos",
+    "beverages": "Bebidas",
+    "breakfast": "Desayunos"
+  },
+  "tag": {
+    "high-protein": "Alta Proteína",
+    "high-fiber": "Alta Fibra",
+    "high-iron": "Alto Hierro",
+    "vegetarian": "Vegetariano",
+    "vegan": "Vegano",
+    "gluten-free": "Sin Gluten",
+    "low-carb": "Bajo en Carbohidratos",
+    "low-calorie": "Bajo en Calorías"
+  },
+  "storage": {
+    "refrigerated": "Refrigerado",
+    "room-temperature": "Temperatura ambiente",
+    "pantry-dry": "Despensa (seco)",
+    "frozen": "Congelado"
+  },
+  "nutrition": {
+    "excellent-protein": "Excelente fuente de proteína",
+    "good-protein": "Buena fuente de proteína",
+    "moderate-protein": "Proteína moderada",
+    "low-protein": "Baja proteína",
+    "very-low-protein": "Muy baja proteína",
+    "zero-protein": "Sin proteína",
+    "very-high-carbs": "Muy alto en carbohidratos",
+    "high-carbs": "Alto en carbohidratos",
+    "moderate-carbs": "Carbohidratos moderados",
+    "low-carbs": "Bajo en carbohidratos",
+    "very-low-carbs": "Muy bajo en carbohidratos",
+    "zero-carbs": "Sin carbohidratos",
+    "high-fats": "Alto en grasas",
+    "moderate-fats": "Grasas moderadas",
+    "low-fats": "Bajo en grasas",
+    "very-low-fats": "Muy bajo en grasas",
+    "zero-fats": "Sin grasas",
+    "exceptional-fiber": "Excepcional en fibra",
+    "very-high-fiber": "Muy alto en fibra",
+    "high-fiber": "Alto en fibra",
+    "good-fiber": "Buena fibra",
+    "moderate-fiber": "Fibra moderada",
+    "low-fiber": "Baja fibra",
+    "very-low-fiber": "Muy baja fibra",
+    "zero-fiber": "Sin fibra",
+    "very-high-calories": "Muy alto en calorías",
+    "high-calories": "Alto en calorías",
+    "moderate-calories": "Calorías moderadas",
+    "low-calories": "Bajo en calorías",
+    "very-low-calories": "Muy bajo en calorías",
+    "zero-calories": "Sin calorías",
+    "excellent-iron": "Excelente fuente de hierro"
+  },
+  "tool": {
+    "medium-pot": "Olla mediana",
+    "fine-strainer": "Colador fino",
+    "serving-bowls": "Bowls para servir",
+    "knife": "Cuchillo",
+    "cutting-board": "Tabla de cortar"
+  },
+  "seo": {
+    "amaranth-bowl": "bowl amaranto",
+    "healthy-breakfast": "desayuno saludable",
+    "complete-proteins": "proteínas completas",
+    "high-iron": "alto hierro"
+  }
+}

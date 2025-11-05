@@ -1,0 +1,148 @@
+{
+  "id": "bowl-amaranto-frutas",
+  "nameKey": "recipe.bowl-amaranto-frutas.name",
+  "descriptionKey": "recipe.bowl-amaranto-frutas.description",
+  "categoryKey": "category.breakfast",
+  "tags": ["tag.high-protein", "tag.high-fiber", "tag.high-iron", "tag.vegetarian"],
+  "difficulty": "easy",
+  "prepTime": 15,
+  "cookTime": 25,
+  "totalTime": 40,
+  "servings": 2,
+  "publishedAt": "2025-01-20",
+  "rating": 4.8,
+  "featuredImage": "https://images.unsplash.com/photo-1586201375799-47cd24c3f595?q=80&w=2340&auto=format&fit=crop",
+  "toolsKeys": [
+    "tool.medium-pot",
+    "tool.fine-strainer",
+    "tool.serving-bowls",
+    "tool.knife",
+    "tool.cutting-board"
+  ],
+  "stepsKeys": [
+    "recipe.bowl-amaranto-frutas.step1",
+    "recipe.bowl-amaranto-frutas.step2",
+    "recipe.bowl-amaranto-frutas.step3",
+    "recipe.bowl-amaranto-frutas.step4",
+    "recipe.bowl-amaranto-frutas.step5",
+    "recipe.bowl-amaranto-frutas.step6",
+    "recipe.bowl-amaranto-frutas.step7",
+    "recipe.bowl-amaranto-frutas.step8",
+    "recipe.bowl-amaranto-frutas.step9",
+    "recipe.bowl-amaranto-frutas.step10"
+  ],
+  "historyKeys": [
+    "recipe.bowl-amaranto-frutas.history1",
+    "recipe.bowl-amaranto-frutas.history2"
+  ],
+  "references": [
+    "https://www.healthline.com/nutrition/amaranth-benefits",
+    "https://www.webmd.com/diet/health-benefits-amaranth"
+  ],
+  "nutrition": {
+    "calories": {
+      "total": 285,
+      "fromCarbs": 180,
+      "fromProtein": 48,
+      "fromFat": 72,
+      "descriptionKey": "nutrition.moderate-calories"
+    },
+    "protein": {
+      "total": 12,
+      "dailyPercentage": 24,
+      "healthRanking": 9,
+      "descriptionKey": "nutrition.excellent-protein"
+    },
+    "carbs": {
+      "total": 45,
+      "dailyPercentage": 15,
+      "healthRanking": 8,
+      "descriptionKey": "nutrition.moderate-carbs"
+    },
+    "fats": {
+      "total": 8,
+      "dailyPercentage": 12,
+      "healthRanking": 9,
+      "descriptionKey": "nutrition.low-fats"
+    },
+    "fiber": {
+      "total": 9,
+      "dailyPercentage": 36,
+      "healthRanking": 10,
+      "descriptionKey": "nutrition.very-high-fiber"
+    },
+    "iron": {
+      "total": 5.2,
+      "unit": "mg",
+      "dailyPercentage": 29,
+      "healthRanking": 10,
+      "descriptionKey": "nutrition.excellent-iron"
+    },
+    "sodium": {
+      "total": 25,
+      "unit": "mg",
+      "dailyPercentage": 1,
+      "healthRanking": 10,
+      "descriptionKey": "nutrition.very-low-sodium"
+    }
+  },
+  "seo": {
+    "titleKey": "recipe.bowl-amaranto-frutas.seo-title",
+    "descriptionKey": "recipe.bowl-amaranto-frutas.seo-description",
+    "keywordsKeys": [
+      "seo.amaranth-bowl",
+      "seo.healthy-breakfast",
+      "seo.complete-proteins",
+      "seo.high-iron"
+    ]
+  },
+  "ingredients": [
+    {
+      "productId": "amaranth_031",
+      "quantity": 200,
+      "unit": "g"
+    },
+    {
+      "productId": "water_000",
+      "quantity": 480,
+      "unit": "ml"
+    },
+    {
+      "productId": "banana_010",
+      "quantity": 120,
+      "unit": "g"
+    },
+    {
+      "productId": "strawberry_032",
+      "quantity": 75,
+      "unit": "g"
+    },
+    {
+      "productId": "blueberries_005",
+      "quantity": 75,
+      "unit": "g"
+    },
+    {
+      "productId": "honey_033",
+      "quantity": 42,
+      "unit": "ml"
+    },
+    {
+      "productId": "almonds_004",
+      "quantity": 20,
+      "unit": "g",
+      "notes": "chopped"
+    },
+    {
+      "productId": "cinnamon_034",
+      "quantity": 3,
+      "unit": "g"
+    },
+    {
+      "productId": "greek_yogurt_007",
+      "quantity": 30,
+      "unit": "g",
+      "optional": true
+    }
+  ]
+}

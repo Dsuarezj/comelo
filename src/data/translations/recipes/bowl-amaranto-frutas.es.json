@@ -1,0 +1,63 @@
+{
+  "recipe": {
+    "bowl-amaranto-frutas": {
+      "name": "Bowl de Amaranto con Frutas",
+      "description": "Un desayuno o merienda nutritivo basado en amaranto, un pseudocereal ancestral rico en proteínas completas y hierro. Esta receta combina la textura suave del amaranto cocido con la frescura de las frutas y el crujiente de las nueces.",
+      "step1": {
+        "title": "Enjuagar el amaranto bajo agua fría",
+        "description": "Medir 1 taza de amaranto y enjuagar en [colador de malla fina](https://amazon.com/colador-malla-acero-inoxidable) bajo agua fría durante 2 minutos.",
+        "time": "3 minutos",
+        "tip": "Este paso elimina cualquier sabor terroso residual."
+      },
+      "step2": {
+        "title": "En una olla, hervir 2 tazas de agua",
+        "description": "En una [olla de fondo grueso](https://amazon.com/olla-fondo-grueso-antiadherente), hervir 2½ tazas de agua con una pizca de sal.",
+        "time": "5 minutos"
+      },
+      "step3": {
+        "title": "Agregar el amaranto y cocinar a fuego medio por 20 minutos hasta que esté tierno",
+        "description": "Agregar el amaranto enjuagado al agua hirviendo, reducir a fuego medio-bajo y cocinar semi-tapado.",
+        "time": "20-25 minutos",
+        "tip": "Revolver ocasionalmente para evitar que se pegue."
+      },
+      "step4": {
+        "title": "Escurrir el exceso de agua y dejar enfriar ligeramente",
+        "description": "Cuando el amaranto haya absorbido el líquido, retirar del fuego y dejar reposar 5 minutos tapado.",
+        "time": "5 minutos"
+      },
+      "step5": {
+        "title": "Cortar el plátano en rodajas",
+        "description": "Pelar el plátano y cortar en rodajas de 1 cm de grosor.",
+        "time": "1 minuto"
+      },
+      "step6": {
+        "title": "Lavar las fresas y cortarlas en mitades",
+        "description": "Mientras tanto, lavar las fresas en agua fría y cortarlas en mitades con [cuchillo paring](https://amazon.com/cuchillo-paring-acero-alto-carbono). Lavar delicadamente los arándanos y seleccionar solo los más firmes.",
+        "time": "6 minutos"
+      },
+      "step7": {
+        "title": "En bowls, servir el amaranto tibio",
+        "description": "Servir el amaranto tibio en [bowls de cerámica](https://amazon.com/bowls-ceramica-artesanal).",
+        "time": "1 minuto"
+      },
+      "step8": {
+        "title": "Decorar con frutas, nueces y canela",
+        "description": "Decorar con frutas y espolvorear canela.",
+        "time": "1 minuto",
+        "tip": "La temperatura tibia realza los sabores naturales."
+      },
+      "step9": {
+        "title": "Rociar con miel y agregar yogur si se desea",
+        "time": "30 segundos"
+      },
+      "step10": {
+        "title": "Servir inmediatamente",
+        "time": "30 segundos"
+      },
+      "history1": "El amaranto ha sido cultivado y consumido por las civilizaciones mesoamericanas durante más de 8,000 años. Los aztecas lo consideraban un alimento sagrado y lo utilizaban tanto para alimentación como para ceremonias religiosas. Este pseudocereal era tan valorado que formaba parte del tributo pagado al imperio azteca.",
+      "history2": "A diferencia de los cereales tradicionales, el amaranto contiene todos los aminoácidos esenciales, convirtiéndolo en una proteína completa similar a la carne o los huevos. Para esta receta, recomendamos [amaranto orgánico certificado](https://amazon.com/amaranto-organico-premium) que conserva todas sus propiedades nutricionales ancestrales.",
+      "seo-title": "Bowl de Amaranto con Frutas - Desayuno Rico en Proteínas y Hierro",
+      "seo-description": "Receta de bowl de amaranto con frutas frescas. Pseudocereal rico en proteínas completas, hierro y fibra para un desayuno nutritivo."
+    }
+  }
+}

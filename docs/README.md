@@ -154,3 +154,13 @@ Si encuentras algo confuso o faltante:
 ---
 
 **Happy Reading! 📖**
+
+### 📊 Arquitectura de Datos
+
+**[📊 DATA_ARCHITECTURE.md](./DATA_ARCHITECTURE.md)**
+   - Estructura optimizada de recetas y productos
+   - Separación de datos y traducciones
+   - Sistema de claves para internacionalización
+   - Carga bajo demanda (lazy loading)
+   - **Léelo** antes de crear recetas o productos
+

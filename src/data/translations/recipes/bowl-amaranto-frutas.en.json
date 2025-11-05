@@ -1,0 +1,63 @@
+{
+  "recipe": {
+    "bowl-amaranto-frutas": {
+      "name": "Amaranth Fruit Bowl",
+      "description": "A nutritious breakfast or snack based on amaranth, an ancient pseudocereal rich in complete proteins and iron. This recipe combines the soft texture of cooked amaranth with fresh fruits and crunchy nuts.",
+      "step1": {
+        "title": "Rinse amaranth under cold water",
+        "description": "Measure 1 cup amaranth and rinse in [fine mesh strainer](https://amazon.com/fine-mesh-stainless-steel-strainer) under cold water for 2 minutes.",
+        "time": "3 minutes",
+        "tip": "This step removes any residual earthy flavor."
+      },
+      "step2": {
+        "title": "In a pot, boil 2 cups of water",
+        "description": "In a [heavy-bottom pot](https://amazon.com/heavy-bottom-non-stick-pot), boil 2½ cups water with a pinch of salt.",
+        "time": "5 minutos"
+      },
+      "step3": {
+        "title": "Add amaranth and cook on medium heat for 20 minutes until tender",
+        "description": "Add rinsed amaranth to boiling water, reduce to medium-low heat and cook semi-covered.",
+        "time": "20-25 minutes",
+        "tip": "Stir occasionally to prevent sticking."
+      },
+      "step4": {
+        "title": "Drain excess water and let cool slightly",
+        "description": "When amaranth has absorbed the liquid, remove from heat and let rest covered for 5 minutes.",
+        "time": "5 minutes"
+      },
+      "step5": {
+        "title": "Cut banana into slices",
+        "description": "Peel banana and cut into 1 cm thick slices.",
+        "time": "1 minute"
+      },
+      "step6": {
+        "title": "Wash strawberries and cut in halves",
+        "description": "Meanwhile, wash strawberries in cold water and cut in halves with [paring knife](https://amazon.com/high-carbon-steel-paring-knife). Gently wash blueberries and select only the firmest ones.",
+        "time": "6 minutes"
+      },
+      "step7": {
+        "title": "In bowls, serve warm amaranth",
+        "description": "Serve warm amaranth in [ceramic bowls](https://amazon.com/artisanal-ceramic-bowls).",
+        "time": "1 minute"
+      },
+      "step8": {
+        "title": "Decorate with fruits, nuts and cinnamon",
+        "description": "Decorate with fruits and sprinkle cinnamon.",
+        "time": "1 minute",
+        "tip": "Warm temperature enhances natural flavors."
+      },
+      "step9": {
+        "title": "Drizzle with honey and add yogurt if desired",
+        "time": "30 seconds"
+      },
+      "step10": {
+        "title": "Serve immediately",
+        "time": "30 seconds"
+      },
+      "history1": "Amaranth has been cultivated and consumed by Mesoamerican civilizations for more than 8,000 years. The Aztecs considered it a sacred food and used it both for nutrition and religious ceremonies. This pseudocereal was so valued that it formed part of the tribute paid to the Aztec empire.",
+      "history2": "Unlike traditional cereals, amaranth contains all essential amino acids, making it a complete protein similar to meat or eggs. For this recipe, we recommend [certified organic amaranth](https://amazon.com/organic-premium-amaranth) that preserves all its ancestral nutritional properties.",
+      "seo-title": "Amaranth Fruit Bowl - High Protein and Iron Breakfast",
+      "seo-description": "Amaranth fruit bowl recipe with fresh fruits. Pseudocereal rich in complete proteins, iron and fiber for a nutritious breakfast."
+    }
+  }
+}

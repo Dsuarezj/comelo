@@ -1,0 +1,187 @@
+[
+  {
+    "id": "broccoli_001",
+    "nameKey": "product.broccoli",
+    "categoryKey": "category.vegetables",
+    "image": "https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?w=400",
+    "rating": 9.2,
+    "seasonalityMonths": [1, 2, 3, 10, 11, 12],
+    "shelfLife": {
+      "days": 7,
+      "storage": "storage.refrigerated"
+    },
+    "nutrition": {
+      "servingSize": 100,
+      "servingUnit": "g",
+      "protein": {
+        "total": 2.8,
+        "caloriesFrom": 11.2,
+        "dailyPercentage": 6,
+        "healthRanking": 8,
+        "descriptionKey": "nutrition.excellent-protein"
+      },
+      "carbs": {
+        "total": 6.6,
+        "caloriesFrom": 26.4,
+        "dailyPercentage": 2,
+        "healthRanking": 9,
+        "descriptionKey": "nutrition.low-carbs"
+      },
+      "fats": {
+        "total": 0.4,
+        "caloriesFrom": 3.6,
+        "dailyPercentage": 1,
+        "healthRanking": 10,
+        "descriptionKey": "nutrition.very-low-fats"
+      },
+      "fiber": {
+        "total": 2.6,
+        "caloriesFrom": 0,
+        "dailyPercentage": 10,
+        "healthRanking": 9,
+        "descriptionKey": "nutrition.high-fiber"
+      },
+      "calories": {
+        "total": 34,
+        "fromCarbs": 26.4,
+        "fromProtein": 11.2,
+        "fromFat": 3.6,
+        "descriptionKey": "nutrition.very-low-calories"
+      },
+      "vitamins": {
+        "vitamin_c": {
+          "amount": 89.2,
+          "unit": "mg",
+          "dailyPercentage": 149
+        },
+        "vitamin_k": {
+          "amount": 101.6,
+          "unit": "µg",
+          "dailyPercentage": 127
+        },
+        "vitamin_a": {
+          "amount": 623,
+          "unit": "IU",
+          "dailyPercentage": 12
+        },
+        "folate": {
+          "amount": 63,
+          "unit": "µg",
+          "dailyPercentage": 16
+        }
+      },
+      "minerals": {
+        "calcium": {
+          "amount": 47,
+          "unit": "mg",
+          "dailyPercentage": 5
+        },
+        "iron": {
+          "amount": 0.7,
+          "unit": "mg",
+          "dailyPercentage": 4
+        },
+        "potassium": {
+          "amount": 316,
+          "unit": "mg",
+          "dailyPercentage": 7
+        }
+      }
+    }
+  },
+  {
+    "id": "spinach_002",
+    "nameKey": "product.spinach",
+    "categoryKey": "category.vegetables",
+    "image": "https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=400",
+    "rating": 9.5,
+    "seasonalityMonths": [3, 4, 5, 9, 10, 11],
+    "shelfLife": {
+      "days": 5,
+      "storage": "storage.refrigerated"
+    },
+    "nutrition": {
+      "servingSize": 100,
+      "servingUnit": "g",
+      "protein": {
+        "total": 2.9,
+        "caloriesFrom": 11.6,
+        "dailyPercentage": 6,
+        "healthRanking": 8,
+        "descriptionKey": "nutrition.excellent-protein"
+      },
+      "carbs": {
+        "total": 3.6,
+        "caloriesFrom": 14.4,
+        "dailyPercentage": 1,
+        "healthRanking": 10,
+        "descriptionKey": "nutrition.very-low-carbs"
+      },
+      "fats": {
+        "total": 0.4,
+        "caloriesFrom": 3.6,
+        "dailyPercentage": 1,
+        "healthRanking": 10,
+        "descriptionKey": "nutrition.very-low-fats"
+      },
+      "fiber": {
+        "total": 2.2,
+        "caloriesFrom": 0,
+        "dailyPercentage": 9,
+        "healthRanking": 9,
+        "descriptionKey": "nutrition.high-fiber"
+      },
+      "calories": {
+        "total": 23,
+        "fromCarbs": 14.4,
+        "fromProtein": 11.6,
+        "fromFat": 3.6,
+        "descriptionKey": "nutrition.very-low-calories"
+      },
+      "vitamins": {
+        "vitamin_k": {
+          "amount": 482.9,
+          "unit": "µg",
+          "dailyPercentage": 604
+        },
+        "vitamin_a": {
+          "amount": 9377,
+          "unit": "IU",
+          "dailyPercentage": 188
+        },
+        "folate": {
+          "amount": 194,
+          "unit": "µg",
+          "dailyPercentage": 49
+        },
+        "vitamin_c": {
+          "amount": 28.1,
+          "unit": "mg",
+          "dailyPercentage": 47
+        }
+      },
+      "minerals": {
+        "iron": {
+          "amount": 2.7,
+          "unit": "mg",
+          "dailyPercentage": 15
+        },
+        "calcium": {
+          "amount": 99,
+          "unit": "mg",
+          "dailyPercentage": 10
+        },
+        "magnesium": {
+          "amount": 79,
+          "unit": "mg",
+          "dailyPercentage": 20
+        },
+        "potassium": {
+          "amount": 558,
+          "unit": "mg",
+          "dailyPercentage": 12
+        }
+      }
+    }
+  }
+]

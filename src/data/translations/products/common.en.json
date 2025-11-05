@@ -1,0 +1,89 @@
+{
+  "product": {
+    "broccoli": "Broccoli",
+    "spinach": "Spinach",
+    "banana": "Banana",
+    "strawberry": "Strawberry",
+    "blueberry": "Blueberry",
+    "amaranth": "Amaranth",
+    "honey": "Honey",
+    "almonds": "Almonds",
+    "cinnamon": "Cinnamon",
+    "greek-yogurt": "Greek Yogurt",
+    "water": "Water"
+  },
+  "category": {
+    "vegetables": "Vegetables",
+    "fruits": "Fruits",
+    "grains": "Grains & Cereals",
+    "sweeteners": "Sweeteners",
+    "nuts-seeds": "Nuts & Seeds",
+    "spices": "Spices",
+    "dairy": "Dairy",
+    "beverages": "Beverages",
+    "breakfast": "Breakfast"
+  },
+  "tag": {
+    "high-protein": "High Protein",
+    "high-fiber": "High Fiber",
+    "high-iron": "High Iron",
+    "vegetarian": "Vegetarian",
+    "vegan": "Vegan",
+    "gluten-free": "Gluten Free",
+    "low-carb": "Low Carb",
+    "low-calorie": "Low Calorie"
+  },
+  "storage": {
+    "refrigerated": "Refrigerated",
+    "room-temperature": "Room Temperature",
+    "pantry-dry": "Pantry (dry)",
+    "frozen": "Frozen"
+  },
+  "nutrition": {
+    "excellent-protein": "Excellent source of protein",
+    "good-protein": "Good source of protein",
+    "moderate-protein": "Moderate protein",
+    "low-protein": "Low protein",
+    "very-low-protein": "Very low protein",
+    "zero-protein": "No protein",
+    "very-high-carbs": "Very high in carbs",
+    "high-carbs": "High in carbs",
+    "moderate-carbs": "Moderate carbs",
+    "low-carbs": "Low carbs",
+    "very-low-carbs": "Very low carbs",
+    "zero-carbs": "No carbs",
+    "high-fats": "High in fats",
+    "moderate-fats": "Moderate fats",
+    "low-fats": "Low fats",
+    "very-low-fats": "Very low fats",
+    "zero-fats": "No fats",
+    "exceptional-fiber": "Exceptional fiber",
+    "very-high-fiber": "Very high fiber",
+    "high-fiber": "High fiber",
+    "good-fiber": "Good fiber",
+    "moderate-fiber": "Moderate fiber",
+    "low-fiber": "Low fiber",
+    "very-low-fiber": "Very low fiber",
+    "zero-fiber": "No fiber",
+    "very-high-calories": "Very high in calories",
+    "high-calories": "High in calories",
+    "moderate-calories": "Moderate calories",
+    "low-calories": "Low in calories",
+    "very-low-calories": "Very low in calories",
+    "zero-calories": "No calories",
+    "excellent-iron": "Excellent source of iron"
+  },
+  "tool": {
+    "medium-pot": "Medium pot",
+    "fine-strainer": "Fine mesh strainer",
+    "serving-bowls": "Serving bowls",
+    "knife": "Knife",
+    "cutting-board": "Cutting board"
+  },
+  "seo": {
+    "amaranth-bowl": "amaranth bowl",
+    "healthy-breakfast": "healthy breakfast",
+    "complete-proteins": "complete proteins",
+    "high-iron": "high iron"
+  }
+}

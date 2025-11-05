@@ -1,0 +1,346 @@
+[
+  {
+    "id": "honey_033",
+    "nameKey": "product.honey",
+    "categoryKey": "category.sweeteners",
+    "image": "https://images.unsplash.com/photo-1587049352846-4a222e784513?w=400",
+    "rating": 8.7,
+    "seasonalityMonths": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "shelfLife": {
+      "days": 730,
+      "storage": "storage.pantry-dry"
+    },
+    "nutrition": {
+      "servingSize": 100,
+      "servingUnit": "g",
+      "protein": {
+        "total": 0.3,
+        "caloriesFrom": 1.2,
+        "dailyPercentage": 1,
+        "healthRanking": 3,
+        "descriptionKey": "nutrition.very-low-protein"
+      },
+      "carbs": {
+        "total": 82.4,
+        "caloriesFrom": 329.6,
+        "dailyPercentage": 27,
+        "healthRanking": 4,
+        "descriptionKey": "nutrition.very-high-carbs"
+      },
+      "fats": {
+        "total": 0,
+        "caloriesFrom": 0,
+        "dailyPercentage": 0,
+        "healthRanking": 10,
+        "descriptionKey": "nutrition.zero-fats"
+      },
+      "fiber": {
+        "total": 0.2,
+        "caloriesFrom": 0,
+        "dailyPercentage": 1,
+        "healthRanking": 3,
+        "descriptionKey": "nutrition.very-low-fiber"
+      },
+      "calories": {
+        "total": 304,
+        "fromCarbs": 329.6,
+        "fromProtein": 1.2,
+        "fromFat": 0,
+        "descriptionKey": "nutrition.high-calories"
+      },
+      "vitamins": {
+        "vitamin_c": {
+          "amount": 0.5,
+          "unit": "mg",
+          "dailyPercentage": 1
+        }
+      },
+      "minerals": {
+        "calcium": {
+          "amount": 6,
+          "unit": "mg",
+          "dailyPercentage": 1
+        },
+        "iron": {
+          "amount": 0.4,
+          "unit": "mg",
+          "dailyPercentage": 2
+        },
+        "potassium": {
+          "amount": 52,
+          "unit": "mg",
+          "dailyPercentage": 1
+        }
+      }
+    }
+  },
+  {
+    "id": "almonds_004",
+    "nameKey": "product.almonds",
+    "categoryKey": "category.nuts-seeds",
+    "image": "https://images.unsplash.com/photo-1508747703725-719777637510?w=400",
+    "rating": 9.0,
+    "seasonalityMonths": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "shelfLife": {
+      "days": 365,
+      "storage": "storage.pantry-dry"
+    },
+    "nutrition": {
+      "servingSize": 100,
+      "servingUnit": "g",
+      "protein": {
+        "total": 21.2,
+        "caloriesFrom": 84.8,
+        "dailyPercentage": 42,
+        "healthRanking": 10,
+        "descriptionKey": "nutrition.excellent-protein"
+      },
+      "carbs": {
+        "total": 21.6,
+        "caloriesFrom": 86.4,
+        "dailyPercentage": 7,
+        "healthRanking": 8,
+        "descriptionKey": "nutrition.moderate-carbs"
+      },
+      "fats": {
+        "total": 49.9,
+        "caloriesFrom": 449.1,
+        "dailyPercentage": 77,
+        "healthRanking": 6,
+        "descriptionKey": "nutrition.high-fats"
+      },
+      "fiber": {
+        "total": 12.5,
+        "caloriesFrom": 0,
+        "dailyPercentage": 50,
+        "healthRanking": 10,
+        "descriptionKey": "nutrition.very-high-fiber"
+      },
+      "calories": {
+        "total": 579,
+        "fromCarbs": 86.4,
+        "fromProtein": 84.8,
+        "fromFat": 449.1,
+        "descriptionKey": "nutrition.very-high-calories"
+      },
+      "vitamins": {
+        "vitamin_e": {
+          "amount": 25.6,
+          "unit": "mg",
+          "dailyPercentage": 128
+        },
+        "riboflavin": {
+          "amount": 1.1,
+          "unit": "mg",
+          "dailyPercentage": 65
+        }
+      },
+      "minerals": {
+        "magnesium": {
+          "amount": 270,
+          "unit": "mg",
+          "dailyPercentage": 68
+        },
+        "calcium": {
+          "amount": 269,
+          "unit": "mg",
+          "dailyPercentage": 27
+        },
+        "phosphorus": {
+          "amount": 481,
+          "unit": "mg",
+          "dailyPercentage": 48
+        }
+      }
+    }
+  },
+  {
+    "id": "cinnamon_034",
+    "nameKey": "product.cinnamon",
+    "categoryKey": "category.spices",
+    "image": "https://images.unsplash.com/photo-1555758743-3a5f04c8c9db?w=400",
+    "rating": 8.8,
+    "seasonalityMonths": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "shelfLife": {
+      "days": 1095,
+      "storage": "storage.pantry-dry"
+    },
+    "nutrition": {
+      "servingSize": 100,
+      "servingUnit": "g",
+      "protein": {
+        "total": 4.0,
+        "caloriesFrom": 16,
+        "dailyPercentage": 8,
+        "healthRanking": 6,
+        "descriptionKey": "nutrition.moderate-protein"
+      },
+      "carbs": {
+        "total": 80.6,
+        "caloriesFrom": 322.4,
+        "dailyPercentage": 27,
+        "healthRanking": 5,
+        "descriptionKey": "nutrition.high-carbs"
+      },
+      "fats": {
+        "total": 1.2,
+        "caloriesFrom": 10.8,
+        "dailyPercentage": 2,
+        "healthRanking": 10,
+        "descriptionKey": "nutrition.very-low-fats"
+      },
+      "fiber": {
+        "total": 53.1,
+        "caloriesFrom": 0,
+        "dailyPercentage": 212,
+        "healthRanking": 10,
+        "descriptionKey": "nutrition.exceptional-fiber"
+      },
+      "calories": {
+        "total": 247,
+        "fromCarbs": 322.4,
+        "fromProtein": 16,
+        "fromFat": 10.8,
+        "descriptionKey": "nutrition.moderate-calories"
+      },
+      "minerals": {
+        "calcium": {
+          "amount": 1002,
+          "unit": "mg",
+          "dailyPercentage": 100
+        },
+        "iron": {
+          "amount": 8.3,
+          "unit": "mg",
+          "dailyPercentage": 46
+        },
+        "manganese": {
+          "amount": 17.5,
+          "unit": "mg",
+          "dailyPercentage": 875
+        }
+      }
+    }
+  },
+  {
+    "id": "greek_yogurt_007",
+    "nameKey": "product.greek-yogurt",
+    "categoryKey": "category.dairy",
+    "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400",
+    "rating": 8.9,
+    "seasonalityMonths": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "shelfLife": {
+      "days": 14,
+      "storage": "storage.refrigerated"
+    },
+    "nutrition": {
+      "servingSize": 100,
+      "servingUnit": "g",
+      "protein": {
+        "total": 10.0,
+        "caloriesFrom": 40,
+        "dailyPercentage": 20,
+        "healthRanking": 9,
+        "descriptionKey": "nutrition.excellent-protein"
+      },
+      "carbs": {
+        "total": 3.6,
+        "caloriesFrom": 14.4,
+        "dailyPercentage": 1,
+        "healthRanking": 10,
+        "descriptionKey": "nutrition.very-low-carbs"
+      },
+      "fats": {
+        "total": 0.4,
+        "caloriesFrom": 3.6,
+        "dailyPercentage": 1,
+        "healthRanking": 10,
+        "descriptionKey": "nutrition.very-low-fats"
+      },
+      "fiber": {
+        "total": 0,
+        "caloriesFrom": 0,
+        "dailyPercentage": 0,
+        "healthRanking": 1,
+        "descriptionKey": "nutrition.zero-fiber"
+      },
+      "calories": {
+        "total": 59,
+        "fromCarbs": 14.4,
+        "fromProtein": 40,
+        "fromFat": 3.6,
+        "descriptionKey": "nutrition.very-low-calories"
+      },
+      "vitamins": {
+        "vitamin_b12": {
+          "amount": 0.5,
+          "unit": "µg",
+          "dailyPercentage": 21
+        }
+      },
+      "minerals": {
+        "calcium": {
+          "amount": 110,
+          "unit": "mg",
+          "dailyPercentage": 11
+        },
+        "phosphorus": {
+          "amount": 135,
+          "unit": "mg",
+          "dailyPercentage": 14
+        }
+      }
+    }
+  },
+  {
+    "id": "water_000",
+    "nameKey": "product.water",
+    "categoryKey": "category.beverages",
+    "image": "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=400",
+    "rating": 10.0,
+    "seasonalityMonths": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "shelfLife": {
+      "days": 730,
+      "storage": "storage.room-temperature"
+    },
+    "nutrition": {
+      "servingSize": 100,
+      "servingUnit": "ml",
+      "protein": {
+        "total": 0,
+        "caloriesFrom": 0,
+        "dailyPercentage": 0,
+        "healthRanking": 1,
+        "descriptionKey": "nutrition.zero-protein"
+      },
+      "carbs": {
+        "total": 0,
+        "caloriesFrom": 0,
+        "dailyPercentage": 0,
+        "healthRanking": 10,
+        "descriptionKey": "nutrition.zero-carbs"
+      },
+      "fats": {
+        "total": 0,
+        "caloriesFrom": 0,
+        "dailyPercentage": 0,
+        "healthRanking": 10,
+        "descriptionKey": "nutrition.zero-fats"
+      },
+      "fiber": {
+        "total": 0,
+        "caloriesFrom": 0,
+        "dailyPercentage": 0,
+        "healthRanking": 1,
+        "descriptionKey": "nutrition.zero-fiber"
+      },
+      "calories": {
+        "total": 0,
+        "fromCarbs": 0,
+        "fromProtein": 0,
+        "fromFat": 0,
+        "descriptionKey": "nutrition.zero-calories"
+      }
+    }
+  }
+]
