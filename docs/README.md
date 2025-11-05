@@ -29,9 +29,19 @@ Esta carpeta contiene toda la documentación técnica del proyecto.
    - Troubleshooting de almacenamiento
    - **Léelo** si no entiendes dónde están tus datos
 
+### 🎨 Design System
+
+4. **[🎨 DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md)**
+   - Arquitectura atómica (Atomic Design)
+   - Elementos, Componentes y Módulos
+   - Guía completa de uso
+   - Paleta de colores y tipografía
+   - Ejemplos de código
+   - **Léelo** antes de crear nuevos componentes
+
 ### ☁️ Integración con Servicios
 
-4. **[☁️ DROPBOX_INTEGRATION.md](./DROPBOX_INTEGRATION.md)**
+5. **[☁️ DROPBOX_INTEGRATION.md](./DROPBOX_INTEGRATION.md)**
    - Guía completa OAuth 2.0
    - Código de ejemplo listo para copiar
    - Sincronización con Service Worker

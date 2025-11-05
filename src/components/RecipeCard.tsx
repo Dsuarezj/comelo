@@ -1,6 +1,7 @@
 import { Heart, Star } from 'lucide-react';
 import { Recipe } from '../types';
 import { useTranslation } from 'react-i18next';
+import { Card, IconButton, Text, Image, Badge } from '../elements';
 
 interface RecipeCardProps {
   recipe: Recipe;
@@ -8,43 +9,53 @@ interface RecipeCardProps {
   isFavorite?: boolean;
 }
 
-export default function RecipeCard({ recipe, onFavoriteToggle, isFavorite = false }: RecipeCardProps) {
+export default function RecipeCard({
+  recipe,
+  onFavoriteToggle,
+  isFavorite = false,
+}: RecipeCardProps) {
   const { i18n, t } = useTranslation();
   const currentLang = i18n.language as 'es' | 'en' | 'ca';
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm overflow-hidden w-40 flex-shrink-0">
+    <Card padding="none" className="w-40 flex-shrink-0 overflow-hidden">
       <div className="relative">
-        <img
+        <Image
           src={recipe.image}
           alt={recipe.name[currentLang]}
-          className="w-full h-32 object-cover"
+          aspectRatio="4:3"
+          rounded="none"
+          className="h-32"
         />
-        <button
-          onClick={() => onFavoriteToggle?.(recipe.id)}
-          className="absolute top-2 right-2 bg-white rounded-full p-1.5 shadow-md"
-        >
-          <Heart
+        <div className="absolute top-2 right-2">
+          <IconButton
+            icon={Heart}
+            onClick={() => onFavoriteToggle?.(recipe.id)}
+            variant="default"
             size={18}
-            className={isFavorite ? 'fill-red-500 text-red-500' : 'text-gray-600'}
+            active={isFavorite}
+            ariaLabel={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+            className={isFavorite ? 'text-red-500' : 'text-gray-600'}
           />
-        </button>
+        </div>
       </div>
 
-      <div className="p-3">
-        <h3 className="font-semibold text-sm text-gray-900 mb-1 line-clamp-2">
+      <div className="p-3 space-y-2">
+        <Text variant="small" className="font-semibold line-clamp-2">
           {recipe.name[currentLang]}
-        </h3>
+        </Text>
 
-        <div className="flex items-center gap-1 text-xs text-gray-600 mb-2">
-          <span>{t('recipes.prepTime', { time: recipe.prepTime })}</span>
-        </div>
+        <Text variant="caption" color="muted">
+          {t('recipes.prepTime', { time: recipe.prepTime })}
+        </Text>
 
         <div className="flex items-center gap-1">
           <Star size={14} className="fill-yellow-400 text-yellow-400" />
-          <span className="text-xs font-medium text-gray-700">{recipe.rating}</span>
+          <Text variant="caption" className="font-medium">
+            {recipe.rating}
+          </Text>
         </div>
       </div>
-    </div>
+    </Card>
   );
 }

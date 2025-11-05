@@ -14,6 +14,10 @@ Progressive Web Application para gestión de listas de compras y descubrimiento 
 - **Offline-First**: Toda la app funciona sin conexión a internet
 
 ### 🔧 Arquitectura Técnica
+- **Atomic Design**: Arquitectura basada en átomos, moléculas y organismos para máxima reutilización
+  - **Elementos** (`src/elements/`): Componentes básicos (Button, Card, Text, Image)
+  - **Componentes** (`src/components/`): Moléculas que combinan elementos (RecipeCard, ListItem)
+  - **Módulos** (`src/modules/`): Organismos complejos (BottomNav, RecipeGrid)
 - **Service Worker con Queue System**: Sistema de cola persistente en IndexedDB para sincronización diferida
 - **LocalStorage Service**: Gestión de datos locales con tipado fuerte
 - **SessionService**: IndexedDB para almacenamiento de archivos y caché
@@ -34,9 +38,19 @@ comelo-app/
 │   ├── manifest.json            # PWA Manifest
 │   └── icons/                   # Iconos de la aplicación
 ├── src/
-│   ├── components/
-│   │   ├── BottomNav.tsx        # Navegación inferior
-│   │   └── RecipeCard.tsx       # Tarjeta de receta
+│   ├── elements/                # 🔹 Átomos - Componentes básicos
+│   │   ├── Button.tsx
+│   │   ├── Card.tsx
+│   │   ├── Text.tsx
+│   │   └── ... (6 elementos)
+│   ├── components/              # 🧩 Moléculas - Combinación de átomos
+│   │   ├── RecipeCard.tsx
+│   │   ├── ListItem.tsx
+│   │   └── ... (3 componentes)
+│   ├── modules/                 # 🏛️ Organismos - Secciones complejas
+│   │   ├── BottomNav.tsx
+│   │   ├── RecipeGrid.tsx
+│   │   └── ... (3 módulos)
 │   ├── contexts/                # Contextos React (futuro)
 │   ├── data/
 │   │   └── recipes.json         # Recetas del sistema
@@ -73,9 +87,11 @@ comelo-app/
 
 Toda la documentación detallada está en la carpeta `docs/`:
 
-- **[📘 INDEXEDDB_EXPLAINED.md](./docs/INDEXEDDB_EXPLAINED.md)** - Guía completa sobre qué es IndexedDB, dónde se guardan los datos y cómo funciona
+- **[🎨 DESIGN_SYSTEM.md](./docs/DESIGN_SYSTEM.md)** - Sistema de diseño completo (Atomic Design, elementos, componentes)
+- **[🏗️ ARCHITECTURE.md](./docs/ARCHITECTURE.md)** - Visualización de la arquitectura y flujo de datos
+- **[📘 INDEXEDDB_EXPLAINED.md](./docs/INDEXEDDB_EXPLAINED.md)** - Guía completa sobre qué es IndexedDB, dónde se guardan los datos
 - **[🚀 QUICK_START.md](./docs/QUICK_START.md)** - Inicio rápido para desarrolladores (2 minutos)
-- **[⚙️ SETUP_GUIDE.md](./docs/SETUP_GUIDE.md)** - Guía detallada de configuración y arquitectura
+- **[⚙️ SETUP_GUIDE.md](./docs/SETUP_GUIDE.md)** - Guía detallada de configuración
 - **[☁️ DROPBOX_INTEGRATION.md](./docs/DROPBOX_INTEGRATION.md)** - Plan completo de integración OAuth con Dropbox
 
 ## 🚀 Instalación y Configuración

@@ -1,17 +1,24 @@
-import { Home, List, UtensilsCrossed, User } from 'lucide-react';
+import { Home, List, UtensilsCrossed, User, LucideIcon } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Text } from '../elements';
+
+interface NavItem {
+  path: string;
+  icon: LucideIcon;
+  labelKey: string;
+}
 
 export default function BottomNav() {
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useTranslation();
 
-  const navItems = [
-    { path: '/', icon: Home, label: t('nav.home') },
-    { path: '/lists', icon: List, label: t('nav.lists') },
-    { path: '/recipes', icon: UtensilsCrossed, label: t('nav.recipes') },
-    { path: '/profile', icon: User, label: t('nav.profile') },
+  const navItems: NavItem[] = [
+    { path: '/', icon: Home, labelKey: 'nav.home' },
+    { path: '/lists', icon: List, labelKey: 'nav.lists' },
+    { path: '/recipes', icon: UtensilsCrossed, labelKey: 'nav.recipes' },
+    { path: '/profile', icon: User, labelKey: 'nav.profile' },
   ];
 
   return (
@@ -25,18 +32,20 @@ export default function BottomNav() {
             <button
               key={item.path}
               onClick={() => navigate(item.path)}
-              className={`flex flex-col items-center justify-center gap-1 px-3 py-2 rounded-xl transition-all ${
-                isActive
-                  ? 'text-gray-900 scale-110'
-                  : 'text-gray-600 hover:text-gray-900'
-              }`}
+              className={`
+                flex flex-col items-center justify-center gap-1 px-3 py-2
+                rounded-xl transition-all
+                ${isActive ? 'text-gray-900 scale-110' : 'text-gray-600 hover:text-gray-900'}
+              `.trim().replace(/\s+/g, ' ')}
             >
               <Icon
                 size={28}
                 strokeWidth={isActive ? 2.5 : 2}
                 fill={isActive ? 'currentColor' : 'none'}
               />
-              <span className="text-xs font-medium">{item.label}</span>
+              <Text variant="caption" className="font-medium">
+                {t(item.labelKey)}
+              </Text>
             </button>
           );
         })}

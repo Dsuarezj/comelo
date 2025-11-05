@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
-import BottomNav from './components/BottomNav';
+import { BottomNav } from './modules';
 import HomePage from './pages/HomePage';
 import ListsPage from './pages/ListsPage';
 import RecipesPage from './pages/RecipesPage';
