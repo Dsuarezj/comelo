@@ -54,4 +54,4 @@ Feature completion: Only mark features complete when build succeeds
 Documentation updates: Update documentation with each significant change
 Change tracking: Maintain detailed change logs in docs/prompts
 
-- Has un resumen al final de los cambios que has hecho y cuando se te pida documentacion, extiende en un docs/prompts con los cambios que has hecho en forma de plan y que efecto tienen en la app.
+- Has un resumen al final de los cambios que has hecho y cuando se te pida documentacion, extiende en un docs/prompts con los cambios que has hecho en forma de plan y que efecto tienen en la app. Extiende la documentacion actual en lugar de crear cuando se pueda
