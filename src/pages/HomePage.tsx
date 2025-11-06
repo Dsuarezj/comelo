@@ -81,7 +81,7 @@ export default function HomePage() {
 
           {lists.length > 0 && (
             <div className="mt-3">
-              <ListSection lists={lists} onListClick={(id) => navigate(`/lists/${id}`)} />
+              <ListSection lists={lists} onListClick={(id) => navigate(`/shopping-lists/${id}`)} />
             </div>
           )}
         </div>

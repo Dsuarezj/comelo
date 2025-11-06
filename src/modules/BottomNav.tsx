@@ -16,7 +16,7 @@ export default function BottomNav() {
 
   const navItems: NavItem[] = [
     { path: '/', icon: Home, labelKey: 'nav.home' },
-    { path: '/lists', icon: List, labelKey: 'nav.lists' },
+    { path: '/shopping-lists', icon: List, labelKey: 'nav.lists' },
     { path: '/recipes', icon: UtensilsCrossed, labelKey: 'nav.recipes' },
     { path: '/profile', icon: User, labelKey: 'nav.profile' },
   ];

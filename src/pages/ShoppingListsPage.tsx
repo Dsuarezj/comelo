@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Layout } from '../components';
 import { Text } from '../elements';
 
-export default function ListsPage() {
+export default function ShoppingListsPage() {
   const { t } = useTranslation();
 
   return (

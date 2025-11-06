@@ -2,8 +2,7 @@ import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Text, IconButton } from '../elements';
-import { useNavigationContext } from './NavigationContext';
-import LanguageSelector from './LanguageSelector';
+import { useNavigationContext } from '../contexts';
 
 interface NavigationHeaderProps {
   title: string;
@@ -16,7 +15,7 @@ export default function NavigationHeader({
 }: NavigationHeaderProps) {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { goBack, canGoBack } = useNavigationContext();
+  const { goBack, navigationStack } = useNavigationContext();
 
   const handleBack = () => {
     const backRoute = goBack();
@@ -27,10 +26,12 @@ export default function NavigationHeader({
     }
   };
 
+  const shouldShowBack = showBackButton && navigationStack.length > 0;
+
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-40">
-      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
-        {showBackButton && canGoBack && (
+      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center gap-4">
+        {shouldShowBack ? (
           <IconButton
             icon={ArrowLeft}
             onClick={handleBack}
@@ -39,15 +40,17 @@ export default function NavigationHeader({
             ariaLabel={t('common.back')}
             className="text-gray-700"
           />
+        ) : (
+          <div className="w-10" />
         )}
 
-        <div className="flex-1">
+        <div className="flex-1 text-center">
           <Text variant="h2" className="font-bold text-gray-900">
             {title}
           </Text>
         </div>
 
-        <LanguageSelector />
+        <div className="w-10" />
       </div>
     </header>
   );

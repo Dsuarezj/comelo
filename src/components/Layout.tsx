@@ -2,7 +2,7 @@ import { ReactNode, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { BottomNav } from '../modules';
 import NavigationHeader from './NavigationHeader';
-import { useNavigationContext } from './NavigationContext';
+import { useNavigationContext } from '../contexts';
 
 interface HeaderProps {
   title: string;
