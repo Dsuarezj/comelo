@@ -1,5 +1,7 @@
 import { LucideIcon } from 'lucide-react';
-import { Text, Button } from '../elements';
+import Text from '../elements/Text';
+
+import Button from '../elements/Button';
 
 interface EmptyStateProps {
   icon?: LucideIcon;

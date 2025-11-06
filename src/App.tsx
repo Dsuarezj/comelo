@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
-import { NavigationProvider } from './contexts';
+import { NavigationProvider } from './contexts/NavigationContext';
 import HomePage from './pages/HomePage';
 import ShoppingListsPage from './pages/ShoppingListsPage';
 import ShoppingListDetailPage from './pages/ShoppingListDetailPage';

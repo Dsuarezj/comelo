@@ -1,5 +1,5 @@
 import { ShoppingList } from '../types';
-import { ListItem } from '../components';
+import ListItem from '../components/ListItem';
 import { List as ListIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 

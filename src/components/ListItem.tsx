@@ -1,5 +1,8 @@
 import { ArrowRight, LucideIcon } from 'lucide-react';
-import { Card, Text, Badge } from '../elements';
+import Text from '../elements/Text';
+
+import Badge from '../elements/Badge';
+import Card from '../elements/Card';
 
 interface ListItemProps {
   title: string;

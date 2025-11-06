@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import { Layout } from '../components';
-import { Text } from '../elements';
+import Layout from '../components/Layout';
+import Text from '../elements/Text';
 
 export default function RecipesPage() {
   const { t } = useTranslation();

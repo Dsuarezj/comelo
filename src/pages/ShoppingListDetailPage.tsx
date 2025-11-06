@@ -1,8 +1,8 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
-import { Layout } from '../components';
-import { Text } from '../elements';
+import Layout from '../components/Layout';
+import Text from '../elements/Text';
 import { ShoppingList } from '../types';
 import { shoppingListService } from '../services/ShoppingListService';
 

@@ -1,7 +1,10 @@
 import { Heart, Star } from 'lucide-react';
 import { Recipe } from '../types';
 import { useTranslation } from 'react-i18next';
-import { Card, IconButton, Text, Image } from '../elements';
+import Text from '../elements/Text';
+import Image from '../elements/Image';
+import Card from '../elements/Card';
+import IconButton from '../elements/IconButton';
 import { getRecipeNameSync, getRecipeImage } from '../utils/recipeHelpers';
 
 interface RecipeCardProps {

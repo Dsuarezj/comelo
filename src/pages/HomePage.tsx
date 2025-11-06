@@ -7,9 +7,12 @@ import recipe1 from '../data/recipes/bowl-amaranto-frutas.json';
 import recipe2 from '../data/recipes/pollo-curry.json';
 import recipe3 from '../data/recipes/ensalada-quinoa.json';
 import { shoppingListService } from '../services/ShoppingListService';
-import { Text, Card } from '../elements';
-import { RecipeGrid, ListSection } from '../modules';
-import { Header, Layout } from '../components';
+import Text from '../elements/Text';
+import Card from '../elements/Card';
+import RecipeGrid from '../modules/RecipeGrid';
+import ListSection from '../modules/ListSection';
+import Header from '../components/Header';
+import Layout from '../components/Layout';
 
 export default function HomePage() {
   const { t } = useTranslation();

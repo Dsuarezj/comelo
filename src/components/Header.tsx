@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Text } from '../elements';
+import Text from '../elements/Text';
 import LanguageSelector from './LanguageSelector';
 
 interface HeaderProps {

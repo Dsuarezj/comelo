@@ -1,7 +1,8 @@
 import { Globe } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useState, useRef, useEffect } from 'react';
-import { IconButton, Text } from '../elements';
+import Text from '../elements/Text';
+import IconButton from '../elements/IconButton';
 
 const languages = [
   { code: 'es', name: 'Español', nameKey: 'language.spanish', flag: 'ES' },

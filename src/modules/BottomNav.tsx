@@ -1,7 +1,7 @@
 import { Home, List, UtensilsCrossed, User, LucideIcon } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Text } from '../elements';
+import Text from '../elements/Text';
 
 interface NavItem {
   path: string;
