@@ -1,22 +1,47 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { BottomNav } from '../modules';
+import NavigationHeader from './NavigationHeader';
+import { useNavigationContext } from './NavigationContext';
+
+interface HeaderProps {
+  title: string;
+  showBackButton?: boolean;
+}
 
 interface LayoutProps {
   children: ReactNode;
   showBottomNav?: boolean;
-  showHeader?: boolean;
-  header?: ReactNode;
+  customHeader?: ReactNode;
+  headerProps?: HeaderProps;
 }
 
 export default function Layout({
   children,
   showBottomNav = true,
-  showHeader = false,
-  header,
+  customHeader,
+  headerProps,
 }: LayoutProps) {
+  const location = useLocation();
+  const { pushToStack, clearStack } = useNavigationContext();
+
+  useEffect(() => {
+    const currentPath = location.pathname;
+
+    if (currentPath === '/') {
+      clearStack();
+    } else if (headerProps) {
+      pushToStack(currentPath);
+    }
+  }, [location.pathname, headerProps]);
+
   return (
     <div className="min-h-screen bg-gray-50">
-      {showHeader && header}
+      {customHeader && customHeader}
+
+      {!customHeader && headerProps && (
+        <NavigationHeader {...headerProps} />
+      )}
 
       <main className={showBottomNav ? 'pb-24' : ''}>
         {children}

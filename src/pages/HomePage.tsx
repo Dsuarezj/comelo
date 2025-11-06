@@ -52,7 +52,7 @@ export default function HomePage() {
   };
 
   return (
-    <Layout showHeader header={<Header />}>
+    <Layout customHeader={<Header />}>
       <div className="px-6 pt-8">
         <Text variant="h1" className="mb-2">
           {t('home.greeting')}
