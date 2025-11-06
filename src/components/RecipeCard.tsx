@@ -38,7 +38,7 @@ export default function RecipeCard({
             variant="default"
             size={18}
             active={isFavorite}
-            ariaLabel={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+            ariaLabel={isFavorite ? t('recipes.removeFromFavorites') : t('recipes.addToFavorites')}
             className={isFavorite ? 'text-red-500' : 'text-gray-600'}
           />
         </div>

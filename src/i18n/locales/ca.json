@@ -36,7 +36,8 @@
     "newList": "Nova Llista",
     "listName": "Nom de la llista",
     "itemsCount": "{{count}} productes",
-    "completedCount": "{{completed}} de {{total}} completats"
+    "completedCount": "{{completed}} de {{total}} completats",
+    "comingSoon": "Properament: Vista completa de llistes"
   },
   "recipes": {
     "title": "Receptes Saludables",
@@ -45,13 +46,23 @@
       "easy": "Fàcil",
       "medium": "Mitjana",
       "hard": "Difícil"
-    }
+    },
+    "addToFavorites": "Afegir a favorits",
+    "removeFromFavorites": "Treure de favorits",
+    "comingSoon": "Properament: Explorar totes les receptes"
   },
   "profile": {
     "title": "El Meu Perfil",
     "allergens": "Al·lèrgens",
     "language": "Idioma",
     "sync": "Sincronització",
-    "signOut": "Tancar sessió"
+    "signOut": "Tancar sessió",
+    "comingSoon": "Properament: Perfil d'usuari i configuració"
+  },
+  "language": {
+    "selectLanguage": "Seleccionar idioma",
+    "spanish": "Espanyol",
+    "english": "Anglès",
+    "catalan": "Català"
   }
 }

@@ -1,14 +1,21 @@
 import { useTranslation } from 'react-i18next';
+import { Header } from '../components';
+import { Text } from '../elements';
 
 export default function RecipesPage() {
   const { t } = useTranslation();
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-24 px-6 pt-8">
-      <h1 className="text-3xl font-bold text-gray-900 mb-4">
-        {t('recipes.title')}
-      </h1>
-      <p className="text-gray-600">Próximamente: Explorar todas las recetas</p>
+    <div className="min-h-screen bg-gray-50 pb-24">
+      <Header />
+      <div className="px-6 pt-8">
+        <Text variant="h1" className="mb-4">
+          {t('recipes.title')}
+        </Text>
+        <Text variant="body" color="muted">
+          {t('recipes.comingSoon')}
+        </Text>
+      </div>
     </div>
   );
 }

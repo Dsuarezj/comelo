@@ -36,7 +36,8 @@
     "newList": "New List",
     "listName": "List name",
     "itemsCount": "{{count}} items",
-    "completedCount": "{{completed}} of {{total}} completed"
+    "completedCount": "{{completed}} of {{total}} completed",
+    "comingSoon": "Coming soon: Complete list view"
   },
   "recipes": {
     "title": "Healthy Recipes",
@@ -45,13 +46,23 @@
       "easy": "Easy",
       "medium": "Medium",
       "hard": "Hard"
-    }
+    },
+    "addToFavorites": "Add to favorites",
+    "removeFromFavorites": "Remove from favorites",
+    "comingSoon": "Coming soon: Explore all recipes"
   },
   "profile": {
     "title": "My Profile",
     "allergens": "Allergens",
     "language": "Language",
     "sync": "Synchronization",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "comingSoon": "Coming soon: User profile and settings"
+  },
+  "language": {
+    "selectLanguage": "Select language",
+    "spanish": "Spanish",
+    "english": "English",
+    "catalan": "Catalan"
   }
 }

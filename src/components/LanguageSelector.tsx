@@ -4,17 +4,17 @@ import { useState, useRef, useEffect } from 'react';
 import { IconButton, Text } from '../elements';
 
 const languages = [
-  { code: 'es', name: 'Español', flag: '🇪🇸' },
-  { code: 'en', name: 'English', flag: '🇬🇧' },
-  { code: 'ca', name: 'Català', flag: '🏴󠁧󠁢󠁣󠁴󠁿' },
+  { code: 'es', name: 'Español', nameKey: 'language.spanish', flag: 'ES' },
+  { code: 'en', name: 'English', nameKey: 'language.english', flag: 'EN' },
+  { code: 'ca', name: 'Català', nameKey: 'language.catalan', flag: 'CA' },
 ];
 
 export default function LanguageSelector() {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
+  const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[1];
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -42,7 +42,7 @@ export default function LanguageSelector() {
         onClick={() => setIsOpen(!isOpen)}
         variant="default"
         size={20}
-        ariaLabel="Select language"
+        ariaLabel={t('language.selectLanguage')}
         className="text-gray-700"
       />
 
@@ -55,11 +55,14 @@ export default function LanguageSelector() {
               className={`w-full px-4 py-2 text-left hover:bg-gray-50 flex items-center gap-3 transition-colors ${
                 currentLanguage.code === lang.code ? 'bg-gray-100' : ''
               }`}
+              aria-label={`${t('language.selectLanguage')}: ${t(lang.nameKey)}`}
             >
-              <span className="text-2xl">{lang.flag}</span>
+              <div className="w-8 h-6 flex items-center justify-center bg-gray-100 rounded text-xs font-bold text-gray-700 border border-gray-300">
+                {lang.flag}
+              </div>
               <div className="flex-1">
                 <Text variant="small" className="font-medium">
-                  {lang.name}
+                  {t(lang.nameKey)}
                 </Text>
               </div>
               {currentLanguage.code === lang.code && (

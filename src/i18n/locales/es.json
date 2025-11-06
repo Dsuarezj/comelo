@@ -36,7 +36,8 @@
     "newList": "Nueva Lista",
     "listName": "Nombre de la lista",
     "itemsCount": "{{count}} productos",
-    "completedCount": "{{completed}} de {{total}} completados"
+    "completedCount": "{{completed}} de {{total}} completados",
+    "comingSoon": "Próximamente: Vista completa de listas"
   },
   "recipes": {
     "title": "Recetas Saludables",
@@ -45,13 +46,23 @@
       "easy": "Fácil",
       "medium": "Media",
       "hard": "Difícil"
-    }
+    },
+    "addToFavorites": "Añadir a favoritos",
+    "removeFromFavorites": "Quitar de favoritos",
+    "comingSoon": "Próximamente: Explorar todas las recetas"
   },
   "profile": {
     "title": "Mi Perfil",
     "allergens": "Alérgenos",
     "language": "Idioma",
     "sync": "Sincronización",
-    "signOut": "Cerrar sesión"
+    "signOut": "Cerrar sesión",
+    "comingSoon": "Próximamente: Perfil de usuario y configuración"
+  },
+  "language": {
+    "selectLanguage": "Seleccionar idioma",
+    "spanish": "Español",
+    "english": "Inglés",
+    "catalan": "Catalán"
   }
 }
