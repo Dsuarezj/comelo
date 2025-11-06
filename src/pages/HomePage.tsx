@@ -9,7 +9,7 @@ import recipe3 from '../data/recipes/ensalada-quinoa.json';
 import { shoppingListService } from '../services/ShoppingListService';
 import { Text, Card } from '../elements';
 import { RecipeGrid, ListSection } from '../modules';
-import { Header } from '../components';
+import { Header, Layout } from '../components';
 
 export default function HomePage() {
   const { t } = useTranslation();
@@ -52,8 +52,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-24">
-      <Header />
+    <Layout showHeader header={<Header />}>
       <div className="px-6 pt-8">
         <Text variant="h1" className="mb-2">
           {t('home.greeting')}
@@ -108,6 +107,6 @@ export default function HomePage() {
           />
         </div>
       </div>
-    </div>
+    </Layout>
   );
 }

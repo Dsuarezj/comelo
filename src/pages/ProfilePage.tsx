@@ -1,13 +1,12 @@
 import { useTranslation } from 'react-i18next';
-import { Header } from '../components';
+import { Header, Layout } from '../components';
 import { Text } from '../elements';
 
 export default function ProfilePage() {
   const { t } = useTranslation();
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-24">
-      <Header />
+    <Layout showHeader header={<Header />}>
       <div className="px-6 pt-8">
         <Text variant="h1" className="mb-4">
           {t('profile.title')}
@@ -16,6 +15,6 @@ export default function ProfilePage() {
           {t('profile.comingSoon')}
         </Text>
       </div>
-    </div>
+    </Layout>
   );
 }
