@@ -1,13 +1,21 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
+import { swVersionPlugin } from './vite-plugin-sw-version';
 
 export default defineConfig({
   plugins: [
+    swVersionPlugin(),
     react(),
     VitePWA({
-      registerType: 'autoUpdate',
-      injectRegister: 'auto',
+      registerType: 'prompt',
+      injectRegister: null,
+      injectManifest: {
+        injectionPoint: undefined,
+      },
+      strategies: 'injectManifest',
+      srcDir: 'public',
+      filename: 'sw.js',
       manifest: {
         name: 'Comelo - Tu Asistente de Nutrición',
         short_name: 'Comelo',
@@ -17,6 +25,8 @@ export default defineConfig({
         display: 'standalone',
         orientation: 'portrait-primary',
         lang: 'es',
+        start_url: '/',
+        scope: '/',
         icons: [
           {
             src: '/icons/icon-192x192.png',
@@ -34,25 +44,7 @@ export default defineConfig({
       },
       devOptions: {
         enabled: true,
-      },
-      workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2,json}'],
-        runtimeCaching: [
-          {
-            urlPattern: /^https:\/\/images\.pexels\.com\/.*/i,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'pexels-images-cache',
-              expiration: {
-                maxEntries: 50,
-                maxAgeSeconds: 60 * 60 * 24 * 30,
-              },
-              cacheableResponse: {
-                statuses: [0, 200],
-              },
-            },
-          },
-        ],
+        type: 'module',
       },
     }),
   ],

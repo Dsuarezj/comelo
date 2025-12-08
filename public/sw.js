@@ -1,14 +1,15 @@
-self.__WB_MANIFEST;
-
-const CACHE_VERSION = 'v1';
-const CACHE_NAME = `comelo-app-${CACHE_VERSION}`;
+const BUILD_TIMESTAMP = '1765213498';
+const CACHE_VERSION = `v-${BUILD_TIMESTAMP}`;
+const APP_SHELL_CACHE = `comelo-app-shell-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `comelo-runtime-${CACHE_VERSION}`;
 
-const PRECACHE_URLS = [
+const APP_SHELL_URLS = [
   '/',
   '/index.html',
   '/manifest.json',
 ];
+
+const NAVIGATION_FALLBACK = '/index.html';
 
 const DB_NAME = 'comelo_queue';
 const DB_VERSION = 1;
@@ -337,8 +338,8 @@ queue.registerProcessor('shopping-lists', async (item, ctx) => {
 
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(PRECACHE_URLS);
+    caches.open(APP_SHELL_CACHE).then(cache => {
+      return cache.addAll(APP_SHELL_URLS);
     }).then(() => self.skipWaiting())
   );
 });
@@ -348,10 +349,21 @@ self.addEventListener('activate', event => {
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames
-          .filter(name => name.startsWith('comelo-') && name !== CACHE_NAME && name !== RUNTIME_CACHE)
+          .filter(name => name.startsWith('comelo-') && name !== APP_SHELL_CACHE && name !== RUNTIME_CACHE)
           .map(name => caches.delete(name))
       );
-    }).then(() => self.clients.claim())
+    }).then(() => {
+      return self.clients.claim();
+    }).then(() => {
+      return self.clients.matchAll().then(clients => {
+        clients.forEach(client => {
+          client.postMessage({
+            type: 'SW_UPDATED',
+            version: CACHE_VERSION
+          });
+        });
+      });
+    })
   );
 });
 
@@ -364,26 +376,52 @@ self.addEventListener('fetch', event => {
   }
 
   if (url.origin === location.origin) {
-    event.respondWith(
-      caches.match(request).then(cachedResponse => {
-        if (cachedResponse) {
-          return cachedResponse;
-        }
-
-        return fetch(request).then(response => {
-          if (!response || response.status !== 200 || response.type !== 'basic') {
+    if (APP_SHELL_URLS.some(shellUrl => url.pathname === shellUrl || url.pathname === '/' + shellUrl)) {
+      event.respondWith(
+        fetch(request)
+          .then(response => {
+            if (response && response.status === 200) {
+              const responseToCache = response.clone();
+              caches.open(APP_SHELL_CACHE).then(cache => {
+                cache.put(request, responseToCache);
+              });
+            }
             return response;
-          }
-
-          const responseToCache = response.clone();
-          caches.open(RUNTIME_CACHE).then(cache => {
-            cache.put(request, responseToCache);
-          });
-
-          return response;
-        });
-      })
-    );
+          })
+          .catch(() => {
+            return caches.match(request);
+          })
+      );
+    } else if (request.destination === 'script' || request.destination === 'style' || url.pathname.match(/\.(js|css)$/)) {
+      event.respondWith(
+        fetch(request)
+          .then(response => {
+            if (response && response.status === 200) {
+              const responseToCache = response.clone();
+              caches.open(RUNTIME_CACHE).then(cache => {
+                cache.put(request, responseToCache);
+              });
+            }
+            return response;
+          })
+          .catch(() => {
+            return caches.match(request);
+          })
+      );
+    } else if (request.mode === 'navigate') {
+      event.respondWith(
+        fetch(request)
+          .catch(() => {
+            return caches.match(NAVIGATION_FALLBACK);
+          })
+      );
+    } else {
+      event.respondWith(
+        fetch(request).catch(() => {
+          return caches.match(request);
+        })
+      );
+    }
   }
 });
 
@@ -436,9 +474,15 @@ self.addEventListener('message', event => {
     case 'HEALTH_CHECK':
       event.ports[0].postMessage({
         version: CACHE_VERSION,
+        buildTimestamp: BUILD_TIMESTAMP,
         active: true,
         processing: queue.processing,
       });
+      break;
+
+    case 'SKIP_WAITING':
+      self.skipWaiting();
+      event.ports[0].postMessage({ success: true });
       break;
   }
 });

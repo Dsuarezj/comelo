@@ -64,5 +64,27 @@
     "spanish": "Spanish",
     "english": "English",
     "catalan": "Catalan"
+  },
+  "pwa": {
+    "install": {
+      "title": "Install Comelo",
+      "description": "Access faster and use the app offline",
+      "install": "Install",
+      "later": "Later"
+    },
+    "installIOS": {
+      "title": "Install Comelo",
+      "description": "Install this app on your iPhone to access faster and use offline.",
+      "step1": "Tap the share button",
+      "step1Description": "In the Safari bottom bar",
+      "step2": "Add to Home Screen",
+      "step2Description": "Scroll and select this option",
+      "gotIt": "Got it"
+    },
+    "update": {
+      "title": "Update available",
+      "description": "A new version is available",
+      "reload": "Update now"
+    }
   }
 }

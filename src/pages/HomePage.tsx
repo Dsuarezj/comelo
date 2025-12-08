@@ -13,6 +13,8 @@ import RecipeGrid from '../modules/RecipeGrid';
 import ListSection from '../modules/ListSection';
 import Header from '../components/Header';
 import Layout from '../components/Layout';
+import PWAInstallPrompt from '../components/PWAInstallPrompt';
+import { usePWA } from '../hooks/usePWA';
 
 export default function HomePage() {
   const { t } = useTranslation();
@@ -20,6 +22,7 @@ export default function HomePage() {
   const [lists, setLists] = useState<ShoppingList[]>([]);
   const [recipes] = useState<Recipe[]>([recipe1, recipe2, recipe3] as Recipe[]);
   const [favorites, setFavorites] = useState<string[]>([]);
+  const { showInstallPrompt, showIOSInstructions, install, dismissPrompt } = usePWA();
 
   useEffect(() => {
     loadLists();
@@ -56,6 +59,12 @@ export default function HomePage() {
 
   return (
     <Layout customHeader={<Header />}>
+      <PWAInstallPrompt
+        showBanner={showInstallPrompt}
+        showIOSModal={showIOSInstructions}
+        onInstall={install}
+        onDismiss={dismissPrompt}
+      />
       <div className="px-6 pt-8">
         <Text variant="h1" className="mb-2">
           {t('home.greeting')}

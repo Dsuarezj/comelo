@@ -64,5 +64,27 @@
     "spanish": "Español",
     "english": "Inglés",
     "catalan": "Catalán"
+  },
+  "pwa": {
+    "install": {
+      "title": "Instalar Comelo",
+      "description": "Accede más rápido y usa la app sin conexión",
+      "install": "Instalar",
+      "later": "Más tarde"
+    },
+    "installIOS": {
+      "title": "Instalar Comelo",
+      "description": "Instala esta aplicación en tu iPhone para acceder más rápido y usar sin conexión.",
+      "step1": "Toca el botón compartir",
+      "step1Description": "En la barra inferior de Safari",
+      "step2": "Añadir a pantalla de inicio",
+      "step2Description": "Desplázate y selecciona esta opción",
+      "gotIt": "Entendido"
+    },
+    "update": {
+      "title": "Actualización disponible",
+      "description": "Hay una nueva versión disponible",
+      "reload": "Actualizar ahora"
+    }
   }
 }
