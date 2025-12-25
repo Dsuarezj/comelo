@@ -6,9 +6,10 @@ import { useEffect, useRef } from 'react';
 interface LanguageModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onLanguageSelected?: () => void;
 }
 
-export default function LanguageModal({ isOpen, onClose }: LanguageModalProps) {
+export default function LanguageModal({ isOpen, onClose, onLanguageSelected }: LanguageModalProps) {
   const { t, i18n } = useTranslation();
   const currentLanguage = getLanguageByCode(i18n.language);
   const selectedRef = useRef<HTMLButtonElement>(null);
@@ -23,6 +24,7 @@ export default function LanguageModal({ isOpen, onClose }: LanguageModalProps) {
     await i18n.changeLanguage(langCode);
     localStorage.setItem('comelo_language', langCode);
     onClose();
+    onLanguageSelected?.();
   };
 
   if (!isOpen) return null;
