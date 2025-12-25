@@ -1,13 +1,28 @@
-import { X, Download, HelpCircle, Shield, FileText, Cloud, Globe, ChevronRight } from 'lucide-react';
+import { X, Download, HelpCircle, Shield, FileText, Cloud, Globe } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { usePWA } from '../hooks/usePWA';
 import { getLanguageByCode } from '../i18n/languages';
 import { useState } from 'react';
 import LanguageModal from './LanguageModal';
+import MenuButton from './MenuButton';
 
 interface MenuDrawerProps {
   isOpen: boolean;
   onClose: () => void;
+}
+
+interface MenuSection {
+  title: string;
+  items: MenuItem[];
+}
+
+interface MenuItem {
+  icon: typeof Download;
+  label: string;
+  onClick: () => void;
+  variant?: 'default' | 'primary' | 'highlighted';
+  endContent?: React.ReactNode;
+  showChevron?: boolean;
 }
 
 export default function MenuDrawer({ isOpen, onClose }: MenuDrawerProps) {
@@ -20,11 +35,49 @@ export default function MenuDrawer({ isOpen, onClose }: MenuDrawerProps) {
     onClose();
   };
 
-  const handleLanguageModalClose = () => {
-    setIsLanguageModalOpen(false);
-  };
-
   const currentLanguage = getLanguageByCode(i18n.language);
+
+  const sections: MenuSection[] = [
+    ...(canInstall ? [{
+      title: t('menu.tools'),
+      items: [{
+        icon: Download,
+        label: t('menu.installApp'),
+        onClick: handleInstall,
+        variant: 'highlighted' as const
+      }]
+    }] : []),
+    {
+      title: t('menu.settings'),
+      items: [{
+        icon: Globe,
+        label: t('menu.language'),
+        onClick: () => setIsLanguageModalOpen(true),
+        endContent: <span className="text-sm text-neutral-600">{currentLanguage.name}</span>,
+        showChevron: true
+      }]
+    },
+    {
+      title: t('menu.information'),
+      items: [
+        {
+          icon: HelpCircle,
+          label: t('menu.supportCenter'),
+          onClick: () => {}
+        },
+        {
+          icon: Shield,
+          label: t('menu.privacyPolicy'),
+          onClick: () => {}
+        },
+        {
+          icon: FileText,
+          label: t('menu.termsOfService'),
+          onClick: () => {}
+        }
+      ]
+    }
+  ];
 
   if (!isOpen && !isLanguageModalOpen) return null;
 
@@ -55,72 +108,33 @@ export default function MenuDrawer({ isOpen, onClose }: MenuDrawerProps) {
                 </button>
               </div>
 
-              {canInstall && (
-                <section className="mb-6">
+              {sections.map((section, sectionIdx) => (
+                <section key={sectionIdx} className="mb-6">
                   <h3 className="text-sm font-semibold text-neutral-500 uppercase tracking-wide mb-3">
-                    {t('menu.tools')}
+                    {section.title}
                   </h3>
-                  <button
-                    onClick={handleInstall}
-                    className="w-full flex items-center gap-4 p-4 bg-neutral-100 rounded-xl hover:bg-neutral-200 transition-colors"
-                  >
-                    <Download size={20} className="text-neutral-700" />
-                    <span className="text-neutral-900 font-medium">
-                      {t('menu.installApp')}
-                    </span>
-                  </button>
-                </section>
-              )}
-
-              <section className="mb-6">
-                <h3 className="text-sm font-semibold text-neutral-500 uppercase tracking-wide mb-3">
-                  {t('menu.settings')}
-                </h3>
-                <button
-                  onClick={() => setIsLanguageModalOpen(true)}
-                  className="w-full flex items-center gap-4 p-4 hover:bg-neutral-100 rounded-xl transition-colors"
-                >
-                  <Globe size={20} className="text-neutral-700" />
-                  <span className="flex-1 text-left text-neutral-900 font-medium">
-                    {t('menu.language')}
-                  </span>
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm text-neutral-600">{currentLanguage.name}</span>
-                    <ChevronRight size={20} className="text-neutral-400" />
+                  <div className="space-y-2">
+                    {section.items.map((item, itemIdx) => (
+                      <MenuButton
+                        key={itemIdx}
+                        icon={item.icon}
+                        label={item.label}
+                        onClick={item.onClick}
+                        variant={item.variant}
+                        endContent={item.endContent}
+                        showChevron={item.showChevron}
+                      />
+                    ))}
                   </div>
-                </button>
-              </section>
+                </section>
+              ))}
 
-              <section className="mb-6">
-                <h3 className="text-sm font-semibold text-neutral-500 uppercase tracking-wide mb-3">
-                  {t('menu.information')}
-                </h3>
-                <div className="space-y-2">
-                  <button className="w-full flex items-center gap-4 p-4 hover:bg-neutral-100 rounded-xl transition-colors">
-                    <HelpCircle size={20} className="text-neutral-700" />
-                    <span className="text-neutral-900 font-medium">
-                      {t('menu.supportCenter')}
-                    </span>
-                  </button>
-                  <button className="w-full flex items-center gap-4 p-4 hover:bg-neutral-100 rounded-xl transition-colors">
-                    <Shield size={20} className="text-neutral-700" />
-                    <span className="text-neutral-900 font-medium">
-                      {t('menu.privacyPolicy')}
-                    </span>
-                  </button>
-                  <button className="w-full flex items-center gap-4 p-4 hover:bg-neutral-100 rounded-xl transition-colors">
-                    <FileText size={20} className="text-neutral-700" />
-                    <span className="text-neutral-900 font-medium">
-                      {t('menu.termsOfService')}
-                    </span>
-                  </button>
-                </div>
-              </section>
-
-              <button className="w-full flex items-center justify-center gap-3 p-4 bg-primary-500 text-white rounded-xl font-semibold hover:bg-primary-600 transition-colors">
-                <Cloud size={20} />
-                <span>{t('menu.connectDropbox')}</span>
-              </button>
+              <MenuButton
+                icon={Cloud}
+                label={t('menu.connectDropbox')}
+                onClick={() => {}}
+                variant="primary"
+              />
             </div>
           </div>
         </>
@@ -128,7 +142,7 @@ export default function MenuDrawer({ isOpen, onClose }: MenuDrawerProps) {
 
       <LanguageModal
         isOpen={isLanguageModalOpen}
-        onClose={handleLanguageModalClose}
+        onClose={() => setIsLanguageModalOpen(false)}
         onLanguageSelected={onClose}
       />
     </>
