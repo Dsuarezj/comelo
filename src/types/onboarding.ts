@@ -8,6 +8,4 @@ export interface OnboardingStepProps {
 export interface OnboardingStep {
   id: string;
   component: React.ComponentType<OnboardingStepProps>;
-  enabled: boolean;
-  order: number;
 }

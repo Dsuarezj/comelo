@@ -129,25 +129,15 @@
     }
   },
   "onboarding": {
-    "dropbox": {
-      "title": "Comelo es una app descentralizada, tu info se guarda solo contigo.",
-      "subtitle": "Conecta tu Dropbox para guardar tus listas, sin depender de servidores centrales.",
-      "footer": "Todo es tuyo, siempre.",
-      "illustration": "Ilustracion",
-      "connectButton": "Conectate con Dropbox",
-      "skipButton": "Hacerlo despues"
-    },
     "allergens": {
       "title": "¿Tienes alergias?",
       "description": "Marca los ingredientes que necesitas evitar por salud. Asi nos aseguramos de no incluirlos en tus recetas ni listas.",
-      "comingSoon": "Proximamente",
       "saveButton": "Guardar alergias",
       "skipButton": "No tengo alergias"
     },
     "foodPreferences": {
       "title": "¿Hay algo que prefieras no comer?",
       "description": "Elige los ingredientes o productos que no van contigo (por gusto, estilo de vida o costumbre).",
-      "comingSoon": "Proximamente",
       "continueButton": "Continuar",
       "skipButton": "Hacerlo despues"
     }
@@ -159,8 +149,7 @@
     "egg": "Huevos",
     "fish": "Pescado",
     "soy": "Soja",
-    "nonVegan": "No Vegano",
-    "nonVegetarian": "No Vegetariano"
+    "caffeine": "Cafeina"
   },
   "foodPreferences": {
     "redMeat": "Carnes rojas",

@@ -1,24 +1,17 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getEnabledSteps } from '../config/onboarding.config';
+import { ONBOARDING_STEPS } from '../config/onboarding.config';
 import { LocalStorageService, StorageKeys } from '../utils/storage';
 
 export default function OnboardingPage() {
   const navigate = useNavigate();
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
-  const enabledSteps = getEnabledSteps();
 
-  if (enabledSteps.length === 0) {
-    LocalStorageService.set(StorageKeys.HAS_ONBOARDING, true);
-    navigate('/', { replace: true });
-    return null;
-  }
-
-  const currentStep = enabledSteps[currentStepIndex];
+  const currentStep = ONBOARDING_STEPS[currentStepIndex];
   const StepComponent = currentStep.component;
 
   const handleNext = () => {
-    if (currentStepIndex < enabledSteps.length - 1) {
+    if (currentStepIndex < ONBOARDING_STEPS.length - 1) {
       setCurrentStepIndex(prev => prev + 1);
     } else {
       LocalStorageService.set(StorageKeys.HAS_ONBOARDING, true);
@@ -37,7 +30,7 @@ export default function OnboardingPage() {
       onNext={handleNext}
       onBack={handleBack}
       currentStep={currentStepIndex + 1}
-      totalSteps={enabledSteps.length}
+      totalSteps={ONBOARDING_STEPS.length}
     />
   );
 }

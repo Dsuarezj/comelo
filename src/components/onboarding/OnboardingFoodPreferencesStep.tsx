@@ -11,9 +11,7 @@ export default function OnboardingFoodPreferencesStep({ onNext, onBack, currentS
   const { t } = useTranslation();
   const [selectedPreferences, setSelectedPreferences] = useState<Set<string>>(new Set());
 
-  const topPreferences = FOOD_PREFERENCES_CONFIG
-    .filter(p => p.priority <= 12)
-    .sort((a, b) => a.priority - b.priority);
+  const topPreferences = FOOD_PREFERENCES_CONFIG.sort((a, b) => a.priority - b.priority);
 
   const togglePreference = (id: string) => {
     setSelectedPreferences(prev => {
@@ -33,7 +31,6 @@ export default function OnboardingFoodPreferencesStep({ onNext, onBack, currentS
       ...currentProfile,
       foodPreferences: Array.from(selectedPreferences),
     };
-
     const validatedProfile = UserProfileSchema.partial().parse(updatedProfile);
     LocalStorageService.set(StorageKeys.USER_PROFILE, validatedProfile);
     onNext();
@@ -45,7 +42,6 @@ export default function OnboardingFoodPreferencesStep({ onNext, onBack, currentS
       ...currentProfile,
       foodPreferences: [],
     };
-
     const validatedProfile = UserProfileSchema.partial().parse(updatedProfile);
     LocalStorageService.set(StorageKeys.USER_PROFILE, validatedProfile);
     onNext();
@@ -65,11 +61,11 @@ export default function OnboardingFoodPreferencesStep({ onNext, onBack, currentS
         </button>
 
         <div className="flex-1 flex flex-col max-w-md mx-auto w-full py-6">
-          <h1 className="text-2xl font-bold text-text-primary text-center mb-3">
+          <h1 className="text-[28px] font-bold text-text-primary text-center mb-3 leading-tight px-4">
             {t('onboarding.foodPreferences.title')}
           </h1>
 
-          <p className="text-text-secondary text-center mb-6 text-sm leading-relaxed">
+          <p className="text-text-secondary text-center mb-8 text-[15px] leading-[1.5] px-4">
             {t('onboarding.foodPreferences.description')}
           </p>
 
@@ -78,12 +74,12 @@ export default function OnboardingFoodPreferencesStep({ onNext, onBack, currentS
             <input
               type="text"
               disabled
-              placeholder={t('onboarding.foodPreferences.comingSoon')}
-              className="w-full bg-neutral-100 text-neutral-400 rounded-full py-3 pl-12 pr-4 cursor-not-allowed"
+              placeholder=""
+              className="w-full bg-neutral-100 text-neutral-400 rounded-full py-3.5 pl-12 pr-4 text-[15px]"
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-3 mb-8 overflow-y-auto scrollbar-hide max-h-96">
+          <div className="grid grid-cols-2 gap-3 mb-6 overflow-y-auto scrollbar-hide max-h-[calc(100vh-450px)]">
             {topPreferences.map((preference) => {
               const isSelected = selectedPreferences.has(preference.id);
               const Icon = preference.icon;
@@ -93,7 +89,7 @@ export default function OnboardingFoodPreferencesStep({ onNext, onBack, currentS
                   key={preference.id}
                   onClick={() => togglePreference(preference.id)}
                   className={`
-                    relative flex items-center gap-3 p-3 rounded-2xl border-2 transition-all
+                    relative flex items-center gap-2.5 p-3 rounded-2xl border-2 transition-all min-h-[60px]
                     ${isSelected
                       ? 'border-primary-500 bg-primary-50'
                       : 'border-neutral-200 bg-surface'
@@ -106,11 +102,7 @@ export default function OnboardingFoodPreferencesStep({ onNext, onBack, currentS
                     </div>
                   )}
 
-                  <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${preference.colors.iconBg}`}>
-                    <Icon size={20} className={preference.colors.iconColor} />
-                  </div>
-
-                  <span className="text-sm font-medium text-text-primary text-left">
+                  <span className="text-[15px] font-medium text-text-primary text-left flex-1">
                     {t(`foodPreferences.${preference.translationKey}`)}
                   </span>
                 </button>
@@ -119,17 +111,17 @@ export default function OnboardingFoodPreferencesStep({ onNext, onBack, currentS
           </div>
         </div>
 
-        <div className="pb-8 space-y-4 max-w-md mx-auto w-full">
+        <div className="pb-8 space-y-3 max-w-md mx-auto w-full">
           <button
             onClick={handleSave}
-            className="w-full bg-primary-400 text-white rounded-full py-4 px-8 text-lg font-semibold"
+            className="w-full bg-primary-400 text-white rounded-full py-4 px-8 text-[17px] font-semibold"
           >
             {t('onboarding.foodPreferences.continueButton')}
           </button>
 
           <button
             onClick={handleSkip}
-            className="w-full text-text-primary font-medium py-2"
+            className="w-full text-text-primary font-semibold py-3 text-[17px]"
           >
             {t('onboarding.foodPreferences.skipButton')}
           </button>
