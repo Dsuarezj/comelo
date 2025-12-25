@@ -97,14 +97,7 @@
     "catalan": "Catalan"
   },
   "splash": {
-    "phrases": [
-      "Organize easily",
-      "Explore recipes",
-      "Create your list",
-      "Personalize",
-      "At your pace",
-      "No stress"
-    ]
+    "adSpace": "We have advertising space available. We reach many users interested in eating better and taking care of their health."
   },
   "pwa": {
     "install": {
