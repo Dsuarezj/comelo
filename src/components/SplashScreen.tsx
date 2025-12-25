@@ -53,7 +53,8 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
   }, [onComplete]);
 
   const getOpacity = (index: number) => {
-    const distance = Math.abs(index - currentIndex);
+    const centerIndex = currentIndex + 2;
+    const distance = Math.abs(index - centerIndex);
     if (distance === 0) return 1;
     if (distance === 1) return 0.5;
     if (distance === 2) return 0.3;
@@ -88,8 +89,10 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
       </div>
 
       <div
-        className="absolute left-20 overflow-hidden"
+        className="absolute overflow-hidden"
         style={{
+          left: '20px',
+          right: '20px',
           top: `calc(50% - ${LINE_HEIGHT * 2.5}px)`,
           height: `${LINE_HEIGHT * 5}px`,
         }}
@@ -101,7 +104,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
           }}
         >
           {phrases.map((phrase, index) => {
-            const isActive = index === currentIndex;
+            const isActive = index === currentIndex + 2;
             const opacity = getOpacity(index);
 
             return (
@@ -114,6 +117,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
                   height: `${LINE_HEIGHT}px`,
                   opacity: opacity,
                   color: isActive ? '#1a1a1a' : '#3d7a4d',
+                  paddingLeft: '60px',
                   transform: `translateX(${isActive ? 12 : 0}px)`,
                   transition: 'opacity 600ms cubic-bezier(0.25, 0.1, 0.25, 1), color 600ms cubic-bezier(0.25, 0.1, 0.25, 1), transform 600ms cubic-bezier(0.25, 0.1, 0.25, 1)',
                 }}
