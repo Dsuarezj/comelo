@@ -1,13 +1,13 @@
 {
   "app": {
     "name": "Comelo",
-    "tagline": "El teu assistent de nutrició"
+    "tagline": "El teu assistent de nutricio"
   },
   "common": {
     "loading": "Carregant...",
     "error": "Error",
     "save": "Desar",
-    "cancel": "Cancel·lar",
+    "cancel": "Cancellar",
     "delete": "Eliminar",
     "edit": "Editar",
     "add": "Afegir",
@@ -17,17 +17,46 @@
   },
   "home": {
     "greeting": "Hola!",
-    "subtitle": "Crea la teva llista de compres i descobreix receptes delicioses.",
-    "myLists": "Les meves llistes:",
-    "createListButton": "Crea una llista per a les teves compres!",
-    "recommendedRecipes": "Receptes Recomanades:",
-    "viewMoreRecipes": "Veure més receptes"
+    "subtitle": "El teu cami per menjar millor comenca sense pressio. Pots crear la teva primera llista, buscar receptes o simplement explorar.",
+    "createList": {
+      "title": "Crear nova llista",
+      "description": "Inclou menjar real, les teves marques favorites i fins i tot el que necessites per netejar la cuina."
+    },
+    "searchRecipes": {
+      "title": "Buscar noves receptes",
+      "description": "Idees facils i gustoses per menjar millor. Receptes adaptades a tu i als teus temps."
+    },
+    "planWeek": {
+      "title": "Planificar la setmana",
+      "description": "Organitza els teus apats de la setmana amb receptes facils i sense processats."
+    }
   },
   "nav": {
     "home": "Inici",
     "lists": "Llistes",
-    "recipes": "Receptes",
-    "profile": "Perfil"
+    "recipes": "Receptes"
+  },
+  "menu": {
+    "title": "Mes Opcions",
+    "tools": "Eines",
+    "installApp": "Installar App",
+    "information": "Informacio",
+    "supportCenter": "Centre de Suport",
+    "privacyPolicy": "Politica de Privacitat",
+    "termsOfService": "Termes de Servei",
+    "connectDropbox": "Connectar amb Dropbox"
+  },
+  "createList": {
+    "title": "Crear Llista",
+    "comingSoon": "Properament"
+  },
+  "searchRecipes": {
+    "title": "Buscar Receptes",
+    "comingSoon": "Properament"
+  },
+  "planWeek": {
+    "title": "Planificar Setmana",
+    "comingSoon": "Properament"
   },
   "lists": {
     "title": "Les Meves Llistes de Compres",
@@ -37,53 +66,53 @@
     "listName": "Nom de la llista",
     "itemsCount": "{{count}} productes",
     "completedCount": "{{completed}} de {{total}} completats",
-    "comingSoon": "Properament: Vista completa de llistes"
+    "comingSoon": "Properament"
   },
   "recipes": {
     "title": "Receptes Saludables",
     "prepTime": "{{time}} min.",
     "difficulty": {
-      "easy": "Fàcil",
+      "easy": "Facil",
       "medium": "Mitjana",
-      "hard": "Difícil"
+      "hard": "Dificil"
     },
     "addToFavorites": "Afegir a favorits",
     "removeFromFavorites": "Treure de favorits",
-    "comingSoon": "Properament: Explorar totes les receptes"
+    "comingSoon": "Properament"
   },
   "profile": {
     "title": "El Meu Perfil",
-    "allergens": "Al·lèrgens",
+    "allergens": "Allergens",
     "language": "Idioma",
-    "sync": "Sincronització",
-    "signOut": "Tancar sessió",
-    "comingSoon": "Properament: Perfil d'usuari i configuració"
+    "sync": "Sincronitzacio",
+    "signOut": "Tancar sessio",
+    "comingSoon": "Properament"
   },
   "language": {
     "selectLanguage": "Seleccionar idioma",
     "spanish": "Espanyol",
-    "english": "Anglès",
-    "catalan": "Català"
+    "english": "Angles",
+    "catalan": "Catala"
   },
   "pwa": {
     "install": {
-      "title": "Instal·lar Comelo",
-      "description": "Accedeix més ràpid i utilitza l'app sense connexió",
-      "install": "Instal·lar",
-      "later": "Més tard"
+      "title": "Installar Comelo",
+      "description": "Accedeix mes rapid i utilitza l'app sense connexio",
+      "install": "Installar",
+      "later": "Mes tard"
     },
     "installIOS": {
-      "title": "Instal·lar Comelo",
-      "description": "Instal·la aquesta aplicació al teu iPhone per accedir més ràpid i utilitzar sense connexió.",
-      "step1": "Toca el botó compartir",
+      "title": "Installar Comelo",
+      "description": "Installa aquesta aplicacio al teu iPhone per accedir mes rapid i utilitzar sense connexio.",
+      "step1": "Toca el boto compartir",
       "step1Description": "A la barra inferior del Safari",
       "step2": "Afegir a pantalla d'inici",
-      "step2Description": "Desplaça't i selecciona aquesta opció",
-      "gotIt": "Entès"
+      "step2Description": "Desplacat i selecciona aquesta opcio",
+      "gotIt": "Entes"
     },
     "update": {
-      "title": "Actualització disponible",
-      "description": "Hi ha una nova versió disponible",
+      "title": "Actualitzacio disponible",
+      "description": "Hi ha una nova versio disponible",
       "reload": "Actualitzar ara"
     }
   }

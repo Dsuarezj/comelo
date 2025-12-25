@@ -2,7 +2,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
-import Text from '../elements/Text';
 import { ShoppingList } from '../types';
 import { shoppingListService } from '../services/ShoppingListService';
 
@@ -30,7 +29,7 @@ export default function ShoppingListDetailPage() {
       } else {
         navigate('/shopping-lists');
       }
-    } catch (error) {
+    } catch {
       navigate('/shopping-lists');
     } finally {
       setLoading(false);
@@ -45,10 +44,10 @@ export default function ShoppingListDetailPage() {
           showBackButton: true
         }}
       >
-        <div className="px-6 pt-8">
-          <Text variant="body" color="muted">
+        <div className="flex items-center justify-center min-h-[60vh] px-6">
+          <p className="text-neutral-500">
             {t('common.loading')}
-          </Text>
+          </p>
         </div>
       </Layout>
     );
@@ -66,37 +65,34 @@ export default function ShoppingListDetailPage() {
       }}
     >
       <div className="px-6 pt-8">
-        <Text variant="h3" className="mb-4">
+        <h3 className="text-lg font-semibold text-neutral-900 mb-4">
           {list.name}
-        </Text>
-        
+        </h3>
+
         {list.items.length === 0 ? (
-          <Text variant="body" color="muted">
-            {t('lists.emptyList')}
-          </Text>
+          <p className="text-neutral-500">
+            {t('lists.empty')}
+          </p>
         ) : (
           <div className="space-y-2">
             {list.items.map((item) => (
               <div
                 key={item.id}
-                className="bg-white rounded-lg p-4 shadow-sm flex items-center gap-3"
+                className="bg-surface rounded-lg p-4 shadow-sm border border-neutral-200 flex items-center gap-3"
               >
                 <input
                   type="checkbox"
                   checked={item.completed}
-                  className="w-5 h-5 rounded border-neutral-300"
+                  className="w-5 h-5 rounded border-neutral-300 text-primary-500 focus:ring-primary-500"
                   readOnly
                 />
                 <div className="flex-1">
-                  <Text
-                    variant="body"
-                    className={item.completed ? 'line-through text-neutral-400' : ''}
-                  >
+                  <p className={`text-neutral-900 ${item.completed ? 'line-through text-neutral-400' : ''}`}>
                     {item.name}
-                  </Text>
-                  <Text variant="caption" color="muted">
+                  </p>
+                  <p className="text-sm text-neutral-500">
                     {item.quantity} {item.unit}
-                  </Text>
+                  </p>
                 </div>
               </div>
             ))}

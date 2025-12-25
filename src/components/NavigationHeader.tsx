@@ -1,8 +1,6 @@
 import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import Text from '../elements/Text';
-import IconButton from '../elements/IconButton';
 import { useNavigationContext } from '../contexts/NavigationContext';
 
 interface NavigationHeaderProps {
@@ -30,26 +28,23 @@ export default function NavigationHeader({
   const shouldShowBack = showBackButton && navigationStack.length > 0;
 
   return (
-    <header className="bg-white border-b border-neutral-200 sticky top-0 z-40">
+    <header className="bg-surface border-b border-neutral-200 sticky top-0 z-40">
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center gap-4">
         {shouldShowBack ? (
-          <IconButton
-            icon={ArrowLeft}
+          <button
             onClick={handleBack}
-            variant="default"
-            size={24}
-            ariaLabel={t('common.back')}
-            className="text-neutral-700"
-          />
+            aria-label={t('common.back')}
+            className="p-2 rounded-full hover:bg-neutral-100 transition-colors text-neutral-700"
+          >
+            <ArrowLeft size={24} />
+          </button>
         ) : (
           <div className="w-10" />
         )}
 
-        <div className="flex-1 text-center">
-          <Text variant="h2" className="font-bold text-neutral-900">
-            {title}
-          </Text>
-        </div>
+        <h2 className="flex-1 text-center text-xl font-bold text-neutral-900">
+          {title}
+        </h2>
 
         <div className="w-10" />
       </div>

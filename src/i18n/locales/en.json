@@ -17,17 +17,46 @@
   },
   "home": {
     "greeting": "Hello!",
-    "subtitle": "Create your shopping list and discover delicious recipes.",
-    "myLists": "My lists:",
-    "createListButton": "Create a list for your shopping!",
-    "recommendedRecipes": "Recommended Recipes:",
-    "viewMoreRecipes": "View more recipes"
+    "subtitle": "Your path to eating better starts without pressure. You can create your first list, search recipes or simply explore.",
+    "createList": {
+      "title": "Create new list",
+      "description": "Include real food, your favorite brands and even what you need to clean your kitchen."
+    },
+    "searchRecipes": {
+      "title": "Search new recipes",
+      "description": "Easy and tasty ideas to eat better. Recipes adapted to you and your schedule."
+    },
+    "planWeek": {
+      "title": "Plan the week",
+      "description": "Organize your weekly meals with easy recipes and no processed foods."
+    }
   },
   "nav": {
     "home": "Home",
     "lists": "Lists",
-    "recipes": "Recipes",
-    "profile": "Profile"
+    "recipes": "Recipes"
+  },
+  "menu": {
+    "title": "More Options",
+    "tools": "Tools",
+    "installApp": "Install App",
+    "information": "Information",
+    "supportCenter": "Support Center",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "connectDropbox": "Connect with Dropbox"
+  },
+  "createList": {
+    "title": "Create List",
+    "comingSoon": "Coming soon"
+  },
+  "searchRecipes": {
+    "title": "Search Recipes",
+    "comingSoon": "Coming soon"
+  },
+  "planWeek": {
+    "title": "Plan Week",
+    "comingSoon": "Coming soon"
   },
   "lists": {
     "title": "My Shopping Lists",
@@ -37,7 +66,7 @@
     "listName": "List name",
     "itemsCount": "{{count}} items",
     "completedCount": "{{completed}} of {{total}} completed",
-    "comingSoon": "Coming soon: Complete list view"
+    "comingSoon": "Coming soon"
   },
   "recipes": {
     "title": "Healthy Recipes",
@@ -49,7 +78,7 @@
     },
     "addToFavorites": "Add to favorites",
     "removeFromFavorites": "Remove from favorites",
-    "comingSoon": "Coming soon: Explore all recipes"
+    "comingSoon": "Coming soon"
   },
   "profile": {
     "title": "My Profile",
@@ -57,7 +86,7 @@
     "language": "Language",
     "sync": "Synchronization",
     "signOut": "Sign out",
-    "comingSoon": "Coming soon: User profile and settings"
+    "comingSoon": "Coming soon"
   },
   "language": {
     "selectLanguage": "Select language",

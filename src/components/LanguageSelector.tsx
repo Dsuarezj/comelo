@@ -1,13 +1,11 @@
 import { Globe } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useState, useRef, useEffect } from 'react';
-import Text from '../elements/Text';
-import IconButton from '../elements/IconButton';
 
 const languages = [
-  { code: 'es', name: 'Español', nameKey: 'language.spanish', flag: 'ES' },
+  { code: 'es', name: 'Espanol', nameKey: 'language.spanish', flag: 'ES' },
   { code: 'en', name: 'English', nameKey: 'language.english', flag: 'EN' },
-  { code: 'ca', name: 'Català', nameKey: 'language.catalan', flag: 'CA' },
+  { code: 'ca', name: 'Catala', nameKey: 'language.catalan', flag: 'CA' },
 ];
 
 export default function LanguageSelector() {
@@ -38,17 +36,16 @@ export default function LanguageSelector() {
 
   return (
     <div className="relative" ref={dropdownRef}>
-      <IconButton
-        icon={Globe}
+      <button
         onClick={() => setIsOpen(!isOpen)}
-        variant="default"
-        size={20}
-        ariaLabel={t('language.selectLanguage')}
-        className="text-neutral-700"
-      />
+        aria-label={t('language.selectLanguage')}
+        className="p-2 rounded-full hover:bg-neutral-100 transition-colors text-neutral-700"
+      >
+        <Globe size={20} />
+      </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-neutral-200 py-2 z-50">
+        <div className="absolute right-0 mt-2 w-48 bg-surface rounded-lg shadow-lg border border-neutral-200 py-2 z-50">
           {languages.map((lang) => (
             <button
               key={lang.code}
@@ -61,13 +58,11 @@ export default function LanguageSelector() {
               <div className="w-8 h-6 flex items-center justify-center bg-neutral-100 rounded text-xs font-bold text-neutral-700 border border-neutral-300">
                 {lang.flag}
               </div>
-              <div className="flex-1">
-                <Text variant="small" className="font-medium">
-                  {t(lang.nameKey)}
-                </Text>
-              </div>
+              <span className="flex-1 text-sm font-medium text-neutral-900">
+                {t(lang.nameKey)}
+              </span>
               {currentLanguage.code === lang.code && (
-                <div className="w-2 h-2 bg-success-500 rounded-full" />
+                <div className="w-2 h-2 bg-primary-500 rounded-full" />
               )}
             </button>
           ))}

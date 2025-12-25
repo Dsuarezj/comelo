@@ -1,7 +1,7 @@
 {
   "app": {
     "name": "Comelo",
-    "tagline": "Tu asistente de nutrición"
+    "tagline": "Tu asistente de nutricion"
   },
   "common": {
     "loading": "Cargando...",
@@ -10,80 +10,109 @@
     "cancel": "Cancelar",
     "delete": "Eliminar",
     "edit": "Editar",
-    "add": "Añadir",
+    "add": "Anadir",
     "search": "Buscar",
     "close": "Cerrar",
     "back": "Volver"
   },
   "home": {
     "greeting": "Hola!",
-    "subtitle": "Crea tu lista de compras y descubre recetas deliciosas.",
-    "myLists": "Mis listas:",
-    "createListButton": "Crea una lista para tus compras!",
-    "recommendedRecipes": "Recetas Recomendadas:",
-    "viewMoreRecipes": "Ver más recetas"
+    "subtitle": "Tu camino para comer mejor empieza sin presion. Puedes crear tu primera lista, buscar recetas o simplemente explorar.",
+    "createList": {
+      "title": "Crear nueva lista",
+      "description": "Incluye comida real, tus marcas favoritas y hasta lo que necesitas para limpiar tu cocina."
+    },
+    "searchRecipes": {
+      "title": "Buscar nuevas recetas",
+      "description": "Ideas faciles y sabrosas para comer mejor. Recetas adaptadas a ti y a tus tiempos."
+    },
+    "planWeek": {
+      "title": "Planificar la semana",
+      "description": "Organiza tus comidas de la semana con recetas faciles y sin procesados."
+    }
   },
   "nav": {
     "home": "Inicio",
     "lists": "Listas",
-    "recipes": "Recetas",
-    "profile": "Perfil"
+    "recipes": "Recetas"
+  },
+  "menu": {
+    "title": "Mas Opciones",
+    "tools": "Herramientas",
+    "installApp": "Instalar App",
+    "information": "Informacion",
+    "supportCenter": "Centro de Soporte",
+    "privacyPolicy": "Politica de Privacidad",
+    "termsOfService": "Terminos de Servicio",
+    "connectDropbox": "Conectar con Dropbox"
+  },
+  "createList": {
+    "title": "Crear Lista",
+    "comingSoon": "Proximamente"
+  },
+  "searchRecipes": {
+    "title": "Buscar Recetas",
+    "comingSoon": "Proximamente"
+  },
+  "planWeek": {
+    "title": "Planificar Semana",
+    "comingSoon": "Proximamente"
   },
   "lists": {
     "title": "Mis Listas de Compras",
-    "empty": "No tienes listas todavía",
+    "empty": "No tienes listas todavia",
     "createFirst": "Crea tu primera lista de compras",
     "newList": "Nueva Lista",
     "listName": "Nombre de la lista",
     "itemsCount": "{{count}} productos",
     "completedCount": "{{completed}} de {{total}} completados",
-    "comingSoon": "Próximamente: Vista completa de listas"
+    "comingSoon": "Proximamente"
   },
   "recipes": {
     "title": "Recetas Saludables",
     "prepTime": "{{time}} min.",
     "difficulty": {
-      "easy": "Fácil",
+      "easy": "Facil",
       "medium": "Media",
-      "hard": "Difícil"
+      "hard": "Dificil"
     },
-    "addToFavorites": "Añadir a favoritos",
+    "addToFavorites": "Anadir a favoritos",
     "removeFromFavorites": "Quitar de favoritos",
-    "comingSoon": "Próximamente: Explorar todas las recetas"
+    "comingSoon": "Proximamente"
   },
   "profile": {
     "title": "Mi Perfil",
-    "allergens": "Alérgenos",
+    "allergens": "Alergenos",
     "language": "Idioma",
-    "sync": "Sincronización",
-    "signOut": "Cerrar sesión",
-    "comingSoon": "Próximamente: Perfil de usuario y configuración"
+    "sync": "Sincronizacion",
+    "signOut": "Cerrar sesion",
+    "comingSoon": "Proximamente"
   },
   "language": {
     "selectLanguage": "Seleccionar idioma",
-    "spanish": "Español",
-    "english": "Inglés",
-    "catalan": "Catalán"
+    "spanish": "Espanol",
+    "english": "Ingles",
+    "catalan": "Catalan"
   },
   "pwa": {
     "install": {
       "title": "Instalar Comelo",
-      "description": "Accede más rápido y usa la app sin conexión",
+      "description": "Accede mas rapido y usa la app sin conexion",
       "install": "Instalar",
-      "later": "Más tarde"
+      "later": "Mas tarde"
     },
     "installIOS": {
       "title": "Instalar Comelo",
-      "description": "Instala esta aplicación en tu iPhone para acceder más rápido y usar sin conexión.",
-      "step1": "Toca el botón compartir",
+      "description": "Instala esta aplicacion en tu iPhone para acceder mas rapido y usar sin conexion.",
+      "step1": "Toca el boton compartir",
       "step1Description": "En la barra inferior de Safari",
-      "step2": "Añadir a pantalla de inicio",
-      "step2Description": "Desplázate y selecciona esta opción",
+      "step2": "Anadir a pantalla de inicio",
+      "step2Description": "Desplazate y selecciona esta opcion",
       "gotIt": "Entendido"
     },
     "update": {
-      "title": "Actualización disponible",
-      "description": "Hay una nueva versión disponible",
+      "title": "Actualizacion disponible",
+      "description": "Hay una nueva version disponible",
       "reload": "Actualizar ahora"
     }
   }

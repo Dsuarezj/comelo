@@ -1,8 +1,5 @@
 import { X, Download, Share } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import Button from '../elements/Button';
-import Card from '../elements/Card';
-import Text from '../elements/Text';
 
 interface PWAInstallPromptProps {
   showBanner: boolean;
@@ -17,6 +14,8 @@ export default function PWAInstallPrompt({
   onInstall,
   onDismiss,
 }: PWAInstallPromptProps) {
+  const { t } = useTranslation();
+
   if (!showBanner) {
     return null;
   }
@@ -24,9 +23,11 @@ export default function PWAInstallPrompt({
   if (showIOSModal) {
     return (
       <div className="fixed inset-0 bg-black/50 z-50 flex items-end">
-        <div className="bg-white rounded-t-3xl w-full p-6 pb-8 animate-slide-up">
+        <div className="bg-surface rounded-t-3xl w-full p-6 pb-8 animate-slide-up">
           <div className="flex justify-between items-start mb-4">
-            <Text variant="h3">{useTranslation().t('pwa.installIOS.title')}</Text>
+            <h3 className="text-lg font-semibold text-neutral-900">
+              {t('pwa.installIOS.title')}
+            </h3>
             <button
               onClick={onDismiss}
               className="text-neutral-400 hover:text-neutral-600 transition-colors"
@@ -35,9 +36,9 @@ export default function PWAInstallPrompt({
             </button>
           </div>
 
-          <Text variant="body" color="muted" className="mb-6">
-            {useTranslation().t('pwa.installIOS.description')}
-          </Text>
+          <p className="text-neutral-500 mb-6">
+            {t('pwa.installIOS.description')}
+          </p>
 
           <div className="space-y-4 mb-6">
             <div className="flex gap-3">
@@ -45,12 +46,12 @@ export default function PWAInstallPrompt({
                 <Share size={20} className="text-secondary-600" />
               </div>
               <div>
-                <Text variant="body" className="font-medium mb-1">
-                  {useTranslation().t('pwa.installIOS.step1')}
-                </Text>
-                <Text variant="small" color="muted">
-                  {useTranslation().t('pwa.installIOS.step1Description')}
-                </Text>
+                <p className="font-medium text-neutral-900 mb-1">
+                  {t('pwa.installIOS.step1')}
+                </p>
+                <p className="text-sm text-neutral-500">
+                  {t('pwa.installIOS.step1Description')}
+                </p>
               </div>
             </div>
 
@@ -59,47 +60,56 @@ export default function PWAInstallPrompt({
                 <Download size={20} className="text-primary-600" />
               </div>
               <div>
-                <Text variant="body" className="font-medium mb-1">
-                  {useTranslation().t('pwa.installIOS.step2')}
-                </Text>
-                <Text variant="small" color="muted">
-                  {useTranslation().t('pwa.installIOS.step2Description')}
-                </Text>
+                <p className="font-medium text-neutral-900 mb-1">
+                  {t('pwa.installIOS.step2')}
+                </p>
+                <p className="text-sm text-neutral-500">
+                  {t('pwa.installIOS.step2Description')}
+                </p>
               </div>
             </div>
           </div>
 
-          <Button variant="secondary" fullWidth onClick={onDismiss}>
-            {useTranslation().t('pwa.installIOS.gotIt')}
-          </Button>
+          <button
+            onClick={onDismiss}
+            className="w-full py-3 px-4 bg-neutral-100 text-neutral-700 rounded-xl font-medium hover:bg-neutral-200 transition-colors"
+          >
+            {t('pwa.installIOS.gotIt')}
+          </button>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="fixed bottom-20 left-4 right-4 z-40 animate-slide-up">
-      <Card padding="md" className="shadow-lg">
+    <div className="fixed bottom-24 left-4 right-4 z-40 animate-slide-up">
+      <div className="bg-surface rounded-2xl p-4 shadow-lg border border-neutral-200">
         <div className="flex items-start gap-3">
           <div className="bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl p-2 flex-shrink-0">
             <Download size={20} className="text-white" />
           </div>
 
           <div className="flex-1 min-w-0">
-            <Text variant="body" className="font-semibold mb-1">
-              {useTranslation().t('pwa.install.title')}
-            </Text>
-            <Text variant="small" color="muted" className="mb-3">
-              {useTranslation().t('pwa.install.description')}
-            </Text>
+            <p className="font-semibold text-neutral-900 mb-1">
+              {t('pwa.install.title')}
+            </p>
+            <p className="text-sm text-neutral-500 mb-3">
+              {t('pwa.install.description')}
+            </p>
 
             <div className="flex gap-2">
-              <Button variant="primary" size="sm" onClick={onInstall}>
-                {useTranslation().t('pwa.install.install')}
-              </Button>
-              <Button variant="secondary" size="sm" onClick={onDismiss}>
-                {useTranslation().t('pwa.install.later')}
-              </Button>
+              <button
+                onClick={onInstall}
+                className="py-2 px-4 bg-primary-500 text-white rounded-lg text-sm font-medium hover:bg-primary-600 transition-colors"
+              >
+                {t('pwa.install.install')}
+              </button>
+              <button
+                onClick={onDismiss}
+                className="py-2 px-4 bg-neutral-100 text-neutral-700 rounded-lg text-sm font-medium hover:bg-neutral-200 transition-colors"
+              >
+                {t('pwa.install.later')}
+              </button>
             </div>
           </div>
 
@@ -110,7 +120,7 @@ export default function PWAInstallPrompt({
             <X size={20} />
           </button>
         </div>
-      </Card>
+      </div>
     </div>
   );
 }

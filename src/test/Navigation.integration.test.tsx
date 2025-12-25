@@ -9,21 +9,26 @@ vi.mock('../i18n', () => ({
 
 const mockT = (key: string) => {
   const translations: Record<string, string> = {
-    'home.greeting': '¡Hola!',
-    'home.subtitle': 'Crea tu lista de compras',
-    'home.createListButton': 'Crear Nueva Lista',
-    'home.recentLists': 'Listas Recientes',
-    'home.featuredRecipes': 'Recetas Destacadas',
+    'app.name': 'Comelo',
+    'home.greeting': 'Hola!',
+    'home.subtitle': 'Tu camino para comer mejor',
+    'home.createList.title': 'Crear nueva lista',
+    'home.createList.description': 'Incluye comida real',
+    'home.searchRecipes.title': 'Buscar nuevas recetas',
+    'home.searchRecipes.description': 'Ideas faciles',
+    'home.planWeek.title': 'Planificar la semana',
+    'home.planWeek.description': 'Organiza tus comidas',
     'nav.home': 'Inicio',
     'nav.lists': 'Listas',
     'nav.recipes': 'Recetas',
-    'nav.profile': 'Perfil',
-    'lists.title': 'Mis Listas',
-    'lists.comingSoon': 'Próximamente: Vista de listas de compras',
-    'recipes.title': 'Recetas',
-    'recipes.comingSoon': 'Próximamente: Vista de recetas',
+    'lists.title': 'Mis Listas de Compras',
+    'lists.comingSoon': 'Proximamente',
+    'recipes.title': 'Recetas Saludables',
+    'recipes.comingSoon': 'Proximamente',
     'common.back': 'Volver',
     'common.loading': 'Cargando',
+    'menu.title': 'Mas Opciones',
+    'language.selectLanguage': 'Seleccionar idioma',
   };
   return translations[key] || key;
 };
@@ -52,7 +57,7 @@ describe('Navigation Integration Tests', () => {
     render(<App />);
 
     await waitFor(() => {
-      expect(screen.getByText('¡Hola!')).toBeInTheDocument();
+      expect(screen.getByText('Hola!')).toBeInTheDocument();
     }, { timeout: 3000 });
 
     const listsNavButton = screen.getByRole('button', { name: /listas/i });
@@ -61,10 +66,10 @@ describe('Navigation Integration Tests', () => {
     await user.click(listsNavButton);
 
     await waitFor(() => {
-      expect(screen.getByText('Mis Listas')).toBeInTheDocument();
+      expect(screen.getByText('Mis Listas de Compras')).toBeInTheDocument();
     }, { timeout: 3000 });
 
-    expect(screen.getByText('Próximamente: Vista de listas de compras')).toBeInTheDocument();
+    expect(screen.getByText('Proximamente')).toBeInTheDocument();
 
     const backButton = screen.getByRole('button', { name: /volver/i });
     expect(backButton).toBeInTheDocument();
@@ -72,10 +77,10 @@ describe('Navigation Integration Tests', () => {
     await user.click(backButton);
 
     await waitFor(() => {
-      expect(screen.getByText('¡Hola!')).toBeInTheDocument();
+      expect(screen.getByText('Hola!')).toBeInTheDocument();
     }, { timeout: 3000 });
 
-    expect(screen.queryByText('Mis Listas')).not.toBeInTheDocument();
+    expect(screen.queryByText('Mis Listas de Compras')).not.toBeInTheDocument();
   });
 
   it('should show back button only on non-home pages', async () => {
@@ -84,7 +89,7 @@ describe('Navigation Integration Tests', () => {
     render(<App />);
 
     await waitFor(() => {
-      expect(screen.getByText('¡Hola!')).toBeInTheDocument();
+      expect(screen.getByText('Hola!')).toBeInTheDocument();
     }, { timeout: 3000 });
 
     expect(screen.queryByRole('button', { name: /volver/i })).not.toBeInTheDocument();
@@ -104,14 +109,14 @@ describe('Navigation Integration Tests', () => {
     render(<App />);
 
     await waitFor(() => {
-      expect(screen.getByText('¡Hola!')).toBeInTheDocument();
+      expect(screen.getByText('Hola!')).toBeInTheDocument();
     }, { timeout: 3000 });
 
     const listsNavButton = screen.getByRole('button', { name: /listas/i });
     await user.click(listsNavButton);
 
     await waitFor(() => {
-      expect(screen.getByText('Mis Listas')).toBeInTheDocument();
+      expect(screen.getByText('Mis Listas de Compras')).toBeInTheDocument();
     }, { timeout: 3000 });
 
     const storedStack = sessionStorage.getItem('comelo_nav_stack');
@@ -127,14 +132,14 @@ describe('Navigation Integration Tests', () => {
     render(<App />);
 
     await waitFor(() => {
-      expect(screen.getByText('¡Hola!')).toBeInTheDocument();
+      expect(screen.getByText('Hola!')).toBeInTheDocument();
     }, { timeout: 3000 });
 
     const listsNavButton = screen.getByRole('button', { name: /listas/i });
     await user.click(listsNavButton);
 
     await waitFor(() => {
-      expect(screen.getByText('Mis Listas')).toBeInTheDocument();
+      expect(screen.getByText('Mis Listas de Compras')).toBeInTheDocument();
     }, { timeout: 3000 });
 
     let storedStack = sessionStorage.getItem('comelo_nav_stack');
@@ -144,7 +149,7 @@ describe('Navigation Integration Tests', () => {
     await user.click(homeNavButton);
 
     await waitFor(() => {
-      expect(screen.getByText('¡Hola!')).toBeInTheDocument();
+      expect(screen.getByText('Hola!')).toBeInTheDocument();
     }, { timeout: 3000 });
 
     storedStack = sessionStorage.getItem('comelo_nav_stack');

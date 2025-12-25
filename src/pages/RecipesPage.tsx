@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import Layout from '../components/Layout';
-import Text from '../elements/Text';
 
 export default function RecipesPage() {
   const { t } = useTranslation();
@@ -12,10 +11,10 @@ export default function RecipesPage() {
         showBackButton: true
       }}
     >
-      <div className="px-6 pt-8">
-        <Text variant="body" color="muted">
+      <div className="flex items-center justify-center min-h-[60vh] px-6">
+        <p className="text-neutral-500 text-center">
           {t('recipes.comingSoon')}
-        </Text>
+        </p>
       </div>
     </Layout>
   );
