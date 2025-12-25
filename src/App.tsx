@@ -34,7 +34,6 @@ function AppContent() {
         <Route path="/create-list" element={<CreateListPage />} />
         <Route path="/search-recipes" element={<SearchRecipesPage />} />
         <Route path="/plan-week" element={<PlanWeekPage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </>
   );
