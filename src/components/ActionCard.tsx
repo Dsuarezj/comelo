@@ -9,7 +9,7 @@ interface ActionCardProps {
 
 export default function ActionCard({ icon, title, description, onClick }: ActionCardProps) {
   return (
-    <div className="bg-surface rounded-2xl p-4 shadow-sm border border-neutral-200">
+    <div className="bg-surface rounded-2xl p-4 shadow-md border border-neutral-200">
       <div className="flex items-start gap-4">
         <div className="flex-shrink-0 text-primary-600">
           {icon}
@@ -20,7 +20,7 @@ export default function ActionCard({ icon, title, description, onClick }: Action
         </div>
         <button
           onClick={onClick}
-          className="flex-shrink-0 w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors"
+          className="flex-shrink-0 w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors shadow-lg"
         >
           <Plus size={24} className="text-white" />
         </button>

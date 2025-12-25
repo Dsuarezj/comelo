@@ -1,4 +1,4 @@
-import { ClipboardList, ChefHat, CalendarDays } from 'lucide-react';
+import { ListPlus, Search, CalendarCheck } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout';
@@ -20,30 +20,30 @@ export default function HomePage() {
         onDismiss={dismissPrompt}
       />
       <div className="px-6 pt-12 pb-8">
-        <h1 className="text-3xl font-bold text-primary-700 mb-3">
+        <h1 className="text-3xl font-bold text-primary-700 mb-3 text-center">
           {t('home.greeting')}
         </h1>
-        <p className="text-neutral-600 leading-relaxed mb-10">
+        <p className="text-neutral-600 leading-relaxed mb-10 text-center">
           {t('home.subtitle')}
         </p>
 
         <div className="space-y-4">
           <ActionCard
-            icon={<ClipboardList size={28} strokeWidth={1.5} />}
+            icon={<ListPlus size={28} strokeWidth={1.5} />}
             title={t('home.createList.title')}
             description={t('home.createList.description')}
             onClick={() => navigate('/create-list')}
           />
 
           <ActionCard
-            icon={<ChefHat size={28} strokeWidth={1.5} />}
+            icon={<Search size={28} strokeWidth={1.5} />}
             title={t('home.searchRecipes.title')}
             description={t('home.searchRecipes.description')}
             onClick={() => navigate('/search-recipes')}
           />
 
           <ActionCard
-            icon={<CalendarDays size={28} strokeWidth={1.5} />}
+            icon={<CalendarCheck size={28} strokeWidth={1.5} />}
             title={t('home.planWeek.title')}
             description={t('home.planWeek.description')}
             onClick={() => navigate('/plan-week')}
