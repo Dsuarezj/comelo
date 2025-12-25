@@ -36,12 +36,12 @@ export default function Image({
   const [hasError, setHasError] = useState(false);
 
   return (
-    <div className={`${aspectRatioStyles[aspectRatio]} ${roundedStyles[rounded]} overflow-hidden bg-gray-100 relative`}>
+    <div className={`${aspectRatioStyles[aspectRatio]} ${roundedStyles[rounded]} overflow-hidden bg-neutral-100 relative`}>
       {!isLoaded && !hasError && (
-        <div className="absolute inset-0 animate-pulse bg-gray-200" />
+        <div className="absolute inset-0 animate-pulse bg-neutral-200" />
       )}
       {hasError ? (
-        <div className="absolute inset-0 flex items-center justify-center text-gray-400">
+        <div className="absolute inset-0 flex items-center justify-center text-neutral-400">
           <span className="text-sm">Image not found</span>
         </div>
       ) : (

@@ -83,8 +83,8 @@ export default function HomePage() {
             padding="md"
             className="flex items-center gap-3"
           >
-            <div className="bg-pink-100 rounded-xl p-3">
-              <Plus size={24} className="text-pink-600" />
+            <div className="bg-primary-100 rounded-xl p-3">
+              <Plus size={24} className="text-primary-600" />
             </div>
             <Text variant="body" className="font-medium">
               {t('home.createListButton')}
@@ -105,7 +105,7 @@ export default function HomePage() {
             </Text>
             <button
               onClick={() => navigate('/recipes')}
-              className="text-blue-600 text-sm font-medium flex items-center gap-1"
+              className="text-secondary-600 text-sm font-medium flex items-center gap-1"
             >
               {t('home.viewMoreRecipes')}
               <ArrowRight size={16} />

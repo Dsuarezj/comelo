@@ -15,10 +15,10 @@ interface ButtonProps {
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary: 'bg-pink-600 text-white hover:bg-pink-700 active:bg-pink-800',
-  secondary: 'bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800',
-  ghost: 'bg-transparent text-gray-700 hover:bg-gray-100 active:bg-gray-200',
-  danger: 'bg-red-600 text-white hover:bg-red-700 active:bg-red-800',
+  primary: 'bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800',
+  secondary: 'bg-secondary-600 text-white hover:bg-secondary-700 active:bg-secondary-800',
+  ghost: 'bg-transparent text-neutral-700 hover:bg-neutral-100 active:bg-neutral-200',
+  danger: 'bg-danger-600 text-white hover:bg-danger-700 active:bg-danger-800',
 };
 
 const sizeStyles: Record<ButtonSize, string> = {

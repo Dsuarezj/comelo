@@ -22,7 +22,7 @@ export default function BottomNav() {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-pink-100 border-t border-pink-200 rounded-t-3xl shadow-lg z-50">
+    <nav className="fixed bottom-0 left-0 right-0 bg-primary-100 border-t border-primary-200 rounded-t-3xl shadow-lg z-50">
       <div className="flex justify-around items-center h-20 px-4 max-w-md mx-auto">
         {navItems.map((item) => {
           const Icon = item.icon;
@@ -35,7 +35,7 @@ export default function BottomNav() {
               className={`
                 flex flex-col items-center justify-center gap-1 px-3 py-2
                 rounded-xl transition-all
-                ${isActive ? 'text-gray-900 scale-110' : 'text-gray-600 hover:text-gray-900'}
+                ${isActive ? 'text-neutral-900 scale-110' : 'text-neutral-600 hover:text-neutral-900'}
               `.trim().replace(/\s+/g, ' ')}
             >
               <Icon

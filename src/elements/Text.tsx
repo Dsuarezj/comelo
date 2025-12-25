@@ -21,10 +21,10 @@ const variantStyles: Record<TextVariant, string> = {
 };
 
 const colorStyles: Record<TextColor, string> = {
-  primary: 'text-gray-900',
-  secondary: 'text-gray-700',
-  muted: 'text-gray-600',
-  danger: 'text-red-600',
+  primary: 'text-neutral-900',
+  secondary: 'text-neutral-700',
+  muted: 'text-neutral-600',
+  danger: 'text-danger-600',
 };
 
 export default function Text({

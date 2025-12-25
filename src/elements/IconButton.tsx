@@ -12,9 +12,9 @@ interface IconButtonProps {
 }
 
 const variantStyles = {
-  default: 'bg-white hover:bg-gray-50 active:bg-gray-100',
-  filled: 'bg-pink-100 hover:bg-pink-200 active:bg-pink-300',
-  ghost: 'bg-transparent hover:bg-gray-100 active:bg-gray-200',
+  default: 'bg-white hover:bg-neutral-50 active:bg-neutral-100',
+  filled: 'bg-primary-100 hover:bg-primary-200 active:bg-primary-300',
+  ghost: 'bg-transparent hover:bg-neutral-100 active:bg-neutral-200',
 };
 
 export default function IconButton({

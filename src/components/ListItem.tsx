@@ -18,7 +18,7 @@ export default function ListItem({
   title,
   subtitle,
   icon: Icon,
-  iconBgColor = 'bg-blue-100',
+  iconBgColor = 'bg-secondary-100',
   badge,
   onClick,
   showArrow = true,
@@ -48,7 +48,7 @@ export default function ListItem({
       </div>
       <div className="flex items-center gap-2">
         {badge && <Badge variant="info">{badge}</Badge>}
-        {showArrow && <ArrowRight size={20} className="text-gray-400" />}
+        {showArrow && <ArrowRight size={20} className="text-neutral-400" />}
       </div>
     </Card>
   );

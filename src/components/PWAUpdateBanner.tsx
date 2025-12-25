@@ -18,10 +18,10 @@ export default function PWAUpdateBanner({ show, onUpdate }: PWAUpdateBannerProps
 
   return (
     <div className="fixed top-4 left-4 right-4 z-50 animate-slide-down">
-      <Card padding="md" className="shadow-lg border-2 border-blue-500">
+      <Card padding="md" className="shadow-lg border-2 border-secondary-500">
         <div className="flex items-start gap-3">
-          <div className="bg-blue-100 rounded-xl p-2 flex-shrink-0">
-            <RefreshCw size={20} className="text-blue-600" />
+          <div className="bg-secondary-100 rounded-xl p-2 flex-shrink-0">
+            <RefreshCw size={20} className="text-secondary-600" />
           </div>
 
           <div className="flex-1 min-w-0">

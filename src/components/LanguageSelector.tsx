@@ -44,21 +44,21 @@ export default function LanguageSelector() {
         variant="default"
         size={20}
         ariaLabel={t('language.selectLanguage')}
-        className="text-gray-700"
+        className="text-neutral-700"
       />
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+        <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-neutral-200 py-2 z-50">
           {languages.map((lang) => (
             <button
               key={lang.code}
               onClick={() => handleLanguageChange(lang.code)}
-              className={`w-full px-4 py-2 text-left hover:bg-gray-50 flex items-center gap-3 transition-colors ${
-                currentLanguage.code === lang.code ? 'bg-gray-100' : ''
+              className={`w-full px-4 py-2 text-left hover:bg-neutral-50 flex items-center gap-3 transition-colors ${
+                currentLanguage.code === lang.code ? 'bg-neutral-100' : ''
               }`}
               aria-label={`${t('language.selectLanguage')}: ${t(lang.nameKey)}`}
             >
-              <div className="w-8 h-6 flex items-center justify-center bg-gray-100 rounded text-xs font-bold text-gray-700 border border-gray-300">
+              <div className="w-8 h-6 flex items-center justify-center bg-neutral-100 rounded text-xs font-bold text-neutral-700 border border-neutral-300">
                 {lang.flag}
               </div>
               <div className="flex-1">
@@ -67,7 +67,7 @@ export default function LanguageSelector() {
                 </Text>
               </div>
               {currentLanguage.code === lang.code && (
-                <div className="w-2 h-2 bg-green-500 rounded-full" />
+                <div className="w-2 h-2 bg-success-500 rounded-full" />
               )}
             </button>
           ))}

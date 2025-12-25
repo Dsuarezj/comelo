@@ -84,13 +84,13 @@ export default function ShoppingListDetailPage() {
                 <input
                   type="checkbox"
                   checked={item.completed}
-                  className="w-5 h-5 rounded border-gray-300"
+                  className="w-5 h-5 rounded border-neutral-300"
                   readOnly
                 />
                 <div className="flex-1">
                   <Text
                     variant="body"
-                    className={item.completed ? 'line-through text-gray-400' : ''}
+                    className={item.completed ? 'line-through text-neutral-400' : ''}
                   >
                     {item.name}
                   </Text>
