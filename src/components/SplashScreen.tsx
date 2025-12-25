@@ -42,34 +42,35 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
 
   return (
     <div className="fixed inset-0 bg-[#5EE67E] flex items-center overflow-hidden px-12 py-24">
-      <div className="flex flex-col gap-4 w-full max-w-2xl">
+      <div className="flex flex-col gap-2 w-full max-w-2xl">
         {phrases.map((phrase, index) => {
           const isActive = index === currentPhrase;
           const opacity = getOpacity(index);
 
           return (
-            <div key={phrase} className="relative flex items-center gap-4">
+            <div key={phrase} className="relative flex items-center gap-6">
               {isActive && (
                 <svg
-                  className="absolute -left-12 w-8 h-8 text-neutral-800"
+                  className="absolute -left-10 w-7 h-7 text-neutral-800 transition-opacity duration-300"
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    d="M7 17L17 7M17 7H7M17 7V17"
+                    d="M5 12H19M19 12L12 5M19 12L12 19"
                     stroke="currentColor"
-                    strokeWidth="2"
+                    strokeWidth="2.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
                 </svg>
               )}
               <h2
-                className="text-6xl font-black leading-tight transition-opacity duration-500"
+                className="text-6xl font-black leading-tight transition-all duration-500 ease-out"
                 style={{
                   opacity: opacity,
-                  color: isActive ? '#2d2d2d' : '#4d8a5f'
+                  color: isActive ? '#2d2d2d' : '#4d8a5f',
+                  transform: isActive ? 'translateX(32px)' : 'translateX(0)',
                 }}
               >
                 {phrase}
