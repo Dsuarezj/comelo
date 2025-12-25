@@ -1,6 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import { getDefaultLanguage, DEFAULT_FALLBACK_LANGUAGE } from './languages';
 
 import es from './locales/es.json';
 import en from './locales/en.json';
@@ -15,8 +16,8 @@ i18n
       en: { translation: en },
       ca: { translation: ca },
     },
-    fallbackLng: 'en',
-    lng: 'es',
+    fallbackLng: DEFAULT_FALLBACK_LANGUAGE,
+    lng: getDefaultLanguage(),
     debug: false,
     interpolation: {
       escapeValue: false,
