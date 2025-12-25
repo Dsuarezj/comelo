@@ -1,7 +1,9 @@
-import { X, Download, HelpCircle, Shield, FileText, Cloud, Globe } from 'lucide-react';
+import { X, Download, HelpCircle, Shield, FileText, Cloud, Globe, ChevronRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { usePWA } from '../hooks/usePWA';
-import { SUPPORTED_LANGUAGES, getLanguageByCode } from '../i18n/languages';
+import { getLanguageByCode } from '../i18n/languages';
+import { useState } from 'react';
+import LanguageModal from './LanguageModal';
 
 interface MenuDrawerProps {
   isOpen: boolean;
@@ -11,15 +13,11 @@ interface MenuDrawerProps {
 export default function MenuDrawer({ isOpen, onClose }: MenuDrawerProps) {
   const { t, i18n } = useTranslation();
   const { canInstall, install } = usePWA();
+  const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
 
   const handleInstall = async () => {
     await install();
     onClose();
-  };
-
-  const handleLanguageChange = async (langCode: string) => {
-    await i18n.changeLanguage(langCode);
-    localStorage.setItem('comelo_language', langCode);
   };
 
   const currentLanguage = getLanguageByCode(i18n.language);
@@ -72,34 +70,19 @@ export default function MenuDrawer({ isOpen, onClose }: MenuDrawerProps) {
             <h3 className="text-sm font-semibold text-neutral-500 uppercase tracking-wide mb-3">
               {t('menu.settings')}
             </h3>
-            <div className="space-y-3">
-              <div className="flex items-center gap-4 px-4">
-                <Globe size={20} className="text-neutral-700" />
-                <span className="flex-1 text-neutral-900 font-medium">
-                  {t('menu.language')}
-                </span>
-                <div className="w-8 h-6 flex items-center justify-center bg-neutral-100 rounded text-xs font-bold text-neutral-700 border border-neutral-300">
-                  {currentLanguage.flag}
-                </div>
+            <button
+              onClick={() => setIsLanguageModalOpen(true)}
+              className="w-full flex items-center gap-4 p-4 hover:bg-neutral-100 rounded-xl transition-colors"
+            >
+              <Globe size={20} className="text-neutral-700" />
+              <span className="flex-1 text-left text-neutral-900 font-medium">
+                {t('menu.language')}
+              </span>
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-neutral-600">{currentLanguage.name}</span>
+                <ChevronRight size={20} className="text-neutral-400" />
               </div>
-
-              <div className="pl-12 space-y-1">
-                {SUPPORTED_LANGUAGES.map((lang) => (
-                  <button
-                    key={lang.code}
-                    onClick={() => handleLanguageChange(lang.code)}
-                    className={`w-full text-left px-4 py-2 rounded-lg hover:bg-neutral-50 transition-colors flex items-center justify-between ${
-                      currentLanguage.code === lang.code ? 'bg-neutral-50' : ''
-                    }`}
-                  >
-                    <span className="text-sm text-neutral-700">{lang.name}</span>
-                    {currentLanguage.code === lang.code && (
-                      <div className="w-2 h-2 bg-primary-500 rounded-full" />
-                    )}
-                  </button>
-                ))}
-              </div>
-            </div>
+            </button>
           </section>
 
           <section className="mb-6">
@@ -134,6 +117,11 @@ export default function MenuDrawer({ isOpen, onClose }: MenuDrawerProps) {
           </button>
         </div>
       </div>
+
+      <LanguageModal
+        isOpen={isLanguageModalOpen}
+        onClose={() => setIsLanguageModalOpen(false)}
+      />
     </>
   );
 }
