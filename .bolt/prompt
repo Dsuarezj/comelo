@@ -1,6 +1,6 @@
 For all designs I ask you to make, have them be beautiful, not cookie cutter. Make webpages that are fully featured and worthy for production. Thinking on mobile first and always made the view responsiveness without to much overlap of the elements
 
-By default, this template supports JSX syntax with Tailwind CSS classes, React hooks, and Lucide React for icons. Do not install other packages for UI themes, icons, etc unless absolutely necessary or I request them.
+By default, this template supports JSX syntax with chakra desing system, React hooks, and Lucide React for icons. Do not install other packages for UI themes, icons, etc unless absolutely necessary or I request them.
 
 Use icons from lucide-react for logos.
 
@@ -9,6 +9,9 @@ Always check for error on the console and fix them before continue. Never leave 
 When adding new Recipes follow the rules: RECIPE_RULES.md 
 
 IMPORTANT!: do not remove the error message without read them in detail and plan a fix based on the error message. Don't patch only what's needed, try to understand the error and solve it.
+
+- always remove unused code.
+- DO NOT add comments
 
 - No usar base de datos!
 - cuando escriba PING, responde con la menor cantidad de tokens posible, si puedes usar 0,01 o menos mucho mejor.
