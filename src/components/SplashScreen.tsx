@@ -5,12 +5,12 @@ interface SplashScreenProps {
 }
 
 const LINE_HEIGHT = 72;
-const VISIBLE_COUNT = 7;
 
 export default function SplashScreen({ onComplete }: SplashScreenProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(true);
 
-  const basePhrase = [
+  const basePhrases = [
     'Organiza fácil',
     'Explora recetas',
     'Crea tu lista',
@@ -19,23 +19,32 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
     'Sin estrés'
   ];
 
-  const phrases = [...basePhrase, ...basePhrase, ...basePhrase];
+  const phrases = [...basePhrases, ...basePhrases, ...basePhrases];
+  const startOffset = basePhrases.length;
+
+  useEffect(() => {
+    setCurrentIndex(startOffset);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => {
         const next = prev + 1;
-        if (next >= basePhrase.length * 2) {
-          return basePhrase.length;
+        if (next >= startOffset + basePhrases.length) {
+          setTimeout(() => {
+            setIsTransitioning(false);
+            setCurrentIndex(startOffset);
+            setTimeout(() => setIsTransitioning(true), 50);
+          }, 500);
         }
         return next;
       });
-    }, 600);
+    }, 700);
 
     const timeout = setTimeout(() => {
       clearInterval(interval);
       onComplete();
-    }, 3000);
+    }, 3500);
 
     return () => {
       clearInterval(interval);
@@ -43,46 +52,37 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
     };
   }, [onComplete]);
 
-  const centerIndex = Math.floor(VISIBLE_COUNT / 2);
-
-  const getVisiblePhrases = () => {
-    const result = [];
-    for (let i = -centerIndex; i <= centerIndex; i++) {
-      const phraseIndex = currentIndex + i;
-      const normalizedIndex = ((phraseIndex % phrases.length) + phrases.length) % phrases.length;
-      result.push({
-        text: phrases[normalizedIndex],
-        offset: i,
-        key: `${currentIndex}-${i}`,
-      });
-    }
-    return result;
-  };
-
-  const getOpacity = (offset: number) => {
-    const distance = Math.abs(offset);
+  const getOpacity = (index: number) => {
+    const distance = Math.abs(index - currentIndex);
     if (distance === 0) return 1;
-    if (distance === 1) return 0.45;
-    if (distance === 2) return 0.25;
-    return 0.12;
+    if (distance === 1) return 0.5;
+    if (distance === 2) return 0.3;
+    return 0.15;
   };
 
-  const visiblePhrases = getVisiblePhrases();
+  const getColor = (index: number) => {
+    return index === currentIndex ? '#1a1a1a' : '#3d7a4d';
+  };
+
+  const translateY = -(currentIndex * LINE_HEIGHT);
 
   return (
     <div className="fixed inset-0 bg-[#5EE67E] overflow-hidden">
       <div
-        className="absolute left-8 flex items-center"
-        style={{ top: '50%', transform: 'translateY(-50%)' }}
+        className="absolute left-6 z-10"
+        style={{
+          top: '50%',
+          transform: 'translateY(-50%)',
+        }}
       >
         <svg
-          className="w-8 h-8 text-neutral-800"
+          className="w-10 h-10 text-neutral-800"
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M5 12H19M19 12L13 6M19 12L13 18"
+            d="M4 12H20M20 12L14 6M20 12L14 18"
             stroke="currentColor"
             strokeWidth="2.5"
             strokeLinecap="round"
@@ -92,32 +92,34 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
       </div>
 
       <div
-        className="absolute left-20"
+        className="absolute left-[72px] overflow-hidden"
         style={{
-          top: '50%',
-          transform: `translateY(-${LINE_HEIGHT / 2}px)`,
+          top: `calc(50% - ${LINE_HEIGHT * 2.5}px)`,
+          height: `${LINE_HEIGHT * 5}px`,
         }}
       >
-        {visiblePhrases.map((item) => {
-          const isActive = item.offset === 0;
-          const opacity = getOpacity(item.offset);
-
-          return (
+        <div
+          style={{
+            transform: `translateY(${translateY + LINE_HEIGHT * (startOffset - 2)}px)`,
+            transition: isTransitioning ? 'transform 600ms cubic-bezier(0.4, 0, 0.2, 1)' : 'none',
+          }}
+        >
+          {phrases.map((phrase, index) => (
             <h2
-              key={item.key}
-              className="absolute font-black whitespace-nowrap transition-all duration-500 ease-out"
+              key={`${phrase}-${index}`}
+              className="font-black whitespace-nowrap"
               style={{
-                fontSize: '52px',
+                fontSize: '48px',
                 lineHeight: `${LINE_HEIGHT}px`,
-                opacity: opacity,
-                color: isActive ? '#2d2d2d' : '#4d8a5f',
-                transform: `translateY(${item.offset * LINE_HEIGHT}px)`,
+                opacity: getOpacity(index),
+                color: getColor(index),
+                transition: 'opacity 600ms cubic-bezier(0.4, 0, 0.2, 1), color 600ms cubic-bezier(0.4, 0, 0.2, 1)',
               }}
             >
-              {item.text}
+              {phrase}
             </h2>
-          );
-        })}
+          ))}
+        </div>
       </div>
     </div>
   );
