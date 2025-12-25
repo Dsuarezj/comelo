@@ -1,15 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-interface SplashScreenProps {
-  onComplete: () => void;
-  backgroundTask?: () => Promise<void> | void;
-  minDuration?: number;
-}
-
 const LINE_HEIGHT = 72;
 
-export default function SplashScreen({ onComplete, backgroundTask, minDuration = 0 }: SplashScreenProps) {
+export default function SplashScreen() {
   const { t } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
@@ -44,39 +38,11 @@ export default function SplashScreen({ onComplete, backgroundTask, minDuration =
       });
     }, 700);
 
-    const startTime = Date.now();
-    const executeBackgroundTask = async () => {
-      if (backgroundTask) {
-        try {
-          const result = backgroundTask();
-          if (result instanceof Promise) {
-            await result;
-          }
-        } catch (error) {
-          console.error('Error en proceso en background:', error);
-        }
-      }
-
-      const elapsed = Date.now() - startTime;
-      const remainingTime = Math.max(0, minDuration - elapsed);
-      
-      if (remainingTime > 0) {
-        await new Promise(resolve => setTimeout(resolve, remainingTime));
-      }
-
-      if (isMounted) {
-        clearInterval(interval);
-        onComplete();
-      }
-    };
-
-    executeBackgroundTask();
-
     return () => {
       isMounted = false;
       clearInterval(interval);
     };
-  }, [onComplete, backgroundTask, minDuration, startOffset, basePhrases.length]);
+  }, [startOffset, basePhrases.length]);
 
   const getOpacity = (index: number) => {
     const centerIndex = currentIndex - 2;
@@ -90,7 +56,7 @@ export default function SplashScreen({ onComplete, backgroundTask, minDuration =
   const translateY = -(currentIndex * LINE_HEIGHT);
 
   return (
-    <div className="fixed inset-0 bg-[#5EE67E] overflow-hidden flex items-center">
+    <div className="fixed inset-0 bg-[#5EE67E] overflow-hidden flex items-center z-50">
       <div
         className="absolute left-6 z-20"
         style={{

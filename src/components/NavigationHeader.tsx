@@ -1,7 +1,7 @@
 import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useNavigationContext } from '../contexts/NavigationContext';
+import { useNavigationContext } from '../contexts';
 
 interface NavigationHeaderProps {
   title: string;
