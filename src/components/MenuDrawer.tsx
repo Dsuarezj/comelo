@@ -71,10 +71,7 @@ export default function MenuDrawer({ isOpen, onClose }: MenuDrawerProps) {
               {t('menu.settings')}
             </h3>
             <button
-              onClick={() => {
-                onClose();
-                setTimeout(() => setIsLanguageModalOpen(true), 200);
-              }}
+              onClick={() => setIsLanguageModalOpen(true)}
               className="w-full flex items-center gap-4 p-4 hover:bg-neutral-100 rounded-xl transition-colors"
             >
               <Globe size={20} className="text-neutral-700" />
