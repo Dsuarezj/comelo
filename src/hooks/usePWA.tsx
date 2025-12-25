@@ -9,6 +9,7 @@ interface BeforeInstallPromptEvent extends Event {
 
 interface PWAState {
   installState: PWAInstallState;
+  canInstall: boolean;
   showInstallPrompt: boolean;
   showIOSInstructions: boolean;
   hasUpdate: boolean;
@@ -47,6 +48,8 @@ export function usePWA(): PWAState {
   const isIOS = useCallback(() => {
     return /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
   }, []);
+
+  const canInstall = installState === 'available' || (isIOS() && !isStandalone());
 
   const shouldShowInstallPrompt = useCallback(() => {
     if (isStandalone()) {
@@ -194,6 +197,7 @@ export function usePWA(): PWAState {
 
   return {
     installState,
+    canInstall,
     showInstallPrompt,
     showIOSInstructions,
     hasUpdate,
