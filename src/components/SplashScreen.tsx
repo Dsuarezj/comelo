@@ -60,39 +60,12 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
     return 0.15;
   };
 
-  const getColor = (index: number) => {
-    return index === currentIndex ? '#1a1a1a' : '#3d7a4d';
-  };
-
   const translateY = -(currentIndex * LINE_HEIGHT);
 
   return (
     <div className="fixed inset-0 bg-[#5EE67E] overflow-hidden">
       <div
-        className="absolute left-6 z-10"
-        style={{
-          top: '50%',
-          transform: 'translateY(-50%)',
-        }}
-      >
-        <svg
-          className="w-10 h-10 text-neutral-800"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M4 12H20M20 12L14 6M20 12L14 18"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </div>
-
-      <div
-        className="absolute left-[72px] overflow-hidden"
+        className="absolute left-4 overflow-hidden"
         style={{
           top: `calc(50% - ${LINE_HEIGHT * 2.5}px)`,
           height: `${LINE_HEIGHT * 5}px`,
@@ -101,24 +74,56 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
         <div
           style={{
             transform: `translateY(${translateY + LINE_HEIGHT * (startOffset - 2)}px)`,
-            transition: isTransitioning ? 'transform 600ms cubic-bezier(0.4, 0, 0.2, 1)' : 'none',
+            transition: isTransitioning ? 'transform 600ms cubic-bezier(0.25, 0.1, 0.25, 1)' : 'none',
           }}
         >
-          {phrases.map((phrase, index) => (
-            <h2
-              key={`${phrase}-${index}`}
-              className="font-black whitespace-nowrap"
-              style={{
-                fontSize: '48px',
-                lineHeight: `${LINE_HEIGHT}px`,
-                opacity: getOpacity(index),
-                color: getColor(index),
-                transition: 'opacity 600ms cubic-bezier(0.4, 0, 0.2, 1), color 600ms cubic-bezier(0.4, 0, 0.2, 1)',
-              }}
-            >
-              {phrase}
-            </h2>
-          ))}
+          {phrases.map((phrase, index) => {
+            const isActive = index === currentIndex;
+            const opacity = getOpacity(index);
+
+            return (
+              <div
+                key={`${phrase}-${index}`}
+                className="flex items-center gap-3"
+                style={{
+                  height: `${LINE_HEIGHT}px`,
+                  transform: `translateX(${isActive ? 8 : 0}px)`,
+                  transition: 'transform 600ms cubic-bezier(0.25, 0.1, 0.25, 1)',
+                }}
+              >
+                <svg
+                  className="w-9 h-9 flex-shrink-0"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style={{
+                    opacity: isActive ? 1 : 0,
+                    transition: 'opacity 600ms cubic-bezier(0.25, 0.1, 0.25, 1)',
+                  }}
+                >
+                  <path
+                    d="M4 12H20M20 12L14 6M20 12L14 18"
+                    stroke="#1a1a1a"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                <h2
+                  className="font-black whitespace-nowrap"
+                  style={{
+                    fontSize: '46px',
+                    lineHeight: `${LINE_HEIGHT}px`,
+                    opacity: opacity,
+                    color: isActive ? '#1a1a1a' : '#3d7a4d',
+                    transition: 'opacity 600ms cubic-bezier(0.25, 0.1, 0.25, 1), color 600ms cubic-bezier(0.25, 0.1, 0.25, 1)',
+                  }}
+                >
+                  {phrase}
+                </h2>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
