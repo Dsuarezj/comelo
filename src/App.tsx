@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { NavigationProvider } from './contexts/NavigationContext';
 import HomePage from './pages/HomePage';
@@ -17,15 +17,7 @@ function App() {
   const { hasUpdate, reloadForUpdate } = usePWA();
   const [showSplash, setShowSplash] = useState(true);
 
-  useEffect(() => {
-    const hasSeenSplash = sessionStorage.getItem('hasSeenSplash');
-    if (hasSeenSplash) {
-      setShowSplash(false);
-    }
-  }, []);
-
   const handleSplashComplete = () => {
-    sessionStorage.setItem('hasSeenSplash', 'true');
     setShowSplash(false);
   };
 
