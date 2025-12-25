@@ -1,4 +1,4 @@
-const BUILD_TIMESTAMP = '1766689072';
+const BUILD_TIMESTAMP = '1766689741';
 const CACHE_VERSION = `v-${BUILD_TIMESTAMP}`;
 const APP_SHELL_CACHE = `comelo-app-shell-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `comelo-runtime-${CACHE_VERSION}`;
