@@ -134,12 +134,6 @@
       "description": "Marca els ingredients que necessites evitar per salut. Aixi ens assegurem de no incloure'ls a les teves receptes ni llistes.",
       "saveButton": "Desar allergies",
       "skipButton": "No tinc allergies"
-    },
-    "foodPreferences": {
-      "title": "Hi ha alguna cosa que prefereixis no menjar?",
-      "description": "Tria els ingredients o productes que no van amb tu (per gust, estil de vida o costum).",
-      "continueButton": "Continuar",
-      "skipButton": "Fer-ho despres"
     }
   },
   "allergens": {
@@ -150,19 +144,5 @@
     "fish": "Peix",
     "soy": "Soja",
     "caffeine": "Cafeina"
-  },
-  "foodPreferences": {
-    "redMeat": "Carns vermelles",
-    "seafood": "Marisc",
-    "poultry": "Pollastre",
-    "avocado": "Alvocat",
-    "pineapple": "Pinya",
-    "fruits": "Fruites",
-    "spinach": "Espinacs",
-    "fish": "Peixos",
-    "ultraProcessed": "Ultraprocessats",
-    "softDrinks": "Refrescos",
-    "refinedSugar": "Productes alts en sucre refinat",
-    "refinedGrains": "Cereals refinats"
   }
 }

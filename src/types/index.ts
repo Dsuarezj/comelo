@@ -52,7 +52,6 @@ export const RecipeSchema = z.object({
 
 export const UserProfileSchema = z.object({
   allergens: z.array(z.string()).default([]),
-  foodPreferences: z.array(z.string()).default([]),
   language: z.enum(['es', 'en', 'ca']).default('es'),
   favoriteRecipes: z.array(z.string()).default([]),
   favoriteProducts: z.array(z.string()).default([]),

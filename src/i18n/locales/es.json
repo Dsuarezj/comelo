@@ -134,12 +134,6 @@
       "description": "Marca los ingredientes que necesitas evitar por salud. Asi nos aseguramos de no incluirlos en tus recetas ni listas.",
       "saveButton": "Guardar alergias",
       "skipButton": "No tengo alergias"
-    },
-    "foodPreferences": {
-      "title": "¿Hay algo que prefieras no comer?",
-      "description": "Elige los ingredientes o productos que no van contigo (por gusto, estilo de vida o costumbre).",
-      "continueButton": "Continuar",
-      "skipButton": "Hacerlo despues"
     }
   },
   "allergens": {
@@ -150,19 +144,5 @@
     "fish": "Pescado",
     "soy": "Soja",
     "caffeine": "Cafeina"
-  },
-  "foodPreferences": {
-    "redMeat": "Carnes rojas",
-    "seafood": "Mariscos",
-    "poultry": "Pollo",
-    "avocado": "Aguacate",
-    "pineapple": "Pina",
-    "fruits": "Frutas",
-    "spinach": "Espinacas",
-    "fish": "Pescados",
-    "ultraProcessed": "Ultraprocesados",
-    "softDrinks": "Refrescos",
-    "refinedSugar": "Productos altos en azucar refinada",
-    "refinedGrains": "Cereales refinados"
   }
 }
