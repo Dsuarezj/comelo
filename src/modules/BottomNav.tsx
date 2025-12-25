@@ -3,6 +3,7 @@ import { Home, ShoppingCart, UtensilsCrossed, Menu, LucideIcon } from 'lucide-re
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import MenuDrawer from '../components/MenuDrawer';
+import LanguageModal from '../components/LanguageModal';
 
 interface NavItem {
   path: string;
@@ -15,6 +16,7 @@ export default function BottomNav() {
   const location = useLocation();
   const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
 
   const navItems: NavItem[] = [
     { path: '/', icon: Home, labelKey: 'nav.home' },
@@ -63,7 +65,17 @@ export default function BottomNav() {
         </div>
       </nav>
 
-      <MenuDrawer isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      <MenuDrawer
+        isOpen={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+        onLanguageClick={() => setIsLanguageModalOpen(true)}
+      />
+
+      <LanguageModal
+        isOpen={isLanguageModalOpen}
+        onClose={() => setIsLanguageModalOpen(false)}
+        onLanguageSelected={() => setIsLanguageModalOpen(false)}
+      />
     </>
   );
 }
