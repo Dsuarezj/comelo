@@ -1,5 +1,6 @@
-import { X, Download, HelpCircle, Shield, FileText, Cloud } from 'lucide-react';
+import { X, Download, HelpCircle, Shield, FileText, Cloud, Globe } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
 import { usePWA } from '../hooks/usePWA';
 
 interface MenuDrawerProps {
@@ -7,14 +8,29 @@ interface MenuDrawerProps {
   onClose: () => void;
 }
 
+const languages = [
+  { code: 'es', name: 'Espanol', flag: 'ES' },
+  { code: 'en', name: 'English', flag: 'EN' },
+  { code: 'ca', name: 'Catala', flag: 'CA' },
+];
+
 export default function MenuDrawer({ isOpen, onClose }: MenuDrawerProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { canInstall, install } = usePWA();
+  const [showLanguages, setShowLanguages] = useState(false);
 
   const handleInstall = async () => {
     await install();
     onClose();
   };
+
+  const handleLanguageChange = async (langCode: string) => {
+    await i18n.changeLanguage(langCode);
+    localStorage.setItem('comelo_language', langCode);
+    setShowLanguages(false);
+  };
+
+  const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
 
   if (!isOpen) return null;
 
@@ -59,6 +75,47 @@ export default function MenuDrawer({ isOpen, onClose }: MenuDrawerProps) {
               </button>
             </section>
           )}
+
+          <section className="mb-6">
+            <h3 className="text-sm font-semibold text-neutral-500 uppercase tracking-wide mb-3">
+              {t('menu.settings')}
+            </h3>
+            <div className="space-y-2">
+              <button
+                onClick={() => setShowLanguages(!showLanguages)}
+                className="w-full flex items-center gap-4 p-4 hover:bg-neutral-100 rounded-xl transition-colors"
+              >
+                <Globe size={20} className="text-neutral-700" />
+                <span className="flex-1 text-left text-neutral-900 font-medium">
+                  {t('menu.language')}
+                </span>
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-6 flex items-center justify-center bg-neutral-100 rounded text-xs font-bold text-neutral-700 border border-neutral-300">
+                    {currentLanguage.flag}
+                  </div>
+                </div>
+              </button>
+
+              {showLanguages && (
+                <div className="pl-12 space-y-1">
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => handleLanguageChange(lang.code)}
+                      className={`w-full text-left px-4 py-2 rounded-lg hover:bg-neutral-50 transition-colors flex items-center justify-between ${
+                        currentLanguage.code === lang.code ? 'bg-neutral-50' : ''
+                      }`}
+                    >
+                      <span className="text-sm text-neutral-700">{lang.name}</span>
+                      {currentLanguage.code === lang.code && (
+                        <div className="w-2 h-2 bg-primary-500 rounded-full" />
+                      )}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </section>
 
           <section className="mb-6">
             <h3 className="text-sm font-semibold text-neutral-500 uppercase tracking-wide mb-3">
