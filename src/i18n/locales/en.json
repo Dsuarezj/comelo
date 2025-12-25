@@ -96,6 +96,16 @@
     "english": "English",
     "catalan": "Catalan"
   },
+  "splash": {
+    "phrases": [
+      "Organize easily",
+      "Explore recipes",
+      "Create your list",
+      "Personalize",
+      "At your pace",
+      "No stress"
+    ]
+  },
   "pwa": {
     "install": {
       "title": "Install Comelo",

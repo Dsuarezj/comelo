@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface SplashScreenProps {
   onComplete: () => void;
@@ -7,17 +8,11 @@ interface SplashScreenProps {
 const LINE_HEIGHT = 72;
 
 export default function SplashScreen({ onComplete }: SplashScreenProps) {
+  const { t } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
 
-  const basePhrases = [
-    'Organiza fácil',
-    'Explora recetas',
-    'Crea tu lista',
-    'Personaliza',
-    'A tu ritmo',
-    'Sin estrés'
-  ];
+  const basePhrases = t('splash.phrases', { returnObjects: true }) as string[];
 
   const phrases = [...basePhrases, ...basePhrases, ...basePhrases];
   const startOffset = basePhrases.length;
@@ -44,7 +39,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
     const timeout = setTimeout(() => {
       clearInterval(interval);
       onComplete();
-    }, 3500);
+    }, 2100);
 
     return () => {
       clearInterval(interval);
