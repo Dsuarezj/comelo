@@ -51,15 +51,8 @@ export const RecipeSchema = z.object({
 });
 
 export const UserProfileSchema = z.object({
-  allergens: z.object({
-    glutenFree: z.boolean().default(false),
-    dairyFree: z.boolean().default(false),
-    nutFree: z.boolean().default(false),
-    eggFree: z.boolean().default(false),
-    soyFree: z.boolean().default(false),
-    fishFree: z.boolean().default(false),
-    sulfiteFree: z.boolean().default(false),
-  }),
+  allergens: z.array(z.string()).default([]),
+  foodPreferences: z.array(z.string()).default([]),
   language: z.enum(['es', 'en', 'ca']).default('es'),
   favoriteRecipes: z.array(z.string()).default([]),
   favoriteProducts: z.array(z.string()).default([]),

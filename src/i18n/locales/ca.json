@@ -127,5 +127,53 @@
       "description": "Hi ha una nova versio disponible",
       "reload": "Actualitzar ara"
     }
+  },
+  "onboarding": {
+    "dropbox": {
+      "title": "Comelo es una app descentralitzada, la teva info es guarda nomes amb tu.",
+      "subtitle": "Connecta el teu Dropbox per desar les teves llistes, sense dependre de servidors centrals.",
+      "footer": "Tot es teu, sempre.",
+      "illustration": "Illustracio",
+      "connectButton": "Connectat amb Dropbox",
+      "skipButton": "Fer-ho despres"
+    },
+    "allergens": {
+      "title": "Tens allergies?",
+      "description": "Marca els ingredients que necessites evitar per salut. Aixi ens assegurem de no incloure'ls a les teves receptes ni llistes.",
+      "comingSoon": "Properament",
+      "saveButton": "Desar allergies",
+      "skipButton": "No tinc allergies"
+    },
+    "foodPreferences": {
+      "title": "Hi ha alguna cosa que prefereixis no menjar?",
+      "description": "Tria els ingredients o productes que no van amb tu (per gust, estil de vida o costum).",
+      "comingSoon": "Properament",
+      "continueButton": "Continuar",
+      "skipButton": "Fer-ho despres"
+    }
+  },
+  "allergens": {
+    "gluten": "Gluten",
+    "lactose": "Lactis",
+    "nuts": "Fruits secs",
+    "egg": "Ous",
+    "fish": "Peix",
+    "soy": "Soja",
+    "nonVegan": "No Vega",
+    "nonVegetarian": "No Vegetaria"
+  },
+  "foodPreferences": {
+    "redMeat": "Carns vermelles",
+    "seafood": "Marisc",
+    "poultry": "Pollastre",
+    "avocado": "Alvocat",
+    "pineapple": "Pinya",
+    "fruits": "Fruites",
+    "spinach": "Espinacs",
+    "fish": "Peixos",
+    "ultraProcessed": "Ultraprocessats",
+    "softDrinks": "Refrescos",
+    "refinedSugar": "Productes alts en sucre refinat",
+    "refinedGrains": "Cereals refinats"
   }
 }

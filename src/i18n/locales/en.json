@@ -127,5 +127,53 @@
       "description": "A new version is available",
       "reload": "Update now"
     }
+  },
+  "onboarding": {
+    "dropbox": {
+      "title": "Comelo is a decentralized app, your info is stored only with you.",
+      "subtitle": "Connect your Dropbox to save your lists, without depending on central servers.",
+      "footer": "Everything is yours, always.",
+      "illustration": "Illustration",
+      "connectButton": "Connect with Dropbox",
+      "skipButton": "Do it later"
+    },
+    "allergens": {
+      "title": "Do you have allergies?",
+      "description": "Mark the ingredients you need to avoid for health. This way we make sure not to include them in your recipes or lists.",
+      "comingSoon": "Coming soon",
+      "saveButton": "Save allergies",
+      "skipButton": "I don't have allergies"
+    },
+    "foodPreferences": {
+      "title": "Is there something you prefer not to eat?",
+      "description": "Choose the ingredients or products that don't work for you (by taste, lifestyle or habit).",
+      "comingSoon": "Coming soon",
+      "continueButton": "Continue",
+      "skipButton": "Do it later"
+    }
+  },
+  "allergens": {
+    "gluten": "Gluten",
+    "lactose": "Dairy",
+    "nuts": "Nuts",
+    "egg": "Eggs",
+    "fish": "Fish",
+    "soy": "Soy",
+    "nonVegan": "Non-Vegan",
+    "nonVegetarian": "Non-Vegetarian"
+  },
+  "foodPreferences": {
+    "redMeat": "Red meat",
+    "seafood": "Seafood",
+    "poultry": "Poultry",
+    "avocado": "Avocado",
+    "pineapple": "Pineapple",
+    "fruits": "Fruits",
+    "spinach": "Spinach",
+    "fish": "Fish",
+    "ultraProcessed": "Ultra-processed",
+    "softDrinks": "Soft drinks",
+    "refinedSugar": "Products high in refined sugar",
+    "refinedGrains": "Refined grains"
   }
 }
