@@ -20,9 +20,9 @@ export function SplashProvider({ children }: SplashProviderProps) {
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    const splashShown = LocalStorageService.get(StorageKeys.SPLASH_SHOWN, false);
+    const hasOnboarding = LocalStorageService.get(StorageKeys.HAS_ONBOARDING, false);
     
-    if (!splashShown) {
+    if (!hasOnboarding) {
       setIsVisible(true);
       runInitialTask();
     } else {
@@ -59,7 +59,7 @@ export function SplashProvider({ children }: SplashProviderProps) {
       await new Promise(resolve => setTimeout(resolve, remainingTime));
     }
 
-    LocalStorageService.set(StorageKeys.SPLASH_SHOWN, true);
+    LocalStorageService.set(StorageKeys.HAS_ONBOARDING, true);
     setIsVisible(false);
     setIsInitialized(true);
   };
