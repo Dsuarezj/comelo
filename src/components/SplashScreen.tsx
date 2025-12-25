@@ -3,49 +3,80 @@ import { useTranslation } from 'react-i18next';
 
 interface SplashScreenProps {
   onComplete: () => void;
+  backgroundTask?: () => Promise<void> | void;
+  minDuration?: number;
 }
 
 const LINE_HEIGHT = 72;
 
-export default function SplashScreen({ onComplete }: SplashScreenProps) {
+export default function SplashScreen({ onComplete, backgroundTask, minDuration = 0 }: SplashScreenProps) {
   const { t } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
 
   const basePhrases = t('splash.phrases', { returnObjects: true }) as string[];
-
   const phrases = [...basePhrases, ...basePhrases, ...basePhrases];
   const startOffset = basePhrases.length;
 
   useEffect(() => {
     setCurrentIndex(startOffset);
-  }, []);
+  }, [startOffset]);
 
   useEffect(() => {
+    let isMounted = true;
+    const phraseCount = basePhrases.length;
+    
     const interval = setInterval(() => {
       setCurrentIndex((prev) => {
         const next = prev + 1;
-        if (next >= startOffset + basePhrases.length) {
+        if (next >= startOffset + phraseCount) {
           setTimeout(() => {
-            setIsTransitioning(false);
-            setCurrentIndex(startOffset);
-            setTimeout(() => setIsTransitioning(true), 50);
+            if (isMounted) {
+              setIsTransitioning(false);
+              setCurrentIndex(startOffset);
+              setTimeout(() => {
+                if (isMounted) setIsTransitioning(true);
+              }, 50);
+            }
           }, 500);
         }
         return next;
       });
     }, 700);
 
-    const timeout = setTimeout(() => {
-      clearInterval(interval);
-      onComplete();
-    }, 2100);
+    const startTime = Date.now();
+    const executeBackgroundTask = async () => {
+      if (backgroundTask) {
+        try {
+          const result = backgroundTask();
+          if (result instanceof Promise) {
+            await result;
+          }
+        } catch (error) {
+          console.error('Error en proceso en background:', error);
+        }
+      }
+
+      const elapsed = Date.now() - startTime;
+      const remainingTime = Math.max(0, minDuration - elapsed);
+      
+      if (remainingTime > 0) {
+        await new Promise(resolve => setTimeout(resolve, remainingTime));
+      }
+
+      if (isMounted) {
+        clearInterval(interval);
+        onComplete();
+      }
+    };
+
+    executeBackgroundTask();
 
     return () => {
+      isMounted = false;
       clearInterval(interval);
-      clearTimeout(timeout);
     };
-  }, [onComplete]);
+  }, [onComplete, backgroundTask, minDuration, startOffset, basePhrases.length]);
 
   const getOpacity = (index: number) => {
     const centerIndex = currentIndex - 2;

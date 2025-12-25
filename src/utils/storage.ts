@@ -9,6 +9,7 @@ export const StorageKeys = {
   LANGUAGE: `${STORAGE_PREFIX}language`,
   SEARCH_HISTORY: `${STORAGE_PREFIX}search_history`,
   COOKIE_CONSENT: `${STORAGE_PREFIX}cookie_consent`,
+  SPLASH_SHOWN: `${STORAGE_PREFIX}splash_shown`,
 } as const;
 
 export class LocalStorageService {
