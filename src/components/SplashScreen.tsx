@@ -4,8 +4,11 @@ interface SplashScreenProps {
   onComplete: () => void;
 }
 
+const LINE_HEIGHT = 72;
+const ACTIVE_INDEX = 2;
+
 export default function SplashScreen({ onComplete }: SplashScreenProps) {
-  const [currentPhrase, setCurrentPhrase] = useState(2);
+  const [currentPhrase, setCurrentPhrase] = useState(0);
 
   const phrases = [
     'Organiza fácil',
@@ -32,50 +35,60 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
     };
   }, [onComplete]);
 
-  const getOpacity = (index: number) => {
-    if (index === currentPhrase) return 1;
-    const distance = Math.abs(index - currentPhrase);
-    if (distance === 1) return 0.4;
+  const getOpacity = (visualIndex: number) => {
+    const distance = Math.abs(visualIndex - ACTIVE_INDEX);
+    if (distance === 0) return 1;
+    if (distance === 1) return 0.45;
     if (distance === 2) return 0.25;
-    return 0.1;
+    return 0.12;
   };
 
+  const translateY = -currentPhrase * LINE_HEIGHT;
+
   return (
-    <div className="fixed inset-0 bg-[#5EE67E] flex items-center overflow-hidden px-12 py-24">
-      <div className="flex flex-col gap-2 w-full max-w-2xl">
+    <div className="fixed inset-0 bg-[#5EE67E] overflow-hidden">
+      <div className="absolute left-8 flex items-center" style={{ top: `calc(50% - ${LINE_HEIGHT / 2}px)` }}>
+        <svg
+          className="w-8 h-8 text-neutral-800"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M5 12H19M19 12L13 6M19 12L13 18"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
+
+      <div
+        className="absolute left-20 transition-transform duration-500 ease-out"
+        style={{
+          top: `calc(50% - ${(ACTIVE_INDEX + 0.5) * LINE_HEIGHT}px)`,
+          transform: `translateY(${translateY}px)`,
+        }}
+      >
         {phrases.map((phrase, index) => {
-          const isActive = index === currentPhrase;
-          const opacity = getOpacity(index);
+          const visualIndex = index - currentPhrase + ACTIVE_INDEX;
+          const isActive = visualIndex === ACTIVE_INDEX;
+          const opacity = getOpacity(visualIndex);
 
           return (
-            <div key={phrase} className="relative flex items-center gap-6">
-              {isActive && (
-                <svg
-                  className="absolute -left-10 w-7 h-7 text-neutral-800 transition-opacity duration-300"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M5 12H19M19 12L12 5M19 12L12 19"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              )}
-              <h2
-                className="text-6xl font-black leading-tight transition-all duration-500 ease-out"
-                style={{
-                  opacity: opacity,
-                  color: isActive ? '#2d2d2d' : '#4d8a5f',
-                  transform: isActive ? 'translateX(32px)' : 'translateX(0)',
-                }}
-              >
-                {phrase}
-              </h2>
-            </div>
+            <h2
+              key={phrase}
+              className="font-black transition-all duration-500 ease-out whitespace-nowrap"
+              style={{
+                fontSize: '52px',
+                lineHeight: `${LINE_HEIGHT}px`,
+                opacity: opacity,
+                color: isActive ? '#2d2d2d' : '#4d8a5f',
+              }}
+            >
+              {phrase}
+            </h2>
           );
         })}
       </div>
