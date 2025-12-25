@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { NavigationProvider } from './contexts/NavigationContext';
 import HomePage from './pages/HomePage';
@@ -8,11 +9,29 @@ import CreateListPage from './pages/CreateListPage';
 import SearchRecipesPage from './pages/SearchRecipesPage';
 import PlanWeekPage from './pages/PlanWeekPage';
 import PWAUpdateBanner from './components/PWAUpdateBanner';
+import SplashScreen from './components/SplashScreen';
 import { usePWA } from './hooks/usePWA';
 import './i18n';
 
 function App() {
   const { hasUpdate, reloadForUpdate } = usePWA();
+  const [showSplash, setShowSplash] = useState(true);
+
+  useEffect(() => {
+    const hasSeenSplash = sessionStorage.getItem('hasSeenSplash');
+    if (hasSeenSplash) {
+      setShowSplash(false);
+    }
+  }, []);
+
+  const handleSplashComplete = () => {
+    sessionStorage.setItem('hasSeenSplash', 'true');
+    setShowSplash(false);
+  };
+
+  if (showSplash) {
+    return <SplashScreen onComplete={handleSplashComplete} />;
+  }
 
   return (
     <Router>
