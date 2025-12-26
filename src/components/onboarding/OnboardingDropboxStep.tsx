@@ -18,7 +18,7 @@ export default function OnboardingDropboxStep({ onNext, onBack, onClose, current
       onSecondaryClick={onNext}
     >
       <div className="flex flex-col justify-center items-center py-6 h-full">
-        <div className="mb-12 relative w-64 h-64 flex items-center justify-center">
+        <div className="mb-6 relative w-48 h-48 flex items-center justify-center flex-shrink-0">
           <svg viewBox="0 0 400 400" className="w-full h-full">
             <g transform="translate(200, 200)">
               <rect x="-90" y="-140" width="180" height="240" rx="15" fill="#E5E7EB" />
@@ -61,11 +61,11 @@ export default function OnboardingDropboxStep({ onNext, onBack, onClose, current
           </svg>
         </div>
 
-        <h1 className="text-[26px] font-bold text-text-primary text-center mb-4 leading-tight px-4">
+        <h1 className="text-[22px] font-bold text-text-primary text-center mb-3 leading-[1.3] px-4">
           {t('onboarding.dropbox.title')}
         </h1>
 
-        <p className="text-text-secondary text-center text-[15px] leading-[1.5] px-6">
+        <p className="text-text-secondary text-center text-[14px] leading-[1.5] px-6">
           {t('onboarding.dropbox.description')}
         </p>
       </div>
