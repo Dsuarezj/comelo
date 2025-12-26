@@ -129,6 +129,12 @@
     }
   },
   "onboarding": {
+    "dropbox": {
+      "title": "Comelo es una app descentralitzada, la teva info es guarda nomes amb tu.",
+      "description": "Connecta el teu Dropbox per guardar les teves llistes, sense dependre de servidors centrals. Tot es teu, sempre.",
+      "connectButton": "Connecta amb Dropbox",
+      "skipButton": "Fer-ho despres"
+    },
     "allergens": {
       "title": "Tens allergies?",
       "description": "Marca els ingredients que necessites evitar per salut. Aixi ens assegurem de no incloure'ls a les teves receptes ni llistes.",

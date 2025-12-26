@@ -129,6 +129,12 @@
     }
   },
   "onboarding": {
+    "dropbox": {
+      "title": "Comelo is a decentralized app, your info is kept only with you.",
+      "description": "Connect your Dropbox to save your lists, without depending on central servers. Everything is yours, always.",
+      "connectButton": "Connect with Dropbox",
+      "skipButton": "Do it later"
+    },
     "allergens": {
       "title": "Do you have allergies?",
       "description": "Mark the ingredients you need to avoid for health. This way we make sure not to include them in your recipes or lists.",

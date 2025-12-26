@@ -129,6 +129,12 @@
     }
   },
   "onboarding": {
+    "dropbox": {
+      "title": "Comelo es una app descentralizada, tu info se guarda solo contigo.",
+      "description": "Conecta tu Dropbox para guardar tus listas, sin depender de servidores centrales. Todo es tuyo, siempre.",
+      "connectButton": "Conectate con Dropbox",
+      "skipButton": "Hacerlo despues"
+    },
     "allergens": {
       "title": "¿Tienes alergias?",
       "description": "Marca los ingredientes que necesitas evitar por salud. Asi nos aseguramos de no incluirlos en tus recetas ni listas.",
