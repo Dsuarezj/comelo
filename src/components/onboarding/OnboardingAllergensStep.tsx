@@ -97,9 +97,11 @@ export default function OnboardingAllergensStep({ onNext, onBack, onClose, curre
                   }
                 `}
               >
-                {isSelected && (
-                  <Check size={16} className="text-white" strokeWidth={2.5} />
-                )}
+                <Check
+                  size={16}
+                  className={`${isSelected ? 'text-white' : 'text-transparent'}`}
+                  strokeWidth={2.5}
+                />
 
                 <span className="text-[14px] font-medium whitespace-nowrap">
                   {t(`allergens.${allergen.translationKey}`)}
