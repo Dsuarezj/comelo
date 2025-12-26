@@ -36,10 +36,16 @@ export default function OnboardingPage() {
     }
   };
 
+  const handleClose = () => {
+    LocalStorageService.set(StorageKeys.HAS_ONBOARDING, true);
+    navigate('/', { replace: true });
+  };
+
   return (
     <StepComponent
       onNext={handleNext}
       onBack={handleBack}
+      onClose={handleClose}
       currentStep={visibleStepNumber}
       totalSteps={VISIBLE_STEPS.length}
     />

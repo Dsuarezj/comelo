@@ -1,6 +1,7 @@
 export interface OnboardingStepProps {
   onNext: () => void;
   onBack: () => void;
+  onClose: () => void;
   currentStep: number;
   totalSteps: number;
 }
