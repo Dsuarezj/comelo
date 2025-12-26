@@ -16,15 +16,12 @@ i18n
       en: { translation: en },
       ca: { translation: ca },
     },
-    fallbackLng: {
-      'es-AR': ['es'],
-      'es-MX': ['es'],
-      'es-EC': ['es'],
-      'es-ES': ['es'],
-      'en-US': ['en'],
-      'en-GB': ['en'],
-      'ca-ES': ['ca'],
-      'default': [DEFAULT_FALLBACK_LANGUAGE]
+    fallbackLng: (code) => {
+      if (!code) return [DEFAULT_FALLBACK_LANGUAGE];
+      const baseLang = code.split('-')[0];
+      return baseLang === code
+        ? [DEFAULT_FALLBACK_LANGUAGE]
+        : [baseLang, DEFAULT_FALLBACK_LANGUAGE];
     },
     lng: getDefaultLanguage(),
     debug: false,
@@ -36,8 +33,6 @@ i18n
       caches: ['localStorage'],
       lookupLocalStorage: 'comelo_language',
     },
-    load: 'currentOnly',
-    nonExplicitSupportedLngs: true,
   });
 
 export default i18n;
