@@ -7,6 +7,21 @@ interface TranslationCache {
   [key: string]: any;
 }
 
+interface ScopeConfig {
+  type: string;
+  id?: string;
+  idFromPath?: boolean;
+}
+
+const SCOPE_CONFIG: Record<string, ScopeConfig> = {
+  'recipe': { type: 'recipes', idFromPath: true },
+  'allergens': { type: 'allergens', id: 'allergens' },
+  'product': { type: 'products', id: 'common' },
+  'category': { type: 'products', id: 'common' },
+  'tag': { type: 'products', id: 'common' },
+  'nutrition': { type: 'products', id: 'common' },
+};
+
 class TranslationService {
   private cache: TranslationCache = {};
 
@@ -67,30 +82,16 @@ class TranslationService {
     }
 
     const [scope, ...rest] = parts;
+    const config = SCOPE_CONFIG[scope];
 
-    if (scope === 'recipe') {
-      const recipeId = rest[0];
-      if (!recipeId) return path;
-
-      const translations = await this.loadWithFallback('recipes', recipeId, currentLang);
-
-      let value = translations;
-      for (const part of parts) {
-        value = value?.[part];
-        if (!value) break;
-      }
-
-      return value || path;
+    if (!config) {
+      return path;
     }
 
-    if (scope === 'allergens') {
-      const translations = await this.loadWithFallback('allergens', 'allergens', currentLang);
+    const fileId = config.idFromPath ? rest[0] : config.id;
+    if (!fileId) return path;
 
-      const allergenId = rest[0];
-      return translations?.[allergenId] || path;
-    }
-
-    const translations = await this.loadWithFallback('products', 'common', currentLang);
+    const translations = await this.loadWithFallback(config.type, fileId, currentLang);
 
     let value = translations;
     for (const part of parts) {

@@ -281,16 +281,48 @@ Cuando el usuario cambia de idioma/región:
 
 ### TranslationService (Datos)
 
+El servicio usa un sistema de configuración basado en scopes que hace fácil añadir nuevos tipos de datos sin modificar lógica:
+
+```typescript
+const SCOPE_CONFIG = {
+  'recipe': { type: 'recipes', idFromPath: true },
+  'allergens': { type: 'allergens', id: 'allergens' },
+  'product': { type: 'products', id: 'common' },
+  'category': { type: 'products', id: 'common' },
+  'tag': { type: 'products', id: 'common' },
+  'nutrition': { type: 'products', id: 'common' },
+};
+```
+
+**Configuración:**
+- `type`: Carpeta en `data/translations/`
+- `id`: Archivo a cargar (fijo)
+- `idFromPath`: Extraer el ID del path (para recetas)
+
+**Uso básico:**
+
 ```typescript
 import { translationService } from '../services/TranslationService';
 
 const name = await translationService.translate('product.broccoli');
 const category = await translationService.translate('category.vegetables');
 const allergen = await translationService.translate('allergens.lupin');
+const recipe = await translationService.translate('recipe.pollo-curry.name');
 
 translationService.clearCache();
 await translationService.preloadEssentials('es-EC');
 ```
+
+**Añadir nuevo scope:**
+
+```typescript
+const SCOPE_CONFIG = {
+  // ... existing scopes
+  'tool': { type: 'tools', id: 'kitchen-tools' },
+};
+```
+
+Luego crear: `data/translations/tools/kitchen-tools.{lang}.json`
 
 ### Hook useDataTranslation (Componentes React)
 
