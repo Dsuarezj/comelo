@@ -1,9 +1,17 @@
 {
   "gluten": "Gluten",
-  "lactose": "Dairy",
-  "nuts": "Nuts",
-  "egg": "Eggs",
+  "dairy": "Dairy",
+  "eggs": "Eggs",
   "fish": "Fish",
+  "crustaceans": "Crustaceans",
+  "mollusks": "Mollusks",
+  "peanuts": "Peanuts",
+  "nuts": "Tree nuts",
+  "sesame": "Sesame",
   "soy": "Soy",
+  "celery": "Celery",
+  "mustard": "Mustard",
+  "sulfites": "Sulfites",
+  "lupin": "Lupin",
   "caffeine": "Caffeine"
 }

@@ -5,33 +5,73 @@
     "priority": 1
   },
   {
-    "id": "lactose",
+    "id": "dairy",
     "icon": "Milk",
     "priority": 2
   },
   {
-    "id": "nuts",
-    "icon": "Nut",
-    "priority": 3
-  },
-  {
-    "id": "egg",
+    "id": "eggs",
     "icon": "Egg",
-    "priority": 4
+    "priority": 3
   },
   {
     "id": "fish",
     "icon": "Fish",
+    "priority": 4
+  },
+  {
+    "id": "crustaceans",
+    "icon": "Shell",
     "priority": 5
+  },
+  {
+    "id": "mollusks",
+    "icon": "Shell",
+    "priority": 6
+  },
+  {
+    "id": "peanuts",
+    "icon": "Bean",
+    "priority": 7
+  },
+  {
+    "id": "nuts",
+    "icon": "TreeDeciduous",
+    "priority": 8
+  },
+  {
+    "id": "sesame",
+    "icon": "CircleDot",
+    "priority": 9
   },
   {
     "id": "soy",
     "icon": "Leaf",
-    "priority": 6
+    "priority": 10
+  },
+  {
+    "id": "celery",
+    "icon": "Carrot",
+    "priority": 11
+  },
+  {
+    "id": "mustard",
+    "icon": "Flower",
+    "priority": 12
+  },
+  {
+    "id": "sulfites",
+    "icon": "FlaskConical",
+    "priority": 13
+  },
+  {
+    "id": "lupin",
+    "icon": "Sprout",
+    "priority": 14
   },
   {
     "id": "caffeine",
     "icon": "Coffee",
-    "priority": 7
+    "priority": 15
   }
 ]

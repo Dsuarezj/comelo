@@ -1,9 +1,17 @@
 {
   "gluten": "Gluten",
-  "lactose": "Lactis",
-  "nuts": "Fruits secs",
-  "egg": "Ous",
+  "dairy": "Lactis",
+  "eggs": "Ous",
   "fish": "Peix",
+  "crustaceans": "Crustacis",
+  "mollusks": "Mol·luscs",
+  "peanuts": "Cacauets",
+  "nuts": "Fruits secs",
+  "sesame": "Sèsam",
   "soy": "Soja",
-  "caffeine": "Cafeina"
+  "celery": "Api",
+  "mustard": "Mostassa",
+  "sulfites": "Sulfits",
+  "lupin": "Tramussos",
+  "caffeine": "Cafeïna"
 }
