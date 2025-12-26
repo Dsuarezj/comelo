@@ -1,13 +1,15 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import { getDefaultLanguage, DEFAULT_FALLBACK_LANGUAGE } from './languages';
+import { DEFAULT_FALLBACK_LANGUAGE } from './languages';
 
 import es from './locales/es.json';
 import esES from './locales/es-ES.json';
 import esEC from './locales/es-EC.json';
 import en from './locales/en.json';
 import ca from './locales/ca.json';
+
+const savedLanguage = localStorage.getItem('comelo_language');
 
 i18n
   .use(LanguageDetector)
@@ -29,7 +31,7 @@ i18n
         ? [DEFAULT_FALLBACK_LANGUAGE]
         : [baseLang, DEFAULT_FALLBACK_LANGUAGE];
     },
-    lng: getDefaultLanguage(),
+    lng: savedLanguage || undefined,
     debug: false,
     interpolation: {
       escapeValue: false,
