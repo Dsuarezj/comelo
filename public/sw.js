@@ -1,7 +1,8 @@
-const BUILD_TIMESTAMP = '1766694742';
+const BUILD_TIMESTAMP = '1766791155';
 const CACHE_VERSION = `v-${BUILD_TIMESTAMP}`;
 const APP_SHELL_CACHE = `comelo-app-shell-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `comelo-runtime-${CACHE_VERSION}`;
+const TRANSLATIONS_CACHE = `comelo-translations-${CACHE_VERSION}`;
 
 const APP_SHELL_URLS = [
   '/',
@@ -349,7 +350,7 @@ self.addEventListener('activate', event => {
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames
-          .filter(name => name.startsWith('comelo-') && name !== APP_SHELL_CACHE && name !== RUNTIME_CACHE)
+          .filter(name => name.startsWith('comelo-') && name !== APP_SHELL_CACHE && name !== RUNTIME_CACHE && name !== TRANSLATIONS_CACHE)
           .map(name => caches.delete(name))
       );
     }).then(() => {
@@ -376,7 +377,27 @@ self.addEventListener('fetch', event => {
   }
 
   if (url.origin === location.origin) {
-    if (APP_SHELL_URLS.some(shellUrl => url.pathname === shellUrl || url.pathname === '/' + shellUrl)) {
+    if (url.pathname.match(/translations\/.*\.json$/) || url.pathname === '/versions.json') {
+      event.respondWith(
+        caches.match(request).then(cachedResponse => {
+          if (cachedResponse) {
+            return cachedResponse;
+          }
+
+          return fetch(request).then(response => {
+            if (response && response.status === 200) {
+              const responseToCache = response.clone();
+              caches.open(TRANSLATIONS_CACHE).then(cache => {
+                cache.put(request, responseToCache);
+              });
+            }
+            return response;
+          }).catch(() => {
+            return caches.match(request);
+          });
+        })
+      );
+    } else if (APP_SHELL_URLS.some(shellUrl => url.pathname === shellUrl || url.pathname === '/' + shellUrl)) {
       event.respondWith(
         fetch(request)
           .then(response => {

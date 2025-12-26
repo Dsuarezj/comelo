@@ -1,14 +1,16 @@
 import i18n from '../i18n';
+import { sessionService } from './SessionService';
 
 type Language = 'es' | 'en' | 'ca';
 type RegionalLanguage = Language | string;
 
-interface TranslationCache {
-  [key: string]: any;
+interface VersionMap {
+  [key: string]: string;
 }
 
 class TranslationService {
-  private cache: TranslationCache = {};
+  private versionCache: VersionMap | null = null;
+  private loadingPromises: Map<string, Promise<any>> = new Map();
 
   private getRegionalLanguage(): RegionalLanguage {
     const savedLang = localStorage.getItem('comelo_language');
@@ -26,50 +28,131 @@ class TranslationService {
     return i18n.language;
   }
 
-  private async loadTranslations(type: string, id: string, lang: RegionalLanguage, isRegional: boolean = false): Promise<void> {
-    const cacheKey = `${type}_${id}_${lang}`;
-
-    if (this.cache[cacheKey]) {
-      return;
+  private async fetchVersions(): Promise<VersionMap> {
+    if (this.versionCache) {
+      return this.versionCache;
     }
 
     try {
-      const translations = await import(`../data/translations/${type}/${id}.${lang}.json`);
-      this.cache[cacheKey] = translations?.default || translations || {};
-    } catch (error) {
-      if (!isRegional) {
-        console.warn(`Failed to load ${type} translations for ${id} (${lang})`, error);
+      const response = await fetch('/versions.json');
+      if (!response.ok) {
+        throw new Error('Failed to fetch versions');
       }
-      this.cache[cacheKey] = {};
+      const versions = await response.json();
+      this.versionCache = versions;
+      return versions;
+    } catch (error) {
+      console.warn('Failed to fetch versions, using empty map', error);
+      return {};
     }
+  }
+
+  private getVersionKey(type: string, id: string): string {
+    if (type === 'recipes' && id !== '_index') {
+      return `recipes/${id}`;
+    }
+    return type.replace(/s$/, '');
+  }
+
+  private async loadTranslationFromNetwork(type: string, id: string, lang: RegionalLanguage): Promise<any | null> {
+    try {
+      const translations = await import(`../data/translations/${type}/${id}.${lang}.json`);
+      return translations?.default || translations || null;
+    } catch {
+      return null;
+    }
+  }
+
+  private async loadWithVersionCheck(type: string, id: string, lang: RegionalLanguage): Promise<any | null> {
+    const cacheKey = `${type}/${id}/${lang}`;
+    const versionKey = this.getVersionKey(type, id);
+
+    const versions = await this.fetchVersions();
+    const currentVersion = versions[versionKey] || '1.0.0';
+
+    const cached = await sessionService.getTranslation(cacheKey);
+
+    if (cached && cached.version === currentVersion) {
+      this.checkForUpdatesInBackground(type, id, lang, cacheKey, currentVersion);
+      return cached.data;
+    }
+
+    const data = await this.loadTranslationFromNetwork(type, id, lang);
+
+    if (data) {
+      await sessionService.setTranslation(cacheKey, data, currentVersion);
+      return data;
+    }
+
+    if (cached) {
+      return cached.data;
+    }
+
+    return null;
+  }
+
+  private checkForUpdatesInBackground(
+    type: string,
+    id: string,
+    lang: RegionalLanguage,
+    cacheKey: string,
+    cachedVersion: string
+  ): void {
+    setTimeout(async () => {
+      try {
+        this.versionCache = null;
+        const versions = await this.fetchVersions();
+        const versionKey = this.getVersionKey(type, id);
+        const latestVersion = versions[versionKey] || '1.0.0';
+
+        if (latestVersion !== cachedVersion) {
+          const data = await this.loadTranslationFromNetwork(type, id, lang);
+          if (data) {
+            await sessionService.setTranslation(cacheKey, data, latestVersion);
+          }
+        }
+      } catch (error) {
+        console.warn('Background update check failed', error);
+      }
+    }, 0);
   }
 
   private async loadWithFallback(type: string, id: string, regionalLang: RegionalLanguage): Promise<any> {
     const baseLang = regionalLang.split('-')[0] as Language;
-    const regionalKey = `${type}_${id}_${regionalLang}`;
-    const baseKey = `${type}_${id}_${baseLang}`;
 
-    if (regionalLang !== baseLang) {
-      await this.loadTranslations(type, id, regionalLang, true);
+    const cacheKey = `${type}/${id}/${regionalLang}`;
+    if (this.loadingPromises.has(cacheKey)) {
+      return this.loadingPromises.get(cacheKey);
     }
-    await this.loadTranslations(type, id, baseLang, false);
 
-    const regionalData = this.cache[regionalKey] || {};
-    const baseData = this.cache[baseKey] || {};
+    const promise = (async () => {
+      let regionalData = {};
+      let baseData = {};
 
-    return { ...baseData, ...regionalData };
+      if (regionalLang !== baseLang) {
+        const regional = await this.loadWithVersionCheck(type, id, regionalLang);
+        if (regional) regionalData = regional;
+      }
+
+      const base = await this.loadWithVersionCheck(type, id, baseLang);
+      if (base) baseData = base;
+
+      return { ...baseData, ...regionalData };
+    })();
+
+    this.loadingPromises.set(cacheKey, promise);
+
+    try {
+      return await promise;
+    } finally {
+      this.loadingPromises.delete(cacheKey);
+    }
   }
 
   private resolveTranslationFile(scope: string, rest: string[]): { type: string; id: string } {
     const type = `${scope}s`;
     const id = rest.length >= 2 ? rest[0] : 'common';
     return { type, id };
-  }
-
-  private async loadByScope(scope: string, lang: RegionalLanguage, dynamicId?: string): Promise<any> {
-    const rest = dynamicId ? [dynamicId] : [];
-    const { type, id } = this.resolveTranslationFile(scope, rest);
-    return this.loadWithFallback(type, id, lang);
   }
 
   async translate(path: string, lang?: RegionalLanguage): Promise<string> {
@@ -96,14 +179,26 @@ class TranslationService {
     return value || path;
   }
 
-  clearCache(): void {
-    this.cache = {};
+  async loadRecipeIndex(lang?: RegionalLanguage): Promise<any[]> {
+    const currentLang = lang || this.getRegionalLanguage();
+    const translations = await this.loadWithFallback('recipes', '_index', currentLang);
+    return translations?.recipes || [];
+  }
+
+  async clearCache(): Promise<void> {
+    await sessionService.clearTranslations();
+    this.versionCache = null;
+    this.loadingPromises.clear();
   }
 
   async preloadEssentials(lang?: RegionalLanguage): Promise<void> {
     const currentLang = lang || this.getRegionalLanguage();
-    await this.loadByScope('product', currentLang);
-    await this.loadByScope('allergen', currentLang);
+
+    await Promise.all([
+      this.loadWithFallback('products', 'common', currentLang),
+      this.loadWithFallback('allergens', 'common', currentLang),
+      this.loadWithFallback('recipes', '_index', currentLang),
+    ]);
   }
 }
 

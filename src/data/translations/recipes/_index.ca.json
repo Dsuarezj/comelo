@@ -1,0 +1,34 @@
+{
+  "recipes": [
+    {
+      "id": "pollo-curry",
+      "name": "Pollastre al Curry",
+      "description": "Deliciós pollastre amb espècies aromàtiques i llet de coco. Una recepta ràpida i saludable amb alt contingut de proteïna.",
+      "featuredImage": "https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "totalTime": 25,
+      "difficulty": "easy",
+      "rating": 4.8,
+      "tags": ["tag.high-protein", "tag.gluten-free", "tag.dairy-free"]
+    },
+    {
+      "id": "ensalada-quinoa",
+      "name": "Amanida de Quinoa",
+      "description": "Amanida fresca i nutritiva amb quinoa, alvocat i verdures. Rica en proteïnes completes i fibra.",
+      "featuredImage": "https://images.pexels.com/photos/1059905/pexels-photo-1059905.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "totalTime": 25,
+      "difficulty": "easy",
+      "rating": 4.6,
+      "tags": ["tag.high-protein", "tag.high-fiber", "tag.vegan", "tag.gluten-free"]
+    },
+    {
+      "id": "bowl-amaranto-frutas",
+      "name": "Bowl d'Amarant amb Fruites",
+      "description": "Esmorzar energètic amb amarant, fruites fresques i mel. Ric en proteïnes, fibra i ferro.",
+      "featuredImage": "https://images.unsplash.com/photo-1586201375799-47cd24c3f595?q=80&w=2340&auto=format&fit=crop",
+      "totalTime": 40,
+      "difficulty": "easy",
+      "rating": 4.8,
+      "tags": ["tag.high-protein", "tag.high-fiber", "tag.high-iron", "tag.vegetarian"]
+    }
+  ]
+}

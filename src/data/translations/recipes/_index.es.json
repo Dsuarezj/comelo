@@ -1,0 +1,34 @@
+{
+  "recipes": [
+    {
+      "id": "pollo-curry",
+      "name": "Pollo al Curry",
+      "description": "Delicioso pollo con especias aromáticas y leche de coco. Una receta rápida y saludable con alto contenido de proteína.",
+      "featuredImage": "https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "totalTime": 25,
+      "difficulty": "easy",
+      "rating": 4.8,
+      "tags": ["tag.high-protein", "tag.gluten-free", "tag.dairy-free"]
+    },
+    {
+      "id": "ensalada-quinoa",
+      "name": "Ensalada de Quinoa",
+      "description": "Ensalada fresca y nutritiva con quinoa, aguacate y vegetales. Rica en proteínas completas y fibra.",
+      "featuredImage": "https://images.pexels.com/photos/1059905/pexels-photo-1059905.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "totalTime": 25,
+      "difficulty": "easy",
+      "rating": 4.6,
+      "tags": ["tag.high-protein", "tag.high-fiber", "tag.vegan", "tag.gluten-free"]
+    },
+    {
+      "id": "bowl-amaranto-frutas",
+      "name": "Bowl de Amaranto con Frutas",
+      "description": "Desayuno energético con amaranto, frutas frescas y miel. Rico en proteínas, fibra y hierro.",
+      "featuredImage": "https://images.unsplash.com/photo-1586201375799-47cd24c3f595?q=80&w=2340&auto=format&fit=crop",
+      "totalTime": 40,
+      "difficulty": "easy",
+      "rating": 4.8,
+      "tags": ["tag.high-protein", "tag.high-fiber", "tag.high-iron", "tag.vegetarian"]
+    }
+  ]
+}

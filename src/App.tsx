@@ -13,6 +13,8 @@ import PWAUpdateBanner from './components/PWAUpdateBanner';
 import { usePWA } from './hooks/usePWA';
 import { LocalStorageService, StorageKeys } from './utils/storage';
 import { sessionService } from './services/SessionService';
+import { translationService } from './services/TranslationService';
+import SplashScreen from './components/SplashScreen';
 import './i18n';
 
 function AppContent() {
@@ -23,12 +25,13 @@ function AppContent() {
 
   useEffect(() => {
     const initializeApp = async () => {
-      if (hasOnboarding) {
-        try {
-          await sessionService.init();
-        } catch (error) {
-          console.error('Error initializing services:', error);
+      try {
+        await sessionService.init();
+        if (hasOnboarding) {
+          await translationService.preloadEssentials();
         }
+      } catch (error) {
+        console.error('Error initializing services:', error);
       }
       setIsInitialized(true);
     };
@@ -41,7 +44,7 @@ function AppContent() {
   }
 
   if (!isInitialized) {
-    return null;
+    return <SplashScreen />;
   }
 
   return (
