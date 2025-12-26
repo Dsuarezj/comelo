@@ -1,32 +1,31 @@
-# Sistema de Traducciones - Comelo
+# Sistema de Traducciones
 
-Sistema completo de traducciones que separa traducciones de UI y datos, con soporte para variaciones regionales.
+Sistema completo de traducciones que separa UI y datos, con soporte para variaciones regionales.
 
 ## Contenido
 
-1. [Visión General](#visión-general)
-2. [Traducciones de UI](#traducciones-de-ui)
-3. [Traducciones de Datos](#traducciones-de-datos)
-4. [Traducciones Regionales](#traducciones-regionales)
-5. [Selector de Idioma](#selector-de-idioma)
-6. [API y Uso](#api-y-uso)
-7. [Añadir Nuevas Regiones](#añadir-nuevas-regiones)
+1. [Arquitectura](#arquitectura)
+2. [Traducciones de UI (i18n)](#traducciones-de-ui-i18n)
+3. [Traducciones de Datos (TranslationService)](#traducciones-de-datos-translationservice)
+4. [Variaciones Regionales](#variaciones-regionales)
+5. [Uso en Componentes](#uso-en-componentes)
+6. [Añadir Nuevas Traducciones](#añadir-nuevas-traducciones)
 
-## Visión General
+## Arquitectura
 
-El sistema gestiona dos tipos de traducciones:
+### Dos Sistemas Complementarios
 
-1. **Traducciones de UI** (`src/i18n/locales/`): Interfaz, botones, mensajes
-2. **Traducciones de Datos** (`src/data/translations/`): Productos, recetas, alérgenos
-
-Ambos soportan **variaciones regionales** para adaptar el vocabulario a España, Ecuador, México, Argentina, etc.
+| Sistema | Ubicación | Uso | Herramienta |
+|---------|-----------|-----|-------------|
+| **i18n** | `src/i18n/locales/` | Traducciones de UI: botones, mensajes, interfaz | `useTranslation()` |
+| **TranslationService** | `src/data/translations/` | Traducciones de datos: productos, recetas, alérgenos | `useDataTranslation()` |
 
 ### Sistema de Fallback en Cascada
 
-Todas las traducciones usan un sistema de tres niveles:
+Ambos sistemas usan fallback de tres niveles:
 
 ```
-es-EC → es → defaultFallback
+es-EC → es → clave original
 ```
 
 **Ejemplo**: Usuario de Ecuador busca una traducción
@@ -34,7 +33,7 @@ es-EC → es → defaultFallback
 2. Si no existe, busca en base: `es.json`
 3. Si no existe, devuelve la clave original
 
-## Traducciones de UI
+## Traducciones de UI (i18n)
 
 ### Estructura de Archivos
 
@@ -43,8 +42,6 @@ src/i18n/locales/
 ├── es.json          # Base español (completo)
 ├── es-ES.json       # Solo diferencias para España
 ├── es-EC.json       # Solo diferencias para Ecuador
-├── es-MX.json       # Placeholder (usa es.json)
-├── es-AR.json       # Placeholder (usa es.json)
 ├── en.json          # Inglés completo
 └── ca.json          # Catalán completo
 ```
@@ -62,54 +59,188 @@ src/i18n/locales/
     "save": "Guardar",
     "cancel": "Cancelar",
     "back": "Volver"
-  },
-  "home": {
-    "greeting": "Hola!",
-    "subtitle": "Tu camino para comer mejor..."
   }
 }
 ```
 
-**es-ES.json** (solo sobrescrituras - uso de vosotros):
+**es-ES.json** (solo sobrescrituras):
 ```json
 {
   "home": {
     "subtitle": "Vuestro camino para comer mejor..."
-  },
-  "onboarding": {
-    "allergens": {
-      "title": "¿Teneis alergias?"
-    }
   }
 }
 ```
 
-**es-EC.json** (solo sobrescrituras - vocabulario ecuatoriano):
+**es-EC.json** (solo sobrescrituras):
 ```json
 {
-  "home": {
-    "searchRecipes": {
-      "description": "Ideas cheveres y ricas para comer mejor..."
-    }
-  },
   "common": {
     "back": "Regresar"
   }
 }
 ```
 
+### Cómo Funciona i18n
+
+El sistema i18n carga automáticamente archivos base y regionales, combinándolos:
+
+```typescript
+resources: {
+  'es-EC': { translation: { ...es, ...esEC } }
+}
+```
+
+Esto permite que:
+- `t('common.save')` → use `es.json` (base)
+- `t('common.back')` → use `es-EC.json` (regional override)
+
+## Traducciones de Datos (TranslationService)
+
+### Estructura de Archivos
+
+```
+src/data/translations/
+├── products/
+│   ├── common.es.json
+│   ├── common.es-ES.json
+│   └── common.en.json
+│
+├── allergens/
+│   ├── common.es.json
+│   ├── common.es-ES.json
+│   └── common.en.json
+│
+└── recipes/
+    ├── pollo-curry.es.json
+    ├── pollo-curry.es-ES.json
+    └── pollo-curry.en.json
+```
+
+### Convención de Nombres
+
+**Regla general**: `{scope}s/common.{lang}.json`
+
+| Scope | Archivo | Ejemplo |
+|-------|---------|---------|
+| `product` | `products/common.{lang}.json` | products/common.es.json |
+| `allergen` | `allergens/common.{lang}.json` | allergens/common.es.json |
+| `category` | `products/common.{lang}.json` | products/common.es.json |
+| `tag` | `products/common.{lang}.json` | products/common.es.json |
+| `nutrition` | `products/common.{lang}.json` | products/common.es.json |
+
+**Excepción**: `recipe` usa ID dinámico del path
+- `recipe.pollo-curry.name` → `recipes/pollo-curry.{lang}.json`
+
+### Formato de Archivos de Datos
+
+**products/common.es.json** (completo):
+```json
+{
+  "product": {
+    "broccoli": "Brócoli",
+    "banana": "Plátano",
+    "potato": "Patata"
+  },
+  "category": {
+    "vegetables": "Verduras",
+    "fruits": "Frutas"
+  }
+}
+```
+
+**products/common.es-EC.json** (solo diferencias):
+```json
+{
+  "product": {
+    "potato": "Papa"
+  }
+}
+```
+
+**allergens/common.es.json**:
+```json
+{
+  "allergen": {
+    "gluten": "Gluten",
+    "nuts": "Frutos secos",
+    "peanuts": "Cacahuetes"
+  }
+}
+```
+
+**allergens/common.es-EC.json**:
+```json
+{
+  "allergen": {
+    "peanuts": "Maní"
+  }
+}
+```
+
+### Cómo Funciona TranslationService
+
+El servicio usa convención sobre configuración:
+
+```typescript
+const SCOPES_WITH_DYNAMIC_ID = ['recipe'];
+
+private resolveTranslationFile(scope: string, rest: string[]): { type: string; id: string } {
+  const type = `${scope}s`;
+
+  if (SCOPES_WITH_DYNAMIC_ID.includes(scope)) {
+    return { type, id: rest[0] };
+  }
+
+  return { type, id: 'common' };
+}
+```
+
+**Flujo de traducción**:
+
+1. `translate('product.broccoli')`
+2. Split: `['product', 'broccoli']`
+3. Resolve: `{ type: 'products', id: 'common' }`
+4. Load: `products/common.{lang}.json` con fallback
+5. Navigate: `translations.product.broccoli`
+6. Return: `"Brócoli"`
+
+## Variaciones Regionales
+
 ### Idiomas y Regiones Soportados
 
-| Código | Idioma/Región | Bandeira | Características |
-|--------|---------------|----------|-----------------|
-| `es-ES` | Español (España) | 🇪🇸 | Vosotros, vocabulario peninsular |
-| `es-EC` | Español (Ecuador) | 🇪🇨 | Vocabulario ecuatoriano |
-| `es-MX` | Español (México) | 🇲🇽 | Placeholder (usa base) |
-| `es-AR` | Español (Argentina) | 🇦🇷 | Placeholder (usa base) |
-| `en` | English | 🇬🇧 | - |
-| `ca` | Català | 🇪🇸 | - |
+| Código | Idioma/Región | Bandera |
+|--------|---------------|---------|
+| `es` | Español (genérico) | 🌐 |
+| `es-ES` | Español (España) | 🇪🇸 |
+| `es-EC` | Español (Ecuador) | 🇪🇨 |
+| `en` | English | 🇬🇧 |
+| `ca` | Català | 🇪🇸 |
 
-### Uso en Componentes
+### Ejemplos de Variaciones
+
+| Producto/Alérgeno | es (base) | es-ES | es-EC |
+|-------------------|-----------|-------|-------|
+| Peanuts | Cacahuetes | Cacahuetes | Maní |
+| Potato | Patata | Patata | Papa |
+| Popcorn | Palomitas | Palomitas | Canguil |
+
+### Detección Automática
+
+El sistema detecta la región desde:
+1. `localStorage.getItem('comelo_language')` (preferencia guardada)
+2. `navigator.language` (idioma del navegador)
+3. `i18n.language` (idioma actual de i18n)
+
+```typescript
+navigator.language = 'es-ES' → España
+navigator.language = 'es-EC' → Ecuador
+navigator.language = 'es' → Español genérico
+```
+
+## Uso en Componentes
+
+### Traducciones de UI
 
 ```tsx
 import { useTranslation } from 'react-i18next';
@@ -126,73 +257,7 @@ function MyComponent() {
 }
 ```
 
-## Traducciones de Datos
-
-### Estructura de Archivos
-
-```
-src/data/translations/
-├── products/
-│   ├── common.es.json        # Base español (completo)
-│   ├── common.es-ES.json     # Solo diferencias
-│   ├── common.es-EC.json     # Solo diferencias
-│   ├── common.en.json
-│   └── common.ca.json
-│
-├── allergens/
-│   ├── allergens.es.json     # Base español (completo)
-│   ├── allergens.es-ES.json  # Solo diferencias
-│   ├── allergens.es-EC.json  # Solo diferencias
-│   ├── allergens.en.json
-│   └── allergens.ca.json
-│
-└── recipes/
-    ├── pollo-curry.es.json   # Base español
-    ├── pollo-curry.es-ES.json
-    ├── pollo-curry.es-EC.json
-    └── pollo-curry.en.json
-```
-
-### Convención de Archivos
-
-Todos los archivos siguen esta convención:
-```
-src/data/translations/{type}/{id}.{lang}.json
-```
-
-- **{type}**: Tipo de dato (products, recipes, allergens)
-- **{id}**: Identificador (common, pollo-curry, allergens)
-- **{lang}**: Código de idioma (es, es-ES, es-EC, en, ca)
-
-### Formato de Productos
-
-**common.es.json** (completo):
-```json
-{
-  "product": {
-    "broccoli": "Brócoli",
-    "banana": "Plátano",
-    "potato": "Patata",
-    "peanuts": "Cacahuetes"
-  },
-  "category": {
-    "vegetables": "Verduras",
-    "fruits": "Frutas"
-  }
-}
-```
-
-**common.es-EC.json** (solo diferencias):
-```json
-{
-  "product": {
-    "potato": "Papa",
-    "peanuts": "Maní"
-  }
-}
-```
-
-### Uso con useDataTranslation
+### Traducciones de Datos
 
 ```tsx
 import { useDataTranslation } from '../hooks/useDataTranslation';
@@ -210,182 +275,92 @@ function ProductCard({ productKey }) {
 }
 ```
 
-## Traducciones Regionales
-
-### Ejemplos de Variaciones por Región
-
-| Producto/Alérgeno | España (es-ES) | Ecuador (es-EC) | México (es-MX) |
-|-------------------|----------------|-----------------|----------------|
-| Peanuts | Cacahuetes | Maní | Cacahuates |
-| Potato | Patata | Papa | Papa |
-| Lupin | Altramuces | Chocho | Lupino |
-| Corn | Maíz | Choclo | Elote |
-| Popcorn | Palomitas | Canguil | Palomitas |
-
-### Detección Automática de Región
-
-El sistema detecta la región automáticamente desde `navigator.language`:
-
-```typescript
-// Ejemplos de detección
-navigator.language = 'es-ES' → España
-navigator.language = 'es-EC' → Ecuador
-navigator.language = 'es' → Español genérico
-```
-
-### Sistema de Fallback Completo
-
-```
-Usuario de Ecuador busca "lupin":
-1. allergens.es-EC.json → "Chocho" ✓
-2. allergens.es.json → "Altramuces" (si no existe en es-EC)
-3. "allergens.lupin" (si no existe en es)
-```
-
-## Selector de Idioma
-
-El usuario puede cambiar manualmente su idioma/región después del onboarding.
-
-### Componente LanguageModal
+### Cambiar Idioma
 
 ```tsx
-import { LanguageModal } from '../components/LanguageModal';
+import { useTranslation } from 'react-i18next';
+import { translationService } from '../services/TranslationService';
 
-function Header() {
-  const [isOpen, setIsOpen] = useState(false);
+function LanguageSelector() {
+  const { i18n } = useTranslation();
+
+  const changeLanguage = async (langCode: string) => {
+    await i18n.changeLanguage(langCode);
+    translationService.clearCache();
+    await translationService.preloadEssentials(langCode);
+  };
 
   return (
-    <>
-      <button onClick={() => setIsOpen(true)}>
-        Cambiar idioma
-      </button>
-      <LanguageModal
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-      />
-    </>
+    <select onChange={(e) => changeLanguage(e.target.value)}>
+      <option value="es">Español</option>
+      <option value="es-ES">Español (España)</option>
+      <option value="es-EC">Español (Ecuador)</option>
+      <option value="en">English</option>
+    </select>
   );
 }
 ```
 
-### Flujo al Cambiar Idioma
+## Añadir Nuevas Traducciones
 
-Cuando el usuario cambia de idioma/región:
+### Añadir Nuevo Scope de Datos (común)
 
-1. `i18n.changeLanguage(langCode)` actualiza traducciones de UI
-2. `translationService.clearCache()` limpia caché de datos
-3. `translationService.preloadEssentials(langCode)` precarga datos esenciales
-4. Componentes se re-renderizan automáticamente
+La mayoría de scopes usan `common.json` automáticamente:
 
-## API y Uso
-
-### TranslationService (Datos)
-
-El servicio usa un sistema de configuración basado en scopes que hace fácil añadir nuevos tipos de datos sin modificar lógica:
-
-```typescript
-const SCOPE_CONFIG = {
-  'recipe': { type: 'recipes', idFromPath: true },
-  'allergens': { type: 'allergens', id: 'allergens' },
-  'product': { type: 'products', id: 'common' },
-  'category': { type: 'products', id: 'common' },
-  'tag': { type: 'products', id: 'common' },
-  'nutrition': { type: 'products', id: 'common' },
-};
+1. Crear archivos de traducción:
+```
+src/data/translations/tools/
+├── common.es.json
+├── common.es-ES.json
+└── common.en.json
 ```
 
-**Configuración:**
-- `type`: Carpeta en `data/translations/`
-- `id`: Archivo a cargar (fijo)
-- `idFromPath`: Extraer el ID del path (para recetas)
-
-**Uso básico:**
-
+2. ¡Listo! Usar directamente:
 ```typescript
-import { translationService } from '../services/TranslationService';
-
-const name = await translationService.translate('product.broccoli');
-const category = await translationService.translate('category.vegetables');
-const allergen = await translationService.translate('allergens.lupin');
-const recipe = await translationService.translate('recipe.pollo-curry.name');
-
-translationService.clearCache();
-await translationService.preloadEssentials('es-EC');
+await t('tool.whisk')
 ```
 
-**Añadir nuevo scope:**
+### Añadir Scope con ID Dinámico
 
+Si necesitas IDs dinámicos (como recetas):
+
+1. Añadir a la lista de excepciones:
 ```typescript
-const SCOPE_CONFIG = {
-  // ... existing scopes
-  'tool': { type: 'tools', id: 'kitchen-tools' },
-};
+const SCOPES_WITH_DYNAMIC_ID = ['recipe', 'tutorial'];
 ```
 
-Luego crear: `data/translations/tools/kitchen-tools.{lang}.json`
-
-### Hook useDataTranslation (Componentes React)
-
-```typescript
-import { useDataTranslation } from '../hooks/useDataTranslation';
-
-function MyComponent() {
-  const t = useDataTranslation();
-  const [name, setName] = useState('');
-
-  useEffect(() => {
-    t('product.banana').then(setName);
-  }, [t]);
-
-  return <span>{name}</span>;
-}
+2. Crear archivos con IDs específicos:
+```
+src/data/translations/tutorials/
+├── beginner-guide.es.json
+└── beginner-guide.en.json
 ```
 
-### Hook useTranslation (UI)
-
+3. Usar con ID en el path:
 ```typescript
-import { useTranslation } from 'react-i18next';
-
-function MyComponent() {
-  const { t, i18n } = useTranslation();
-
-  const changeLanguage = (lang: string) => {
-    i18n.changeLanguage(lang);
-  };
-
-  return <h1>{t('app.name')}</h1>;
-}
+await t('tutorial.beginner-guide.title')
 ```
 
-## Añadir Nuevas Regiones
+### Añadir Nueva Región
 
-### 1. Actualizar languages.ts (si es necesario)
-
+**1. Actualizar `src/i18n/languages.ts`**:
 ```typescript
 export const SUPPORTED_LANGUAGES: Language[] = [
   { code: 'es-CL', name: 'Español (Chile)', flag: '🇨🇱' },
-  // ...
 ];
 ```
 
-### 2. Crear Archivos de UI Regional
-
-Solo incluir traducciones que difieren:
-
-**src/i18n/locales/es-CL.json**:
+**2. Crear archivos de UI regional** (solo diferencias):
 ```json
+// src/i18n/locales/es-CL.json
 {
   "common": {
     "beans": "Porotos"
-  },
-  "home": {
-    "subtitle": "Tu camino..."
   }
 }
 ```
 
-### 3. Actualizar i18n/index.ts
-
+**3. Actualizar `src/i18n/index.ts`**:
 ```typescript
 import esCL from './locales/es-CL.json';
 
@@ -396,31 +371,17 @@ i18n.init({
 });
 ```
 
-### 4. Crear Archivos de Datos Regionales
-
-Solo incluir términos que difieren:
-
-**src/data/translations/products/common.es-CL.json**:
+**4. Crear archivos de datos regionales** (solo diferencias):
 ```json
+// src/data/translations/products/common.es-CL.json
 {
   "product": {
-    "potato": "Papa",
     "beans": "Porotos"
   }
 }
 ```
 
-**src/data/translations/allergens/allergens.es-CL.json**:
-```json
-{
-  "peanuts": "Maní",
-  "beans": "Porotos"
-}
-```
-
-### 5. ¡Listo!
-
-El sistema detectará automáticamente la región y usará los archivos correspondientes.
+**5. ¡Listo!** El sistema detectará automáticamente la región.
 
 ## Mejores Prácticas
 
@@ -429,14 +390,8 @@ El sistema detectará automáticamente la región y usará los archivos correspo
 ```json
 // ✓ CORRECTO: es.json contiene TODO
 {
-  "app": { "name": "Comelo", ... },
-  "common": { "save": "Guardar", ... },
-  "home": { ... }
-}
-
-// ✗ INCORRECTO: no dejar keys faltantes
-{
-  "app": { "name": "Comelo" }
+  "app": { "name": "Comelo" },
+  "common": { "save": "Guardar", "cancel": "Cancelar" }
 }
 ```
 
@@ -445,9 +400,7 @@ El sistema detectará automáticamente la región y usará los archivos correspo
 ```json
 // ✓ CORRECTO: es-ES.json solo diferencias
 {
-  "home": {
-    "subtitle": "Vuestro camino..."
-  }
+  "home": { "subtitle": "Vuestro camino..." }
 }
 
 // ✗ INCORRECTO: no duplicar todo
@@ -458,54 +411,85 @@ El sistema detectará automáticamente la región y usará los archivos correspo
 }
 ```
 
-### 3. Consistencia en Naming
+### 3. Limpiar Caché al Cambiar Idioma
 
 ```typescript
-// ✓ CORRECTO: usar misma estructura
-t('common.save')
-t('common.cancel')
-t('common.delete')
-
-// ✗ INCORRECTO: estructura inconsistente
-t('save')
-t('common.cancel')
-t('deleteButton')
-```
-
-### 4. Limpiar Caché al Cambiar Idioma
-
-```typescript
-// ✓ CORRECTO: limpiar ambos cachés
+// ✓ CORRECTO
 await i18n.changeLanguage('es-EC');
 translationService.clearCache();
 await translationService.preloadEssentials('es-EC');
 
-// ✗ INCORRECTO: solo cambiar i18n
+// ✗ INCORRECTO
 await i18n.changeLanguage('es-EC');
 ```
 
-## Debugging
+### 4. Usar Convención de Nombres
 
 ```typescript
-console.log(i18n.language);
+// ✓ CORRECTO: usar convenciones consistentes
+t('common.save')
+t('common.cancel')
+t('product.broccoli')
 
-console.log(translationService.cache);
+// ✗ INCORRECTO: nombres inconsistentes
+t('save')
+t('common.cancel')
+t('productBroccoli')
+```
+
+## API Reference
+
+### TranslationService
+
+```typescript
+import { translationService } from '../services/TranslationService';
+
+await translationService.translate('product.broccoli');
+
+await translationService.translate('recipe.pollo-curry.name');
 
 translationService.clearCache();
-await translationService.preloadEssentials('es-ES');
+
+await translationService.preloadEssentials('es-EC');
+```
+
+### useDataTranslation Hook
+
+```typescript
+import { useDataTranslation } from '../hooks/useDataTranslation';
+
+function Component() {
+  const t = useDataTranslation();
+
+  useEffect(() => {
+    t('product.banana').then(setName);
+  }, [t]);
+}
+```
+
+### useTranslation Hook (i18n)
+
+```typescript
+import { useTranslation } from 'react-i18next';
+
+function Component() {
+  const { t, i18n } = useTranslation();
+
+  return <h1>{t('app.name')}</h1>;
+}
 ```
 
 ## Ventajas del Sistema
 
 | Aspecto | Beneficio |
 |---------|-----------|
-| **Escalabilidad** | Añadir regiones sin cambiar código |
-| **Eficiencia** | Solo se cargan traducciones necesarias |
-| **Mantenibilidad** | Archivos regionales pequeños con diferencias |
-| **Automático** | Detección de región desde navegador |
-| **Robusto** | Sistema de fallback en cascada |
-| **Flexible** | Cambio manual después del onboarding |
+| **Escalabilidad** | Añadir regiones/scopes sin cambiar código |
+| **Eficiencia** | Solo cargas lo necesario |
+| **Mantenibilidad** | Archivos regionales pequeños |
+| **Automático** | Detección desde navegador |
+| **Robusto** | Fallback en cascada |
+| **Convención** | Mayoría de casos usan `common.json` automáticamente |
 
 ---
 
-**Sistema de traducciones completo con soporte regional para UI y datos, listo para escalar con nuevas regiones!**
+**Sistema completo con soporte regional, listo para escalar con nuevas regiones y tipos de datos.**
