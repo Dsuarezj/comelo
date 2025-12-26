@@ -133,18 +133,59 @@ Traducciones de **contenido dinámico**:
 }
 ```
 
-## 🔄 TranslationService
+## 🔄 Hook useDataTranslation
 
-Servicio unificado que maneja todas las traducciones.
+Hook React para traducciones de datos con reactividad automática al cambio de idioma.
 
 ### Características
 
-✅ **Carga Dinámica** - Solo carga lo necesario
-✅ **Cache Inteligente** - Evita recargas
-✅ **Async/Sync** - Métodos para ambos casos
+✅ **Reactivo** - Se actualiza automáticamente al cambiar idioma
+✅ **Cache Inteligente** - Usa TranslationService internamente
+✅ **API Simple** - Sintaxis similar a `useTranslation`
 ✅ **Fallbacks** - Siempre retorna algo válido
 
-### API
+### Uso en Componentes
+
+```typescript
+import { useDataTranslation } from '../hooks/useDataTranslation';
+
+function ProductCard({ productKey }) {
+  const t = useDataTranslation();
+
+  const [name, setName] = useState('');
+
+  useEffect(() => {
+    t(`product.${productKey}`).then(setName);
+  }, [t, productKey]);
+
+  return <div>{name}</div>;
+}
+```
+
+### Paths Soportados
+
+```typescript
+// Productos
+await t('product.broccoli')        // → "Brócoli"
+
+// Categorías
+await t('category.vegetables')     // → "Verduras"
+
+// Tags nutricionales
+await t('tag.high-protein')        // → "Alta Proteína"
+
+// Descripciones nutricionales
+await t('nutrition.excellent-protein') // → "Excelente fuente de proteína"
+
+// Herramientas de cocina
+await t('tool.knife')              // → "Cuchillo"
+```
+
+## 🔧 TranslationService (Interno)
+
+Servicio interno usado por el hook. Solo usar directamente fuera de componentes React.
+
+### API Directa
 
 ```typescript
 import { translationService } from '../services/TranslationService';
@@ -372,10 +413,14 @@ const { t } = useTranslation();
 <Button>Guardar</Button>
 ```
 
-### 2. Traducciones de Datos
+### 2. Traducciones de Datos en Componentes
 
 ```typescript
-// ✅ BIEN - Usar TranslationService
+// ✅ BIEN - Usar hook en componentes React
+const t = useDataTranslation();
+const name = await t('product.broccoli');
+
+// ⚠️ OK - Solo fuera de componentes React
 const name = await translationService.getProductName('broccoli', lang);
 
 // ❌ MAL - No acceder directamente
