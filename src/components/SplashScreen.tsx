@@ -4,6 +4,11 @@ import { Loader2 } from 'lucide-react';
 
 const LINE_HEIGHT = 72;
 
+interface SplashScreenProps {
+  duration?: number;
+  onComplete?: () => void;
+}
+
 function useIsDesktop() {
   const [isDesktop, setIsDesktop] = useState(false);
 
@@ -150,8 +155,15 @@ function MobileSplash() {
   );
 }
 
-export default function SplashScreen() {
+export default function SplashScreen({ duration, onComplete }: SplashScreenProps) {
   const isDesktop = useIsDesktop();
+
+  useEffect(() => {
+    if (duration && onComplete) {
+      const timer = setTimeout(onComplete, duration);
+      return () => clearTimeout(timer);
+    }
+  }, [duration, onComplete]);
 
   return isDesktop ? <DesktopSplash /> : <MobileSplash />;
 }

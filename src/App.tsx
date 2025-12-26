@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { AppProviders } from './contexts';
 import HomePage from './pages/HomePage';
 import ShoppingListsPage from './pages/ShoppingListsPage';
@@ -11,15 +12,36 @@ import OnboardingPage from './pages/OnboardingPage';
 import PWAUpdateBanner from './components/PWAUpdateBanner';
 import { usePWA } from './hooks/usePWA';
 import { LocalStorageService, StorageKeys } from './utils/storage';
+import { sessionService } from './services/SessionService';
 import './i18n';
 
 function AppContent() {
   const { hasUpdate, reloadForUpdate } = usePWA();
   const location = useLocation();
   const hasOnboarding = LocalStorageService.get<boolean>(StorageKeys.HAS_ONBOARDING, false);
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  useEffect(() => {
+    const initializeApp = async () => {
+      if (hasOnboarding) {
+        try {
+          await sessionService.init();
+        } catch (error) {
+          console.error('Error initializing services:', error);
+        }
+      }
+      setIsInitialized(true);
+    };
+
+    initializeApp();
+  }, [hasOnboarding]);
 
   if (!hasOnboarding && location.pathname !== '/onboarding') {
     return <Navigate to="/onboarding" replace />;
+  }
+
+  if (!isInitialized) {
+    return null;
   }
 
   return (

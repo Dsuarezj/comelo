@@ -3,12 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import { ONBOARDING_STEPS } from '../config/onboarding.config';
 import { LocalStorageService, StorageKeys } from '../utils/storage';
 
+const VISIBLE_STEPS = ONBOARDING_STEPS.filter(step => step.id !== 'splash');
+
 export default function OnboardingPage() {
   const navigate = useNavigate();
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
 
   const currentStep = ONBOARDING_STEPS[currentStepIndex];
   const StepComponent = currentStep.component;
+
+  const visibleStepNumber = currentStep.id === 'splash' ? 0 : VISIBLE_STEPS.findIndex(s => s.id === currentStep.id) + 1;
 
   const handleNext = () => {
     if (currentStepIndex < ONBOARDING_STEPS.length - 1) {
@@ -29,8 +33,8 @@ export default function OnboardingPage() {
     <StepComponent
       onNext={handleNext}
       onBack={handleBack}
-      currentStep={currentStepIndex + 1}
-      totalSteps={ONBOARDING_STEPS.length}
+      currentStep={visibleStepNumber}
+      totalSteps={VISIBLE_STEPS.length}
     />
   );
 }

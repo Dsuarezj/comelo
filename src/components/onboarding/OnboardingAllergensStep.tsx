@@ -84,7 +84,6 @@ export default function OnboardingAllergensStep({ onNext, onBack, currentStep, t
           <div className="grid grid-cols-2 gap-3 mb-6">
             {topAllergens.map((allergen) => {
               const isSelected = selectedAllergens.has(allergen.id);
-              const Icon = allergen.icon;
 
               return (
                 <button
