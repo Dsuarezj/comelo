@@ -1,0 +1,37 @@
+[
+  {
+    "id": "gluten",
+    "icon": "Wheat",
+    "priority": 1
+  },
+  {
+    "id": "lactose",
+    "icon": "Milk",
+    "priority": 2
+  },
+  {
+    "id": "nuts",
+    "icon": "Nut",
+    "priority": 3
+  },
+  {
+    "id": "egg",
+    "icon": "Egg",
+    "priority": 4
+  },
+  {
+    "id": "fish",
+    "icon": "Fish",
+    "priority": 5
+  },
+  {
+    "id": "soy",
+    "icon": "Leaf",
+    "priority": 6
+  },
+  {
+    "id": "caffeine",
+    "icon": "Coffee",
+    "priority": 7
+  }
+]

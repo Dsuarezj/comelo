@@ -1,20 +1,51 @@
-import { useState } from 'react';
-import { Search, Check } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Search, Check, Wheat, Milk, Nut, Fish, Egg, Leaf, Coffee } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { OnboardingStepProps } from '../../types/onboarding';
 import OnboardingLayout from './OnboardingLayout';
-import { ALLERGENS_CONFIG } from '../../data/allergens';
+import allergensData from '../../data/allergens.json';
 import { LocalStorageService, StorageKeys } from '../../utils/storage';
 import { UserProfile, UserProfileSchema } from '../../types';
+import { useDataTranslation } from '../../hooks/useDataTranslation';
+
+const iconMap: Record<string, any> = {
+  Wheat,
+  Milk,
+  Nut,
+  Fish,
+  Egg,
+  Leaf,
+  Coffee,
+};
 
 export default function OnboardingAllergensStep({ onNext, onBack, onClose, currentStep, totalSteps }: OnboardingStepProps) {
   const { t } = useTranslation();
+  const dt = useDataTranslation();
   const [selectedAllergens, setSelectedAllergens] = useState<Set<string>>(new Set());
   const [showAllAllergens, setShowAllAllergens] = useState(false);
+  const [allergenNames, setAllergenNames] = useState<Record<string, string>>({});
 
-  const topAllergens = ALLERGENS_CONFIG.filter(a => a.priority <= 7).sort((a, b) => a.priority - b.priority);
-  const visibleAllergens = showAllAllergens ? topAllergens : topAllergens.slice(0, 6);
-  const hasMoreAllergens = topAllergens.length > 6 && !showAllAllergens;
+  const allergens = [...allergensData].sort((a, b) => a.priority - b.priority);
+  const visibleAllergens = showAllAllergens ? allergens : allergens.slice(0, 6);
+  const hasMoreAllergens = allergens.length > 6 && !showAllAllergens;
+
+  useEffect(() => {
+    const loadAllergenNames = async () => {
+      const names: Record<string, string> = {};
+      await Promise.all(
+        visibleAllergens.map(async (allergen) => {
+          if (!allergenNames[allergen.id]) {
+            names[allergen.id] = await dt(`allergen.${allergen.id}`);
+          }
+        })
+      );
+      if (Object.keys(names).length > 0) {
+        setAllergenNames(prev => ({ ...prev, ...names }));
+      }
+    };
+
+    loadAllergenNames();
+  }, [visibleAllergens.length]);
 
   const toggleAllergen = (id: string) => {
     setSelectedAllergens(prev => {
@@ -84,6 +115,7 @@ export default function OnboardingAllergensStep({ onNext, onBack, onClose, curre
         <div className="flex flex-wrap gap-2.5">
           {visibleAllergens.map((allergen) => {
             const isSelected = selectedAllergens.has(allergen.id);
+            const Icon = iconMap[allergen.icon];
 
             return (
               <button
@@ -104,7 +136,7 @@ export default function OnboardingAllergensStep({ onNext, onBack, onClose, curre
                 />
 
                 <span className="text-[14px] font-medium whitespace-nowrap">
-                  {t(`allergens.${allergen.translationKey}`)}
+                  {allergenNames[allergen.id] || allergen.id}
                 </span>
               </button>
             );

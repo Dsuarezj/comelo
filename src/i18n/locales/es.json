@@ -142,14 +142,5 @@
       "skipButton": "No tengo alergias",
       "searchMore": "buscar más"
     }
-  },
-  "allergens": {
-    "gluten": "Gluten",
-    "lactose": "Lacteos",
-    "nuts": "Frutos secos",
-    "egg": "Huevos",
-    "fish": "Pescado",
-    "soy": "Soja",
-    "caffeine": "Cafeina"
   }
 }
