@@ -97,7 +97,14 @@
     "catalan": "Catalan"
   },
   "splash": {
-    "adSpace": "Tenemos espacio publicitario disponible. Llegamos a muchos usuarios interesados en comer mejor y cuidar su salud."
+    "phrases": [
+      "Organiza facil",
+      "Explora recetas",
+      "Crea tu lista",
+      "Personaliza",
+      "A tu ritmo",
+      "Sin estres"
+    ]
   },
   "pwa": {
     "install": {
