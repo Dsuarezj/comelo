@@ -6,7 +6,7 @@ export const useDataTranslation = () => {
   const { i18n } = useTranslation();
 
   const t = useCallback((path: string): Promise<string> => {
-    return translationService.translate(path);
+    return translationService.translate(path, i18n.language);
   }, [i18n.language]);
 
   return t;

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Search, Check } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { OnboardingStepProps } from '../../types/onboarding';
@@ -15,27 +15,32 @@ export default function OnboardingAllergensStep({ onNext, onBack, onClose, curre
   const [showAllAllergens, setShowAllAllergens] = useState(false);
   const [allergenNames, setAllergenNames] = useState<Record<string, string>>({});
 
-  const allergens = [...allergensData].sort((a, b) => a.priority - b.priority);
-  const visibleAllergens = showAllAllergens ? allergens : allergens.slice(0, 6);
+  const allergens = useMemo(() => [...allergensData].sort((a, b) => a.priority - b.priority), []);
+  const visibleAllergens = useMemo(() => showAllAllergens ? allergens : allergens.slice(0, 6), [showAllAllergens, allergens]);
   const hasMoreAllergens = allergens.length > 6 && !showAllAllergens;
+
+  const visibleAllergenIds = useMemo(() => visibleAllergens.map(a => a.id).join(','), [visibleAllergens]);
 
   useEffect(() => {
     const loadAllergenNames = async () => {
       const names: Record<string, string> = {};
+      const idsToLoad = visibleAllergens.filter(allergen => !allergenNames[allergen.id]);
+
+      if (idsToLoad.length === 0) return;
+
       await Promise.all(
-        visibleAllergens.map(async (allergen) => {
-          if (!allergenNames[allergen.id]) {
-            names[allergen.id] = await dt(`allergen.${allergen.id}`);
-          }
+        idsToLoad.map(async (allergen) => {
+          names[allergen.id] = await dt(`allergen.${allergen.id}`);
         })
       );
+
       if (Object.keys(names).length > 0) {
         setAllergenNames(prev => ({ ...prev, ...names }));
       }
     };
 
     loadAllergenNames();
-  }, [visibleAllergens.length]);
+  }, [visibleAllergenIds, dt]);
 
   const toggleAllergen = (id: string) => {
     setSelectedAllergens(prev => {

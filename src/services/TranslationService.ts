@@ -26,7 +26,7 @@ class TranslationService {
     return i18n.language;
   }
 
-  private async loadTranslations(type: string, id: string, lang: RegionalLanguage): Promise<void> {
+  private async loadTranslations(type: string, id: string, lang: RegionalLanguage, isRegional: boolean = false): Promise<void> {
     const cacheKey = `${type}_${id}_${lang}`;
 
     if (this.cache[cacheKey]) {
@@ -37,7 +37,9 @@ class TranslationService {
       const translations = await import(`../data/translations/${type}/${id}.${lang}.json`);
       this.cache[cacheKey] = translations?.default || translations || {};
     } catch (error) {
-      console.warn(`Failed to load ${type} translations for ${id} (${lang})`, error);
+      if (!isRegional) {
+        console.warn(`Failed to load ${type} translations for ${id} (${lang})`, error);
+      }
       this.cache[cacheKey] = {};
     }
   }
@@ -48,9 +50,9 @@ class TranslationService {
     const baseKey = `${type}_${id}_${baseLang}`;
 
     if (regionalLang !== baseLang) {
-      await this.loadTranslations(type, id, regionalLang);
+      await this.loadTranslations(type, id, regionalLang, true);
     }
-    await this.loadTranslations(type, id, baseLang);
+    await this.loadTranslations(type, id, baseLang, false);
 
     const regionalData = this.cache[regionalKey] || {};
     const baseData = this.cache[baseKey] || {};
