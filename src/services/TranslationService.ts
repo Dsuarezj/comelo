@@ -17,15 +17,7 @@ class TranslationService {
     }
 
     try {
-      let translations;
-      if (type === 'products') {
-        translations = await import(`../data/translations/products/${id}.${lang}.json`);
-      } else if (type === 'recipes') {
-        translations = await import(`../data/translations/recipes/${id}.${lang}.json`);
-      } else if (type === 'allergens') {
-        translations = await import(`../data/translations/allergens/${id}.${lang}.json`);
-      }
-
+      const translations = await import(`../data/translations/${type}/${id}.${lang}.json`);
       this.cache[cacheKey] = translations?.default || translations || {};
     } catch (error) {
       console.warn(`Failed to load ${type} translations for ${id} (${lang})`, error);
