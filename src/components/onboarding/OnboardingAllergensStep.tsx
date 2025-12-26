@@ -99,7 +99,7 @@ export default function OnboardingAllergensStep({ onNext, onBack, onClose, curre
               >
                 <Check
                   size={16}
-                  className={`${isSelected ? 'text-white' : 'text-transparent'}`}
+                  className={`transition-opacity ${isSelected ? 'text-white opacity-100' : 'text-neutral-300 opacity-40'}`}
                   strokeWidth={2.5}
                 />
 
