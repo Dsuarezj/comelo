@@ -10,8 +10,11 @@ import { UserProfile, UserProfileSchema } from '../../types';
 export default function OnboardingAllergensStep({ onNext, onBack, onClose, currentStep, totalSteps }: OnboardingStepProps) {
   const { t } = useTranslation();
   const [selectedAllergens, setSelectedAllergens] = useState<Set<string>>(new Set());
+  const [showAllAllergens, setShowAllAllergens] = useState(false);
 
   const topAllergens = ALLERGENS_CONFIG.filter(a => a.priority <= 7).sort((a, b) => a.priority - b.priority);
+  const visibleAllergens = showAllAllergens ? topAllergens : topAllergens.slice(0, 6);
+  const hasMoreAllergens = topAllergens.length > 6 && !showAllAllergens;
 
   const toggleAllergen = (id: string) => {
     setSelectedAllergens(prev => {
@@ -78,8 +81,8 @@ export default function OnboardingAllergensStep({ onNext, onBack, onClose, curre
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-3">
-          {topAllergens.map((allergen) => {
+        <div className="flex flex-wrap gap-2.5">
+          {visibleAllergens.map((allergen) => {
             const isSelected = selectedAllergens.has(allergen.id);
 
             return (
@@ -87,25 +90,33 @@ export default function OnboardingAllergensStep({ onNext, onBack, onClose, curre
                 key={allergen.id}
                 onClick={() => toggleAllergen(allergen.id)}
                 className={`
-                  relative flex items-center gap-2.5 p-3 rounded-2xl border-2 transition-all min-h-[60px]
+                  relative flex items-center gap-2 px-4 py-2.5 rounded-full border-2 transition-all
                   ${isSelected
-                    ? 'border-primary-500 bg-primary-50'
-                    : 'border-neutral-200 bg-surface'
+                    ? 'border-primary-500 bg-primary-500 text-white'
+                    : 'border-neutral-300 bg-surface text-text-primary'
                   }
                 `}
               >
                 {isSelected && (
-                  <div className="absolute top-2 right-2 w-5 h-5 bg-primary-500 rounded-full flex items-center justify-center">
-                    <Check size={14} className="text-white" strokeWidth={3} />
-                  </div>
+                  <Check size={16} className="text-white" strokeWidth={2.5} />
                 )}
 
-                <span className="text-[15px] font-medium text-text-primary text-left flex-1">
+                <span className="text-[14px] font-medium whitespace-nowrap">
                   {t(`allergens.${allergen.translationKey}`)}
                 </span>
               </button>
             );
           })}
+
+          {hasMoreAllergens && (
+            <button
+              onClick={() => setShowAllAllergens(true)}
+              className="flex items-center gap-1.5 px-4 py-2.5 rounded-full border-2 border-neutral-300 bg-surface text-text-secondary transition-all"
+            >
+              <span className="text-[14px] font-medium">...</span>
+              <span className="text-[14px] font-medium">{t('onboarding.allergens.searchMore')}</span>
+            </button>
+          )}
         </div>
       </div>
     </OnboardingLayout>

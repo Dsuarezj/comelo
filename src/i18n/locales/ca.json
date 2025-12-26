@@ -139,7 +139,8 @@
       "title": "Tens allergies?",
       "description": "Marca els ingredients que necessites evitar per salut. Aixi ens assegurem de no incloure'ls a les teves receptes ni llistes.",
       "saveButton": "Desar allergies",
-      "skipButton": "No tinc allergies"
+      "skipButton": "No tinc allergies",
+      "searchMore": "cercar més"
     }
   },
   "allergens": {

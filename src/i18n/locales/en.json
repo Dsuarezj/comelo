@@ -139,7 +139,8 @@
       "title": "Do you have allergies?",
       "description": "Mark the ingredients you need to avoid for health. This way we make sure not to include them in your recipes or lists.",
       "saveButton": "Save allergies",
-      "skipButton": "I don't have allergies"
+      "skipButton": "I don't have allergies",
+      "searchMore": "search more"
     }
   },
   "allergens": {

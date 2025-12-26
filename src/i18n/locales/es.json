@@ -139,7 +139,8 @@
       "title": "¿Tienes alergias?",
       "description": "Marca los ingredientes que necesitas evitar por salud. Asi nos aseguramos de no incluirlos en tus recetas ni listas.",
       "saveButton": "Guardar alergias",
-      "skipButton": "No tengo alergias"
+      "skipButton": "No tengo alergias",
+      "searchMore": "buscar más"
     }
   },
   "allergens": {
