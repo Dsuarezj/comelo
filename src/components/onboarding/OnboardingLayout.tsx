@@ -31,7 +31,7 @@ export default function OnboardingLayout({
   const { t } = useTranslation();
 
   return (
-    <div className="fixed inset-0 flex flex-col bg-background overflow-hidden">
+    <div className="fixed inset-0 flex flex-col bg-background overflow-hidden" data-testid="onboarding-layout">
       <div className="relative">
         <OnboardingProgressBar currentStep={currentStep} totalSteps={totalSteps} />
 
@@ -39,6 +39,7 @@ export default function OnboardingLayout({
           onClick={onClose}
           className="absolute top-4 right-6 p-2 text-text-primary z-10"
           aria-label={t('common.close')}
+          data-testid="onboarding-close-button"
         >
           <X size={24} />
         </button>
@@ -50,13 +51,14 @@ export default function OnboardingLayout({
             onClick={onBack}
             className="self-start p-2 -ml-2 text-text-primary mb-2"
             aria-label={t('common.back')}
+            data-testid="onboarding-back-button"
           >
             <ChevronLeft size={24} />
           </button>
         )}
 
         <div className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide">
-          <div className="max-w-md mx-auto w-full h-full">
+          <div className="max-w-md mx-auto w-full h-full" data-testid="onboarding-content">
             {children}
           </div>
         </div>
@@ -65,6 +67,7 @@ export default function OnboardingLayout({
           <button
             onClick={onPrimaryClick}
             className="w-full bg-primary-400 text-white rounded-full py-4 px-8 text-[17px] font-semibold"
+            data-testid="onboarding-primary-button"
           >
             {primaryButtonText}
           </button>
@@ -72,6 +75,7 @@ export default function OnboardingLayout({
           <button
             onClick={onSecondaryClick}
             className="w-full text-text-primary font-semibold py-3 text-[17px]"
+            data-testid="onboarding-secondary-button"
           >
             {secondaryButtonText}
           </button>

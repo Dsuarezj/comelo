@@ -13,15 +13,24 @@ test.describe('Onboarding Flow', () => {
 
     await expect(page.locator('[data-testid="splash-screen"]')).toBeVisible({ timeout: 10000 });
 
-    await page.waitForSelector('text=/have allergies|Tienes alergias/i', { timeout: 20000 });
+    await page.locator('[data-testid="onboarding-layout"]').waitFor({ state: 'visible', timeout: 20000 });
 
-    const saveButton = page.locator('text=/Save allergies|Guardar alergias/i');
-    const skipButton = page.locator('text=/I don\'t have allergies|No tengo alergias/i');
-    
-    await expect(saveButton).toBeVisible();
-    await expect(skipButton).toBeVisible();
+    const progressBar = page.locator('[data-testid="onboarding-progress"]');
+    await expect(progressBar).toBeVisible();
 
-    await skipButton.click();
+    const closeButton = page.locator('[data-testid="onboarding-close-button"]');
+    await expect(closeButton).toBeVisible();
+
+    const primaryButton = page.locator('[data-testid="onboarding-primary-button"]');
+    const secondaryButton = page.locator('[data-testid="onboarding-secondary-button"]');
+
+    await expect(primaryButton).toBeVisible();
+    await expect(secondaryButton).toBeVisible();
+
+    await secondaryButton.click();
+
+    await page.locator('[data-testid="onboarding-layout"]').waitFor({ state: 'visible', timeout: 5000 });
+    await secondaryButton.click();
 
     await expect(page.locator('text=/Hello|Hola/i')).toBeVisible({ timeout: 10000 });
 
@@ -30,14 +39,43 @@ test.describe('Onboarding Flow', () => {
     await expect(page.locator('text=/Plan the week|Planificar la semana/i')).toBeVisible();
   });
 
-  test('usuario selecciona alergenos y completa onboarding', async ({ page }) => {
+  test('usuario navega entre pasos y completa onboarding', async ({ page }) => {
     await page.goto('/onboarding');
 
-    await page.waitForSelector('text=/have allergies|Tienes alergias/i', { timeout: 20000 });
+    await page.locator('[data-testid="onboarding-layout"]').waitFor({ state: 'visible', timeout: 20000 });
 
-    await page.locator('text=Gluten').click();
+    const primaryButton = page.locator('[data-testid="onboarding-primary-button"]');
+    await primaryButton.click();
 
-    await page.locator('text=/Save allergies|Guardar alergias/i').click();
+    await page.waitForTimeout(500);
+
+    const backButton = page.locator('[data-testid="onboarding-back-button"]');
+    await expect(backButton).toBeVisible();
+
+    await backButton.click();
+
+    await page.waitForTimeout(500);
+
+    await primaryButton.click();
+    await primaryButton.click();
+
+    await expect(page.locator('text=/Hello|Hola/i')).toBeVisible({ timeout: 10000 });
+
+    const hasOnboarding = await page.evaluate(() => {
+      return localStorage.getItem('comelo_has_onboarding');
+    });
+    expect(hasOnboarding).toBe('true');
+  });
+
+  test('usuario puede cerrar el onboarding en cualquier momento', async ({ page }) => {
+    await page.goto('/onboarding');
+
+    await page.locator('[data-testid="onboarding-layout"]').waitFor({ state: 'visible', timeout: 20000 });
+
+    const closeButton = page.locator('[data-testid="onboarding-close-button"]');
+    await expect(closeButton).toBeVisible();
+
+    await closeButton.click();
 
     await expect(page.locator('text=/Hello|Hola/i')).toBeVisible({ timeout: 10000 });
 
