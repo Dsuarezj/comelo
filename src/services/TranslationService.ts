@@ -70,6 +70,12 @@ class TranslationService {
     return { type, id: 'common' };
   }
 
+  private async loadByScope(scope: string, lang: RegionalLanguage, dynamicId?: string): Promise<any> {
+    const rest = dynamicId ? [dynamicId] : [];
+    const { type, id } = this.resolveTranslationFile(scope, rest);
+    return this.loadWithFallback(type, id, lang);
+  }
+
   async translate(path: string, lang?: RegionalLanguage): Promise<string> {
     const currentLang = lang || this.getRegionalLanguage();
     const parts = path.split('.');
@@ -98,8 +104,8 @@ class TranslationService {
 
   async preloadEssentials(lang?: RegionalLanguage): Promise<void> {
     const currentLang = lang || this.getRegionalLanguage();
-    await this.loadWithFallback('products', 'common', currentLang);
-    await this.loadWithFallback('allergens', 'common', currentLang);
+    await this.loadByScope('product', currentLang);
+    await this.loadByScope('allergen', currentLang);
   }
 }
 
