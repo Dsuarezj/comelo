@@ -1,0 +1,12 @@
+{
+  "vegetables": {
+    "potato": "Papa",
+    "corn": "Choclo"
+  },
+  "proteins": {
+    "beans": "Fréjol"
+  },
+  "grains": {
+    "popcorn": "Canguil"
+  }
+}

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Search, Check, Wheat, Milk, Nut, Fish, Egg, Leaf, Coffee } from 'lucide-react';
+import { Search, Check } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { OnboardingStepProps } from '../../types/onboarding';
 import OnboardingLayout from './OnboardingLayout';
@@ -7,16 +7,6 @@ import allergensData from '../../data/allergens.json';
 import { LocalStorageService, StorageKeys } from '../../utils/storage';
 import { UserProfile, UserProfileSchema } from '../../types';
 import { useDataTranslation } from '../../hooks/useDataTranslation';
-
-const iconMap: Record<string, any> = {
-  Wheat,
-  Milk,
-  Nut,
-  Fish,
-  Egg,
-  Leaf,
-  Coffee,
-};
 
 export default function OnboardingAllergensStep({ onNext, onBack, onClose, currentStep, totalSteps }: OnboardingStepProps) {
   const { t } = useTranslation();
@@ -115,7 +105,6 @@ export default function OnboardingAllergensStep({ onNext, onBack, onClose, curre
         <div className="flex flex-wrap gap-2.5">
           {visibleAllergens.map((allergen) => {
             const isSelected = selectedAllergens.has(allergen.id);
-            const Icon = iconMap[allergen.icon];
 
             return (
               <button

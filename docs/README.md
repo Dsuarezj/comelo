@@ -97,6 +97,11 @@ Esta carpeta contiene toda la documentación técnica del proyecto.
 | ¿Comandos útiles? | QUICK_START.md → "Comandos Útiles" |
 | ¿Crear nuevo componente? | QUICK_START.md → "Crear Nuevo Componente" |
 | ¿Problemas con build? | QUICK_START.md → "Problemas Comunes" |
+| ¿Cómo funcionan las traducciones? | TRANSLATION_ARCHITECTURE.md |
+| ¿Términos regionales (chocho/altramuces)? | REGIONAL_TRANSLATIONS.md |
+| ¿Cómo añadir nueva región? | REGIONAL_TRANSLATIONS.md → "Añadir nueva región" |
+| ¿Ejemplos de búsqueda regional? | REGIONAL_TRANSLATIONS_EXAMPLES.md |
+| ¿Cómo agregar recetas? | RECIPE_RULES.md |
 
 ## 📝 Convenciones
 
@@ -174,6 +179,21 @@ Si encuentras algo confuso o faltante:
    - Selector de idioma (ES, EN, CA)
    - Preparado para contenido de usuarios y Dropbox
    - **Léelo** para entender cómo funcionan las traducciones
+
+**[🌎 REGIONAL_TRANSLATIONS.md](./REGIONAL_TRANSLATIONS.md)**
+   - Sistema de traducciones regionales (es-ES, es-EC, es-MX, etc.)
+   - Detección automática de región desde navegador
+   - Búsqueda inversa con aliases (chocho → lupin)
+   - Sistema de fallback en cascada
+   - Guía para añadir nuevas regiones
+   - **Léelo** para entender términos regionales
+
+**[📘 REGIONAL_TRANSLATIONS_EXAMPLES.md](./REGIONAL_TRANSLATIONS_EXAMPLES.md)**
+   - Ejemplos prácticos de uso del sistema regional
+   - Componentes de búsqueda con autocompletado
+   - Selectores de alérgenos regionalizados
+   - Patrones de uso recomendados
+   - **Léelo** para ver código de ejemplo listo para usar
 
 
 ### 📝 Reglas y Guías

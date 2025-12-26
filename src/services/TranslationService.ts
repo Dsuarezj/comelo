@@ -1,6 +1,7 @@
 import i18n from '../i18n';
 
 type Language = 'es' | 'en' | 'ca';
+type RegionalLanguage = Language | string;
 
 interface TranslationCache {
   [key: string]: any;
@@ -9,7 +10,21 @@ interface TranslationCache {
 class TranslationService {
   private cache: TranslationCache = {};
 
-  private async loadTranslations(type: string, id: string, lang: Language): Promise<void> {
+  private getRegionalLanguage(): RegionalLanguage {
+    const lang = i18n.language;
+    if (lang.includes('-')) {
+      return lang;
+    }
+
+    const browserLang = navigator.language;
+    if (browserLang.startsWith(lang)) {
+      return browserLang;
+    }
+
+    return lang;
+  }
+
+  private async loadTranslations(type: string, id: string, lang: RegionalLanguage): Promise<void> {
     const cacheKey = `${type}_${id}_${lang}`;
 
     if (this.cache[cacheKey]) {
@@ -25,8 +40,24 @@ class TranslationService {
     }
   }
 
-  async translate(path: string, lang?: Language): Promise<string> {
-    const currentLang = lang || (i18n.language as Language);
+  private async loadWithFallback(type: string, id: string, regionalLang: RegionalLanguage): Promise<any> {
+    const baseLang = regionalLang.split('-')[0] as Language;
+    const regionalKey = `${type}_${id}_${regionalLang}`;
+    const baseKey = `${type}_${id}_${baseLang}`;
+
+    if (regionalLang !== baseLang) {
+      await this.loadTranslations(type, id, regionalLang);
+    }
+    await this.loadTranslations(type, id, baseLang);
+
+    const regionalData = this.cache[regionalKey] || {};
+    const baseData = this.cache[baseKey] || {};
+
+    return { ...baseData, ...regionalData };
+  }
+
+  async translate(path: string, lang?: RegionalLanguage): Promise<string> {
+    const currentLang = lang || this.getRegionalLanguage();
     const parts = path.split('.');
 
     if (parts.length < 2) {
@@ -39,8 +70,7 @@ class TranslationService {
       const recipeId = rest[0];
       if (!recipeId) return path;
 
-      await this.loadTranslations('recipes', recipeId, currentLang);
-      const translations = this.cache[`recipes_${recipeId}_${currentLang}`];
+      const translations = await this.loadWithFallback('recipes', recipeId, currentLang);
 
       let value = translations;
       for (const part of parts) {
@@ -52,15 +82,13 @@ class TranslationService {
     }
 
     if (scope === 'allergens') {
-      await this.loadTranslations('allergens', 'allergens', currentLang);
-      const translations = this.cache[`allergens_allergens_${currentLang}`];
+      const translations = await this.loadWithFallback('allergens', 'allergens', currentLang);
 
       const allergenId = rest[0];
       return translations?.[allergenId] || path;
     }
 
-    await this.loadTranslations('products', 'common', currentLang);
-    const translations = this.cache[`products_common_${currentLang}`];
+    const translations = await this.loadWithFallback('products', 'common', currentLang);
 
     let value = translations;
     for (const part of parts) {
@@ -75,8 +103,10 @@ class TranslationService {
     this.cache = {};
   }
 
-  async preloadEssentials(lang: Language): Promise<void> {
-    await this.loadTranslations('products', 'common', lang);
+  async preloadEssentials(lang?: RegionalLanguage): Promise<void> {
+    const currentLang = lang || this.getRegionalLanguage();
+    await this.loadWithFallback('products', 'common', currentLang);
+    await this.loadWithFallback('allergens', 'allergens', currentLang);
   }
 }
 

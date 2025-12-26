@@ -1,0 +1,9 @@
+{
+  "vegetables": {
+    "tomato": "Jitomate",
+    "corn": "Elote"
+  },
+  "proteins": {
+    "beans": "Frijol"
+  }
+}

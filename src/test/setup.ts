@@ -5,7 +5,7 @@ import 'fake-indexeddb/auto';
 import { IDBFactory } from 'fake-indexeddb';
 
 beforeEach(() => {
-  global.indexedDB = new IDBFactory();
+  globalThis.indexedDB = new IDBFactory();
 });
 
 afterEach(() => {

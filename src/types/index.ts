@@ -74,6 +74,7 @@ export type UserProfile = z.infer<typeof UserProfileSchema>;
 export type QueueItem = z.infer<typeof QueueItemSchema>;
 
 export type Language = 'es' | 'en' | 'ca';
+export type RegionalLanguage = Language | `${Language}-${string}`;
 
 export type QueueState = 'IDLE' | 'PENDING' | 'PROCESSING' | 'ERROR';
 
