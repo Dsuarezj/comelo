@@ -44,7 +44,8 @@ export function SplashProvider({ children }: SplashProviderProps) {
 
   const runInitialTask = async () => {
     const startTime = Date.now();
-    const minDuration = 5000;
+    const isDesktop = window.innerWidth >= 768;
+    const minDuration = isDesktop ? 5000 : 1500;
 
     try {
       await initializeServices();
@@ -54,7 +55,7 @@ export function SplashProvider({ children }: SplashProviderProps) {
 
     const elapsed = Date.now() - startTime;
     const remainingTime = Math.max(0, minDuration - elapsed);
-    
+
     if (remainingTime > 0) {
       await new Promise(resolve => setTimeout(resolve, remainingTime));
     }
