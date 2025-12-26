@@ -7,8 +7,6 @@ interface TranslationCache {
   [key: string]: any;
 }
 
-const SCOPES_WITH_DYNAMIC_ID = ['recipe'];
-
 class TranslationService {
   private cache: TranslationCache = {};
 
@@ -62,12 +60,8 @@ class TranslationService {
 
   private resolveTranslationFile(scope: string, rest: string[]): { type: string; id: string } {
     const type = `${scope}s`;
-
-    if (SCOPES_WITH_DYNAMIC_ID.includes(scope)) {
-      return { type, id: rest[0] };
-    }
-
-    return { type, id: 'common' };
+    const id = rest.length > 0 ? rest[0] : 'common';
+    return { type, id };
   }
 
   private async loadByScope(scope: string, lang: RegionalLanguage, dynamicId?: string): Promise<any> {
