@@ -1,3 +1,5 @@
+Siempre siempre ejecuta los test e2e y los test antes de cada commit 
+
 Use meaningful commits messages and Semantic Commit Messages format.
 
 actualiza el sw worker timestamp only when we do changes on the service worker
