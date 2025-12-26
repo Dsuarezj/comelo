@@ -1,9 +1,37 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Loader2 } from 'lucide-react';
 
 const LINE_HEIGHT = 72;
 
-export default function SplashScreen() {
+function useIsDesktop() {
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const checkDesktop = () => {
+      setIsDesktop(window.innerWidth >= 768);
+    };
+
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+    return () => window.removeEventListener('resize', checkDesktop);
+  }, []);
+
+  return isDesktop;
+}
+
+function DesktopSplash() {
+  return (
+    <div className="fixed inset-0 bg-gray-100 flex flex-col items-center justify-center z-50">
+      <Loader2 className="w-16 h-16 text-gray-400 animate-spin mb-6" />
+      <p className="text-gray-600 text-lg text-center max-w-md px-4">
+        Tenemos un espacio para publicidad que llega a muchos usuarios
+      </p>
+    </div>
+  );
+}
+
+function MobileSplash() {
   const { t } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
@@ -19,7 +47,7 @@ export default function SplashScreen() {
   useEffect(() => {
     let isMounted = true;
     const phraseCount = basePhrases.length;
-    
+
     const interval = setInterval(() => {
       setCurrentIndex((prev) => {
         const next = prev + 1;
@@ -120,4 +148,10 @@ export default function SplashScreen() {
       </div>
     </div>
   );
+}
+
+export default function SplashScreen() {
+  const isDesktop = useIsDesktop();
+
+  return isDesktop ? <DesktopSplash /> : <MobileSplash />;
 }
