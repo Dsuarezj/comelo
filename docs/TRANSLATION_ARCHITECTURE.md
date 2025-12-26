@@ -183,9 +183,9 @@ await t('tool.knife')              // → "Cuchillo"
 
 ## 🔧 TranslationService (Interno)
 
-Servicio interno usado por el hook. Solo usar directamente fuera de componentes React.
+Servicio interno genérico usado por el hook. Solo usar directamente fuera de componentes React.
 
-### API Directa
+### API Genérica
 
 ```typescript
 import { translationService } from '../services/TranslationService';
@@ -193,15 +193,50 @@ import { translationService } from '../services/TranslationService';
 // Precargar traducciones esenciales
 await translationService.preloadEssentials('es');
 
-// Obtener nombre de producto
-const name = await translationService.getProductName('broccoli', 'es');
-
-// Obtener nombre de receta
-const title = await translationService.getRecipeName(recipe, 'es');
+// Traducir cualquier path
+const name = await translationService.translate('product.broccoli', 'es');
+const category = await translationService.translate('category.vegetables', 'es');
+const recipeStep = await translationService.translate('recipe.pollo-curry.step1.title', 'es');
 
 // Limpiar caché (útil al cambiar idioma)
 translationService.clearCache();
 ```
+
+### Características
+
+✅ **Único método** - `translate(path, lang?)` para todo
+✅ **Escalable** - Agregar nuevos tipos sin modificar código
+✅ **Path-based** - Sintaxis consistente para cualquier dato
+✅ **Auto-load** - Carga traducciones bajo demanda
+
+### Agregar Nuevos Tipos de Datos
+
+Para agregar un nuevo tipo (ej: "allergen"), solo necesitas:
+
+1. Crear el archivo de traducciones en `data/translations/products/common.{lang}.json`:
+
+```json
+{
+  "product": { ... },
+  "allergen": {
+    "gluten": "Gluten",
+    "lactose": "Lactosa"
+  }
+}
+```
+
+2. Usar directamente sin modificar código:
+
+```typescript
+const allergen = await t('allergen.gluten');
+```
+
+El servicio automáticamente:
+- Detecta el scope `allergen`
+- Carga las traducciones de productos
+- Navega por el path y retorna el valor
+
+**No necesitas agregar métodos como `getAllergenName()`**
 
 ## 🌐 Selector de Idioma
 
@@ -419,9 +454,10 @@ const { t } = useTranslation();
 // ✅ BIEN - Usar hook en componentes React
 const t = useDataTranslation();
 const name = await t('product.broccoli');
+const category = await t('category.vegetables');
 
 // ⚠️ OK - Solo fuera de componentes React
-const name = await translationService.getProductName('broccoli', lang);
+const name = await translationService.translate('product.broccoli', lang);
 
 // ❌ MAL - No acceder directamente
 const name = productTranslations.product.broccoli;
