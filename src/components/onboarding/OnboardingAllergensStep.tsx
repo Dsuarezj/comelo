@@ -25,7 +25,7 @@ export default function OnboardingAllergensStep({ onNext, onBack, onClose, curre
       await Promise.all(
         visibleAllergens.map(async (allergen) => {
           if (!allergenNames[allergen.id]) {
-            names[allergen.id] = await dt(`allergens.${allergen.id}`);
+            names[allergen.id] = await dt(`allergen.${allergen.id}`);
           }
         })
       );
