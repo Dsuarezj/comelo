@@ -22,6 +22,8 @@ class TranslationService {
         translations = await import(`../data/translations/products/${id}.${lang}.json`);
       } else if (type === 'recipes') {
         translations = await import(`../data/translations/recipes/${id}.${lang}.json`);
+      } else if (type === 'allergens') {
+        translations = await import(`../data/translations/allergens/${id}.${lang}.json`);
       }
 
       this.cache[cacheKey] = translations?.default || translations || {};
@@ -55,6 +57,14 @@ class TranslationService {
       }
 
       return value || path;
+    }
+
+    if (scope === 'allergens') {
+      await this.loadTranslations('allergens', 'allergens', currentLang);
+      const translations = this.cache[`allergens_allergens_${currentLang}`];
+
+      const allergenId = rest[0];
+      return translations?.[allergenId] || path;
     }
 
     await this.loadTranslations('products', 'common', currentLang);

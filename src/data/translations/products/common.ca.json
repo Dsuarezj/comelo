@@ -104,14 +104,5 @@
     "quinoa-salad": "amanida de quinoa",
     "healthy-salad": "amanida saludable",
     "vegan-recipe": "recepta vegana"
-  },
-  "allergen": {
-    "gluten": "Gluten",
-    "lactose": "Lactis",
-    "nuts": "Fruits secs",
-    "egg": "Ous",
-    "fish": "Peix",
-    "soy": "Soja",
-    "caffeine": "Cafeina"
   }
 }
