@@ -60,7 +60,7 @@ class TranslationService {
 
   private resolveTranslationFile(scope: string, rest: string[]): { type: string; id: string } {
     const type = `${scope}s`;
-    const id = rest.length > 0 ? rest[0] : 'common';
+    const id = rest.length >= 2 ? rest[0] : 'common';
     return { type, id };
   }
 
@@ -83,8 +83,10 @@ class TranslationService {
 
     const translations = await this.loadWithFallback(type, id, currentLang);
 
+    const navigationPath = rest.length >= 2 ? rest.slice(1) : rest;
+
     let value = translations;
-    for (const part of parts) {
+    for (const part of navigationPath) {
       value = value?.[part];
       if (!value) break;
     }
