@@ -44,7 +44,7 @@ export function SplashProvider({ children }: SplashProviderProps) {
 
   const runInitialTask = async () => {
     const startTime = Date.now();
-    const minDuration = 1500;
+    const minDuration = 5000;
 
     try {
       await initializeServices();
