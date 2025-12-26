@@ -1,0 +1,31 @@
+{
+  "home": {
+    "subtitle": "Vuestro camino para comer mejor empieza sin presion. Podeis crear vuestra primera lista, buscar recetas o simplemente explorar.",
+    "createList": {
+      "description": "Incluye comida real, vuestras marcas favoritas y hasta lo que necesitais para limpiar vuestra cocina."
+    },
+    "searchRecipes": {
+      "description": "Ideas faciles y sabrosas para comer mejor. Recetas adaptadas a vosotros y a vuestros tiempos."
+    },
+    "planWeek": {
+      "description": "Organizad vuestras comidas de la semana con recetas faciles y sin procesados."
+    }
+  },
+  "lists": {
+    "empty": "No teneis listas todavia",
+    "createFirst": "Cread vuestra primera lista de compras"
+  },
+  "onboarding": {
+    "dropbox": {
+      "title": "Comelo es una app descentralizada, vuestra info se guarda solo con vosotros.",
+      "description": "Conectad vuestro Dropbox para guardar vuestras listas, sin depender de servidores centrales. Todo es vuestro, siempre.",
+      "connectButton": "Conectaos con Dropbox"
+    },
+    "allergens": {
+      "title": "¿Teneis alergias?",
+      "description": "Marcad los ingredientes que necesitais evitar por salud. Asi nos aseguramos de no incluirlos en vuestras recetas ni listas.",
+      "saveButton": "Guardar alergias",
+      "skipButton": "No tengo alergias"
+    }
+  }
+}

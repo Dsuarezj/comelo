@@ -1,0 +1,27 @@
+{
+  "home": {
+    "subtitle": "Tu camino para comer mejor comienza sin presion. Puedes crear tu primera lista, buscar recetas o simplemente explorar.",
+    "createList": {
+      "description": "Incluye comida de verdad, tus marcas favoritas y hasta lo que necesitas para limpiar tu cocina."
+    },
+    "searchRecipes": {
+      "description": "Ideas cheveres y ricas para comer mejor. Recetas adaptadas a ti y a tus tiempos."
+    }
+  },
+  "common": {
+    "back": "Regresar"
+  },
+  "menu": {
+    "tools": "Herramientas",
+    "settings": "Ajustes"
+  },
+  "onboarding": {
+    "dropbox": {
+      "connectButton": "Conectate con Dropbox",
+      "skipButton": "Hazlo despues"
+    },
+    "allergens": {
+      "description": "Marca los ingredientes que necesitas evitar por tu salud. Asi nos aseguramos de no incluirlos en tus recetas ni listas."
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import { X, Check } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { SUPPORTED_LANGUAGES, getLanguageByCode } from '../i18n/languages';
+import { SUPPORTED_LANGUAGES } from '../i18n/languages';
 import { useEffect, useRef } from 'react';
 
 interface LanguageModalProps {
@@ -11,7 +11,7 @@ interface LanguageModalProps {
 
 export default function LanguageModal({ isOpen, onClose, onLanguageSelected }: LanguageModalProps) {
   const { t, i18n } = useTranslation();
-  const currentLanguage = getLanguageByCode(i18n.language);
+  const currentLanguageCode = i18n.language;
   const selectedRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -23,6 +23,11 @@ export default function LanguageModal({ isOpen, onClose, onLanguageSelected }: L
   const handleLanguageChange = async (langCode: string) => {
     await i18n.changeLanguage(langCode);
     localStorage.setItem('comelo_language', langCode);
+
+    const { translationService } = await import('../services/TranslationService');
+    translationService.clearCache();
+    await translationService.preloadEssentials(langCode);
+
     onClose();
     onLanguageSelected?.();
   };
@@ -54,7 +59,8 @@ export default function LanguageModal({ isOpen, onClose, onLanguageSelected }: L
           <div className="overflow-y-auto flex-1 px-6 py-4">
             <div className="space-y-2">
               {SUPPORTED_LANGUAGES.map((lang) => {
-                const isSelected = currentLanguage.code === lang.code;
+                const isSelected = currentLanguageCode === lang.code ||
+                  (currentLanguageCode.startsWith(lang.code.split('-')[0]) && !SUPPORTED_LANGUAGES.some(l => l.code === currentLanguageCode));
                 return (
                   <button
                     key={lang.code}
@@ -67,7 +73,7 @@ export default function LanguageModal({ isOpen, onClose, onLanguageSelected }: L
                     }`}
                   >
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-8 flex items-center justify-center bg-white rounded border border-neutral-300 text-sm font-bold text-neutral-700">
+                      <div className="text-2xl">
                         {lang.flag}
                       </div>
                       <span className={`font-medium ${isSelected ? 'text-primary-700' : 'text-neutral-900'}`}>

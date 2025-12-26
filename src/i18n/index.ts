@@ -4,6 +4,8 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import { getDefaultLanguage, DEFAULT_FALLBACK_LANGUAGE } from './languages';
 
 import es from './locales/es.json';
+import esES from './locales/es-ES.json';
+import esEC from './locales/es-EC.json';
 import en from './locales/en.json';
 import ca from './locales/ca.json';
 
@@ -13,6 +15,10 @@ i18n
   .init({
     resources: {
       es: { translation: es },
+      'es-ES': { translation: { ...es, ...esES } },
+      'es-EC': { translation: { ...es, ...esEC } },
+      'es-MX': { translation: es },
+      'es-AR': { translation: es },
       en: { translation: en },
       ca: { translation: ca },
     },
