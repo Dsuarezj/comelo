@@ -7,20 +7,7 @@ interface TranslationCache {
   [key: string]: any;
 }
 
-interface ScopeConfig {
-  type: string;
-  id?: string;
-  idFromPath?: boolean;
-}
-
-const SCOPE_CONFIG: Record<string, ScopeConfig> = {
-  'recipe': { type: 'recipes', idFromPath: true },
-  'allergens': { type: 'allergens', id: 'allergens' },
-  'product': { type: 'products', id: 'common' },
-  'category': { type: 'products', id: 'common' },
-  'tag': { type: 'products', id: 'common' },
-  'nutrition': { type: 'products', id: 'common' },
-};
+const SCOPES_WITH_DYNAMIC_ID = ['recipe'];
 
 class TranslationService {
   private cache: TranslationCache = {};
@@ -73,6 +60,16 @@ class TranslationService {
     return { ...baseData, ...regionalData };
   }
 
+  private resolveTranslationFile(scope: string, rest: string[]): { type: string; id: string } {
+    const type = `${scope}s`;
+
+    if (SCOPES_WITH_DYNAMIC_ID.includes(scope)) {
+      return { type, id: rest[0] };
+    }
+
+    return { type, id: 'common' };
+  }
+
   async translate(path: string, lang?: RegionalLanguage): Promise<string> {
     const currentLang = lang || this.getRegionalLanguage();
     const parts = path.split('.');
@@ -82,16 +79,9 @@ class TranslationService {
     }
 
     const [scope, ...rest] = parts;
-    const config = SCOPE_CONFIG[scope];
+    const { type, id } = this.resolveTranslationFile(scope, rest);
 
-    if (!config) {
-      return path;
-    }
-
-    const fileId = config.idFromPath ? rest[0] : config.id;
-    if (!fileId) return path;
-
-    const translations = await this.loadWithFallback(config.type, fileId, currentLang);
+    const translations = await this.loadWithFallback(type, id, currentLang);
 
     let value = translations;
     for (const part of parts) {
@@ -109,7 +99,7 @@ class TranslationService {
   async preloadEssentials(lang?: RegionalLanguage): Promise<void> {
     const currentLang = lang || this.getRegionalLanguage();
     await this.loadWithFallback('products', 'common', currentLang);
-    await this.loadWithFallback('allergens', 'allergens', currentLang);
+    await this.loadWithFallback('allergens', 'common', currentLang);
   }
 }
 
