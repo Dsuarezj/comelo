@@ -11,17 +11,19 @@ class TranslationService {
   private cache: TranslationCache = {};
 
   private getRegionalLanguage(): RegionalLanguage {
-    const lang = i18n.language;
-    if (lang.includes('-')) {
-      return lang;
+    const savedLang = localStorage.getItem('comelo_language');
+    if (savedLang && savedLang.includes('-')) {
+      return savedLang;
     }
 
-    const browserLang = navigator.language;
-    if (browserLang.startsWith(lang)) {
-      return browserLang;
+    const browserLang = navigator.language || (navigator as any).userLanguage;
+    const normalizedLang = browserLang.toLowerCase();
+
+    if (normalizedLang.includes('-')) {
+      return normalizedLang;
     }
 
-    return lang;
+    return i18n.language;
   }
 
   private async loadTranslations(type: string, id: string, lang: RegionalLanguage): Promise<void> {

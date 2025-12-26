@@ -18,14 +18,18 @@ export const getLanguageByCode = (code: string): Language => {
 
 export const getDefaultLanguage = (): string => {
   const savedLanguage = localStorage.getItem('comelo_language');
-  if (savedLanguage && SUPPORTED_LANGUAGES.some(lang => lang.code === savedLanguage)) {
-    return savedLanguage;
+  if (savedLanguage) {
+    const baseLang = savedLanguage.split('-')[0];
+    if (SUPPORTED_LANGUAGES.some(lang => lang.code === baseLang)) {
+      return savedLanguage;
+    }
   }
 
   const browserLanguage = navigator.language || (navigator as any).userLanguage;
-  const languageCode = browserLanguage.split('-')[0].toLowerCase();
+  const languageCode = browserLanguage.toLowerCase();
+  const baseLangCode = languageCode.split('-')[0];
 
-  const isSupported = SUPPORTED_LANGUAGES.some(lang => lang.code === languageCode);
+  const isSupported = SUPPORTED_LANGUAGES.some(lang => lang.code === baseLangCode);
 
   return isSupported ? languageCode : DEFAULT_FALLBACK_LANGUAGE;
 };
