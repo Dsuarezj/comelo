@@ -27,7 +27,7 @@ function useIsDesktop() {
 
 function DesktopSplash() {
   return (
-    <div className="fixed inset-0 bg-gray-100 flex flex-col items-center justify-center z-50">
+    <div data-testid="splash-screen" className="fixed inset-0 bg-gray-100 flex flex-col items-center justify-center z-50">
       <Loader2 className="w-16 h-16 text-gray-400 animate-spin mb-6" />
       <p className="text-gray-600 text-lg text-center max-w-md px-4">
         Tenemos un espacio para publicidad que llega a muchos usuarios
@@ -89,7 +89,7 @@ function MobileSplash() {
   const translateY = -(currentIndex * LINE_HEIGHT);
 
   return (
-    <div className="fixed inset-0 bg-[#5EE67E] overflow-hidden flex items-center z-50">
+    <div data-testid="splash-screen" className="fixed inset-0 bg-[#5EE67E] overflow-hidden flex items-center z-50">
       <div
         className="absolute left-6 z-20"
         style={{

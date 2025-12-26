@@ -1,12 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import SplashScreen from '../SplashScreen';
 import { OnboardingStepProps } from '../../types/onboarding';
 import { sessionService } from '../../services/SessionService';
 
 export default function OnboardingSplashStep({ onNext }: OnboardingStepProps) {
   const [isLoading, setIsLoading] = useState(true);
+  const onNextRef = useRef(onNext);
+  const hasInitialized = useRef(false);
+  
+  onNextRef.current = onNext;
 
   useEffect(() => {
+    if (hasInitialized.current) return;
+    hasInitialized.current = true;
+    
     const initialize = async () => {
       const isDesktop = window.innerWidth >= 768;
       const minDuration = isDesktop ? 5000 : 1500;
@@ -26,11 +33,11 @@ export default function OnboardingSplashStep({ onNext }: OnboardingStepProps) {
       }
 
       setIsLoading(false);
-      onNext();
+      onNextRef.current();
     };
 
     initialize();
-  }, [onNext]);
+  }, []);
 
   if (!isLoading) {
     return null;

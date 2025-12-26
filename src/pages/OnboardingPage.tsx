@@ -10,6 +10,13 @@ export default function OnboardingPage() {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
 
   const currentStep = ONBOARDING_STEPS[currentStepIndex];
+  
+  if (!currentStep) {
+    LocalStorageService.set(StorageKeys.HAS_ONBOARDING, true);
+    navigate('/', { replace: true });
+    return null;
+  }
+  
   const StepComponent = currentStep.component;
 
   const visibleStepNumber = currentStep.id === 'splash' ? 0 : VISIBLE_STEPS.findIndex(s => s.id === currentStep.id) + 1;

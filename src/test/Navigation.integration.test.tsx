@@ -47,6 +47,8 @@ vi.mock('react-i18next', () => ({
 describe('Navigation Integration Tests', () => {
   beforeEach(() => {
     sessionStorage.clear();
+    localStorage.clear();
+    localStorage.setItem('comelo_has_onboarding', 'true');
     vi.clearAllMocks();
     window.history.pushState({}, '', '/');
   });
