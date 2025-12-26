@@ -110,6 +110,9 @@ cd comelo-app
 # Instalar dependencias
 npm install
 
+# Instalar git hooks (opcional pero recomendado)
+npm run install-hooks
+
 # Iniciar servidor de desarrollo
 npm run dev
 
@@ -121,6 +124,17 @@ npm run preview
 ```
 
 La aplicación estará disponible en `http://localhost:5173`
+
+### Git Hooks
+
+El proyecto incluye un git hook pre-push que ejecuta automáticamente todos los tests antes de permitir push a la rama `main`.
+
+Para instalarlo:
+```bash
+npm run install-hooks
+```
+
+Este hook asegura que no se suba código con tests fallidos a la rama principal. Ver más detalles en [scripts/hooks/README.md](./scripts/hooks/README.md).
 
 ## 🛠️ Stack Tecnológico
 
@@ -294,18 +308,23 @@ module.exports = {
 }
 ```
 
-## 🧪 Testing (Futuro)
+## 🧪 Testing
 
 ```bash
 # Unit tests
 npm run test
 
+# Watch mode
+npm run test:watch
+
 # E2E tests
 npm run test:e2e
 
-# Coverage
-npm run test:coverage
+# Run all tests
+npm run test:all
 ```
+
+Los tests se ejecutan automáticamente antes de hacer push a `main` si tienes el git hook instalado.
 
 ## 📱 Instalación como PWA
 
