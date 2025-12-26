@@ -2,13 +2,31 @@
 
 Sistema escalable de traducciones que separa traducciones core de la app y traducciones de datos (productos y recetas).
 
+## ⚡ Convención de Archivos (TL;DR)
+
+**Todos los archivos de traducciones de datos siguen esta convención:**
+
+```
+src/data/translations/{type}/{id}.{lang}.json
+```
+
+- **{type}**: Tipo de dato (products, recipes, allergens, etc.)
+- **{id}**: Identificador del archivo (common, pollo-curry, allergens, etc.)
+- **{lang}**: Idioma (es, en, ca)
+
+**Ejemplo:** `src/data/translations/recipes/pollo-curry.es.json`
+
+✅ **Agregar nuevos tipos es tan simple como crear la carpeta y archivos**
+❌ **NO necesitas modificar código del servicio**
+
 ## 🎯 Objetivos
 
 1. **Separación Clara** - Traducciones core vs traducciones de datos
 2. **Carga Dinámica** - Solo cargar traducciones necesarias
 3. **Escalabilidad** - Soportar contenido generado por usuarios
-4. **Sincronización** - Preparado para Dropbox sync
-5. **Múltiples Fuentes** - Core + Local + Dropbox
+4. **Convención sobre Configuración** - Sin código boilerplate
+5. **Sincronización** - Preparado para Dropbox sync
+6. **Múltiples Fuentes** - Core + Local + Dropbox
 
 ## 📁 Estructura de Archivos
 
@@ -27,14 +45,43 @@ src/
 │   │   ├── common.en.json          # Productos core (EN)
 │   │   └── common.ca.json          # Productos core (CA)
 │   │
-│   └── recipes/
-│       ├── bowl-amaranto-frutas.{es,en,ca}.json
-│       ├── pollo-curry.{es,en,ca}.json
-│       └── ensalada-quinoa.{es,en,ca}.json
+│   ├── recipes/
+│   │   ├── bowl-amaranto-frutas.{es,en,ca}.json
+│   │   ├── pollo-curry.{es,en,ca}.json
+│   │   └── ensalada-quinoa.{es,en,ca}.json
+│   │
+│   └── allergens/
+│       ├── allergens.es.json       # Alergenos (ES)
+│       ├── allergens.en.json       # Alergenos (EN)
+│       └── allergens.ca.json       # Alergenos (CA)
 │
 └── services/
     └── TranslationService.ts       # 🔄 Servicio unificado
 ```
+
+### 🎯 Convención de Nombres (CRÍTICO)
+
+Todos los archivos de traducciones de datos DEBEN seguir esta convención:
+
+```
+src/data/translations/{type}/{id}.{lang}.json
+```
+
+Donde:
+- **{type}**: Categoría del dato (products, recipes, allergens, categories, etc.)
+- **{id}**: Identificador único del archivo (common, pollo-curry, allergens, etc.)
+- **{lang}**: Código de idioma (es, en, ca)
+
+**Ejemplos válidos:**
+```
+src/data/translations/products/common.es.json
+src/data/translations/recipes/pollo-curry.ca.json
+src/data/translations/allergens/allergens.en.json
+src/data/translations/categories/food-groups.es.json  ← Funcionaría automáticamente
+src/data/translations/tools/kitchen-tools.en.json     ← Funcionaría automáticamente
+```
+
+**✅ Esta convención permite agregar nuevos tipos SIN modificar código**
 
 ## 🔧 Traducciones CORE (i18n/)
 
@@ -211,13 +258,16 @@ translationService.clearCache();
 
 ### Agregar Nuevos Tipos de Datos
 
-Para agregar un nuevo tipo (ej: "allergen"), solo necesitas:
+El sistema usa una **convención basada en paths** que permite agregar nuevos tipos sin modificar código.
 
-1. Crear el archivo de traducciones en `data/translations/products/common.{lang}.json`:
+#### Opción 1: Agregar dentro de un archivo existente
+
+Para agregar un nuevo tipo dentro de `products/common.{lang}.json`:
 
 ```json
 {
   "product": { ... },
+  "category": { ... },
   "allergen": {
     "gluten": "Gluten",
     "lactose": "Lactosa"
@@ -225,18 +275,71 @@ Para agregar un nuevo tipo (ej: "allergen"), solo necesitas:
 }
 ```
 
-2. Usar directamente sin modificar código:
-
+Usar con:
 ```typescript
 const allergen = await t('allergen.gluten');
 ```
 
-El servicio automáticamente:
-- Detecta el scope `allergen`
-- Carga las traducciones de productos
-- Navega por el path y retorna el valor
+#### Opción 2: Crear un nuevo tipo independiente (RECOMENDADO)
 
-**No necesitas agregar métodos como `getAllergenName()`**
+Para agregar un tipo completamente nuevo, simplemente crea la carpeta y archivos siguiendo la convención:
+
+**1. Crear estructura de archivos:**
+```
+src/data/translations/
+└── categories/           ← Nuevo tipo
+    ├── food-groups.es.json
+    ├── food-groups.en.json
+    └── food-groups.ca.json
+```
+
+**2. Crear contenido:**
+```json
+{
+  "category": {
+    "vegetables": "Verduras",
+    "fruits": "Frutas",
+    "proteins": "Proteínas"
+  }
+}
+```
+
+**3. Usar inmediatamente sin modificar código:**
+```typescript
+const category = await t('category.vegetables');
+```
+
+#### Cómo funciona internamente
+
+El `TranslationService` usa esta convención genérica:
+
+```typescript
+const translations = await import(`../data/translations/${type}/${id}.${lang}.json`);
+```
+
+Donde:
+- **type**: Se extrae automáticamente del path (primera parte antes del punto)
+- **id**: Identificador del archivo (segunda parte del path o `common` por defecto)
+- **lang**: Idioma actual
+
+**Ejemplos de resolución:**
+
+| Path | Type | ID | Archivo cargado |
+|------|------|----|-----------------|
+| `product.broccoli` | products | common | `products/common.{lang}.json` |
+| `recipe.pollo-curry.name` | recipes | pollo-curry | `recipes/pollo-curry.{lang}.json` |
+| `allergen.gluten` | allergens | allergens | `allergens/allergens.{lang}.json` |
+| `category.vegetables` | categories | categories | `categories/categories.{lang}.json` |
+
+**✅ No necesitas:**
+- Agregar métodos como `getAllergenName()`
+- Modificar `TranslationService`
+- Agregar condiciones if/else
+- Registrar nuevos tipos
+
+**❌ Solo necesitas:**
+- Seguir la convención de nombres de archivos
+- Crear la estructura correcta en `data/translations/`
 
 ## 🌐 Selector de Idioma
 
