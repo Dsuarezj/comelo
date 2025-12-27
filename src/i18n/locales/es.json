@@ -128,6 +128,14 @@
       "reload": "Actualizar ahora"
     }
   },
+  "network": {
+    "offline": {
+      "message": "Sin conexión. Todos los cambios se guardarán localmente."
+    },
+    "online": {
+      "message": "Conexión restaurada"
+    }
+  },
   "onboarding": {
     "dropbox": {
       "title": "Comelo es una app descentralizada, tu info se guarda solo contigo.",

@@ -128,6 +128,14 @@
       "reload": "Actualitzar ara"
     }
   },
+  "network": {
+    "offline": {
+      "message": "Sense connexio. Tots els canvis es guardaran localment."
+    },
+    "online": {
+      "message": "Connexio restaurada"
+    }
+  },
   "onboarding": {
     "dropbox": {
       "title": "Comelo es una app descentralitzada, la teva info es guarda nomes amb tu.",
