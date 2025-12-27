@@ -27,13 +27,13 @@ export default defineConfig({
         scope: '/',
         icons: [
           {
-            src: '/image.png',
+            src: '/icon.png',
             sizes: '192x192',
             type: 'image/png',
             purpose: 'any maskable'
           },
           {
-            src: '/image.png',
+            src: '/icon.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'any maskable'
