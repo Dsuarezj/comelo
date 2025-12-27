@@ -8,8 +8,18 @@ interface VersionMap {
   [key: string]: string;
 }
 
+enum VersionStatus {
+  Idle = 'idle',
+  Loading = 'loading',
+  Ready = 'ready',
+  Error = 'error',
+}
+
 class TranslationService {
   private versionCache: VersionMap | null = null;
+  private versionStatus: VersionStatus = VersionStatus.Idle;
+  private versionWaiters: Array<(map: VersionMap) => void> = [];
+  private backgroundCheckedKeys: Set<string> = new Set();
   private loadingPromises: Map<string, Promise<any>> = new Map();
 
   private getRegionalLanguage(): RegionalLanguage {
@@ -29,9 +39,15 @@ class TranslationService {
   }
 
   private async fetchVersions(): Promise<VersionMap> {
-    if (this.versionCache) {
+    if (this.versionStatus === VersionStatus.Ready && this.versionCache) {
       return this.versionCache;
     }
+
+    if (this.versionStatus === VersionStatus.Loading) {
+      return new Promise(resolve => this.versionWaiters.push(resolve));
+    }
+
+    this.versionStatus = VersionStatus.Loading;
 
     try {
       const response = await fetch('/versions.json');
@@ -40,9 +56,16 @@ class TranslationService {
       }
       const versions = await response.json();
       this.versionCache = versions;
+      this.versionStatus = VersionStatus.Ready;
+      this.versionWaiters.forEach(resolve => resolve(versions));
+      this.versionWaiters = [];
       return versions;
     } catch (error) {
       console.warn('Failed to fetch versions, using empty map', error);
+      this.versionCache = {};
+      this.versionStatus = VersionStatus.Error;
+      this.versionWaiters.forEach(resolve => resolve({}));
+      this.versionWaiters = [];
       return {};
     }
   }
@@ -100,9 +123,14 @@ class TranslationService {
   ): void {
     setTimeout(async () => {
       try {
-        this.versionCache = null;
-        const versions = await this.fetchVersions();
         const versionKey = this.getVersionKey(type, id);
+        if (this.backgroundCheckedKeys.has(versionKey)) {
+          return;
+        }
+
+        this.backgroundCheckedKeys.add(versionKey);
+
+        const versions = await this.fetchVersions();
         const latestVersion = versions[versionKey] || '1.0.0';
 
         if (latestVersion !== cachedVersion) {
@@ -113,6 +141,9 @@ class TranslationService {
         }
       } catch (error) {
         console.warn('Background update check failed', error);
+      } finally {
+        const versionKey = this.getVersionKey(type, id);
+        this.backgroundCheckedKeys.delete(versionKey);
       }
     }, 0);
   }
@@ -155,6 +186,10 @@ class TranslationService {
     return { type, id };
   }
 
+  async warmVersions(): Promise<void> {
+    await this.fetchVersions();
+  }
+
   async translate(path: string, lang?: RegionalLanguage): Promise<string> {
     const currentLang = lang || this.getRegionalLanguage();
     const parts = path.split('.');
@@ -188,11 +223,16 @@ class TranslationService {
   async clearCache(): Promise<void> {
     await sessionService.clearTranslations();
     this.versionCache = null;
+    this.versionStatus = VersionStatus.Idle;
+    this.versionWaiters = [];
+    this.backgroundCheckedKeys.clear();
     this.loadingPromises.clear();
   }
 
   async preloadEssentials(lang?: RegionalLanguage): Promise<void> {
     const currentLang = lang || this.getRegionalLanguage();
+
+    await this.fetchVersions();
 
     await Promise.all([
       this.loadWithFallback('products', 'common', currentLang),

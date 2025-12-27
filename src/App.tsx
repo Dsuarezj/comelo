@@ -27,6 +27,7 @@ function AppContent() {
     const initializeApp = async () => {
       try {
         await sessionService.init();
+        await translationService.warmVersions();
         if (hasOnboarding) {
           await translationService.preloadEssentials();
         }
