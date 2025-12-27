@@ -1,7 +1,6 @@
-const BUILD_TIMESTAMP = '1766794609';
 const PRECACHE_MANIFEST = self.__WB_MANIFEST || [];
 const MANIFEST_SIGNATURE = PRECACHE_MANIFEST.map(entry => `${entry.url}|${entry.revision || ''}`).join('::');
-const CACHE_VERSION = `v-${MANIFEST_SIGNATURE ? btoa(MANIFEST_SIGNATURE).slice(0, 16) : BUILD_TIMESTAMP}`;
+const CACHE_VERSION = `v-${MANIFEST_SIGNATURE ? btoa(MANIFEST_SIGNATURE).slice(0, 16) : 'fallback'}`;
 const APP_SHELL_CACHE = `comelo-app-shell-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `comelo-runtime-${CACHE_VERSION}`;
 const TRANSLATIONS_CACHE = `comelo-translations-${CACHE_VERSION}`;
@@ -491,7 +490,6 @@ self.addEventListener('message', event => {
     case 'HEALTH_CHECK':
       event.ports[0].postMessage({
         version: CACHE_VERSION,
-        buildTimestamp: BUILD_TIMESTAMP,
         active: true,
         processing: queue.processing,
       });
