@@ -1,5 +1,7 @@
-const BUILD_TIMESTAMP = '1766791155';
-const CACHE_VERSION = `v-${BUILD_TIMESTAMP}`;
+const BUILD_TIMESTAMP = '1766794609';
+const PRECACHE_MANIFEST = self.__WB_MANIFEST || [];
+const MANIFEST_SIGNATURE = PRECACHE_MANIFEST.map(entry => `${entry.url}|${entry.revision || ''}`).join('::');
+const CACHE_VERSION = `v-${MANIFEST_SIGNATURE ? btoa(MANIFEST_SIGNATURE).slice(0, 16) : BUILD_TIMESTAMP}`;
 const APP_SHELL_CACHE = `comelo-app-shell-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `comelo-runtime-${CACHE_VERSION}`;
 const TRANSLATIONS_CACHE = `comelo-translations-${CACHE_VERSION}`;
@@ -9,6 +11,13 @@ const APP_SHELL_URLS = [
   '/index.html',
   '/manifest.json',
 ];
+
+const PRECACHE_URLS = Array.from(
+  new Set([
+    ...APP_SHELL_URLS,
+    ...PRECACHE_MANIFEST.map(entry => (entry.url.startsWith('/') ? entry.url : `/${entry.url}`)),
+  ])
+);
 
 const NAVIGATION_FALLBACK = '/index.html';
 
@@ -337,10 +346,34 @@ queue.registerProcessor('shopping-lists', async (item, ctx) => {
   return await response.json();
 });
 
+async function networkFirst(request, cacheName, fallbackUrl) {
+  const cache = await caches.open(cacheName);
+
+  try {
+    const response = await fetch(request);
+
+    if (response && response.status === 200) {
+      cache.put(request, response.clone());
+    }
+
+    return response;
+  } catch {
+    const cached = await caches.match(request);
+    if (cached) return cached;
+
+    if (fallbackUrl) {
+      const fallback = await caches.match(fallbackUrl);
+      if (fallback) return fallback;
+    }
+
+    return new Response('', { status: 503 });
+  }
+}
+
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(APP_SHELL_CACHE).then(cache => {
-      return cache.addAll(APP_SHELL_URLS);
+      return cache.addAll(PRECACHE_URLS);
     }).then(() => self.skipWaiting())
   );
 });
@@ -376,74 +409,36 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  if (url.origin === location.origin) {
-    if (url.pathname.match(/translations\/.*\.json$/) || url.pathname === '/versions.json') {
-      event.respondWith(
-        caches.match(request).then(cachedResponse => {
-          if (cachedResponse) {
-            return cachedResponse;
-          }
-
-          return fetch(request).then(response => {
-            if (response && response.status === 200) {
-              const responseToCache = response.clone();
-              caches.open(TRANSLATIONS_CACHE).then(cache => {
-                cache.put(request, responseToCache);
-              });
-            }
-            return response;
-          }).catch(() => {
-            return caches.match(request);
-          });
-        })
-      );
-    } else if (APP_SHELL_URLS.some(shellUrl => url.pathname === shellUrl || url.pathname === '/' + shellUrl)) {
-      event.respondWith(
-        fetch(request)
-          .then(response => {
-            if (response && response.status === 200) {
-              const responseToCache = response.clone();
-              caches.open(APP_SHELL_CACHE).then(cache => {
-                cache.put(request, responseToCache);
-              });
-            }
-            return response;
-          })
-          .catch(() => {
-            return caches.match(request);
-          })
-      );
-    } else if (request.destination === 'script' || request.destination === 'style' || url.pathname.match(/\.(js|css)$/)) {
-      event.respondWith(
-        fetch(request)
-          .then(response => {
-            if (response && response.status === 200) {
-              const responseToCache = response.clone();
-              caches.open(RUNTIME_CACHE).then(cache => {
-                cache.put(request, responseToCache);
-              });
-            }
-            return response;
-          })
-          .catch(() => {
-            return caches.match(request);
-          })
-      );
-    } else if (request.mode === 'navigate') {
-      event.respondWith(
-        fetch(request)
-          .catch(() => {
-            return caches.match(NAVIGATION_FALLBACK);
-          })
-      );
-    } else {
-      event.respondWith(
-        fetch(request).catch(() => {
-          return caches.match(request);
-        })
-      );
-    }
+  if (url.origin !== location.origin) {
+    return;
   }
+
+  const pathname = url.pathname;
+  const isPrecached = PRECACHE_URLS.includes(pathname) || PRECACHE_URLS.includes(pathname === '/' ? pathname : `/${pathname.replace(/^\//, '')}`);
+  const isTranslation = pathname.match(/translations\/.*\.json$/) || pathname === '/versions.json';
+  const isStatic = request.destination === 'script' || request.destination === 'style' || request.destination === 'font' || pathname.match(/\.(js|css|png|jpg|jpeg|gif|svg|webp|ico|ttf|otf|woff|woff2)$/);
+
+  if (request.mode === 'navigate') {
+    event.respondWith(networkFirst(request, APP_SHELL_CACHE, NAVIGATION_FALLBACK));
+    return;
+  }
+
+  if (isPrecached) {
+    event.respondWith(networkFirst(request, APP_SHELL_CACHE));
+    return;
+  }
+
+  if (isTranslation) {
+    event.respondWith(networkFirst(request, TRANSLATIONS_CACHE));
+    return;
+  }
+
+  if (isStatic) {
+    event.respondWith(networkFirst(request, RUNTIME_CACHE));
+    return;
+  }
+
+  event.respondWith(networkFirst(request, RUNTIME_CACHE));
 });
 
 self.addEventListener('message', event => {
