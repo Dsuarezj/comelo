@@ -16,7 +16,7 @@ export default function OnboardingSplashStep({ onNext }: OnboardingStepProps) {
     
     const initialize = async () => {
       const isDesktop = window.innerWidth >= 768;
-      const minDuration = isDesktop ? 1500 : 1000;
+      const minDuration = isDesktop ? 3_500 : 2_500;
       const startTime = Date.now();
 
       try {

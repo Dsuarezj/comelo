@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Loader2 } from 'lucide-react';
 
 const LINE_HEIGHT = 72;
+const SCROLL_DURATION = 700;
 
 interface SplashScreenProps {
   duration?: number;
@@ -38,55 +39,94 @@ function DesktopSplash() {
 
 function MobileSplash() {
   const { t } = useTranslation();
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(true);
+  const [tick, setTick] = useState(0);
+  const [offset, setOffset] = useState(0);
+  const animationRef = useRef<number | null>(null);
+  const startTimeRef = useRef<number>(0);
 
   const basePhrases = t('splash.phrases', { returnObjects: true }) as string[];
-  const phrases = [...basePhrases, ...basePhrases, ...basePhrases];
-  const startOffset = basePhrases.length;
+  const phraseCount = basePhrases.length;
+  const centerY = LINE_HEIGHT * 2;
+  const animationDuration = SCROLL_DURATION * 0.7;
+
+  const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+
+  const animate = useCallback(() => {
+    const elapsed = Date.now() - startTimeRef.current;
+    const progress = Math.min(elapsed / animationDuration, 1);
+    const easedProgress = easeOutCubic(progress);
+    
+    setOffset(easedProgress * LINE_HEIGHT);
+
+    if (progress < 1) {
+      animationRef.current = requestAnimationFrame(animate);
+    } else {
+      setTick(prev => prev + 1);
+      setOffset(0);
+    }
+  }, [animationDuration]);
 
   useEffect(() => {
-    setCurrentIndex(startOffset);
-  }, [startOffset]);
+    const startAnimation = () => {
+      startTimeRef.current = Date.now();
+      animationRef.current = requestAnimationFrame(animate);
+    };
 
-  useEffect(() => {
-    let isMounted = true;
-    const phraseCount = basePhrases.length;
-
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => {
-        const next = prev + 1;
-        if (next >= startOffset + phraseCount) {
-          setTimeout(() => {
-            if (isMounted) {
-              setIsTransitioning(false);
-              setCurrentIndex(startOffset);
-              setTimeout(() => {
-                if (isMounted) setIsTransitioning(true);
-              }, 50);
-            }
-          }, 500);
-        }
-        return next;
-      });
-    }, 700);
+    const interval = setInterval(startAnimation, SCROLL_DURATION);
 
     return () => {
-      isMounted = false;
       clearInterval(interval);
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
     };
-  }, [startOffset, basePhrases.length]);
+  }, [animate]);
 
-  const getOpacity = (index: number) => {
-    const centerIndex = currentIndex - 2;
-    const distance = Math.abs(index - centerIndex);
-    if (distance === 0) return 1;
-    if (distance === 1) return 0.5;
-    if (distance === 2) return 0.3;
+  const activeIndex = tick % phraseCount;
+
+  const getPhraseForSlot = (slotOffset: number) => {
+    const index = ((activeIndex + slotOffset) % phraseCount + phraseCount) % phraseCount;
+    return basePhrases[index];
+  };
+
+  const getVisualDistance = (slotOffset: number) => {
+    const visualY = (slotOffset + 2) * LINE_HEIGHT - offset;
+    return Math.abs(visualY - centerY) / LINE_HEIGHT;
+  };
+
+  const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+  
+  const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
+
+  const getOpacity = (slotOffset: number) => {
+    const distance = getVisualDistance(slotOffset);
+    if (distance < 0.5) return 1;
+    if (distance < 1) return lerp(1, 0.5, (distance - 0.5) * 2);
+    if (distance < 2) return lerp(0.5, 0.3, (distance - 1));
+    if (distance < 3) return lerp(0.3, 0.15, (distance - 2));
     return 0.15;
   };
 
-  const translateY = -(currentIndex * LINE_HEIGHT);
+  const getColorIntensity = (slotOffset: number) => {
+    const distance = getVisualDistance(slotOffset);
+    return clamp(1 - distance, 0, 1);
+  };
+
+  const getColor = (slotOffset: number) => {
+    const intensity = getColorIntensity(slotOffset);
+    const r = Math.round(lerp(0x3d, 0x1a, intensity));
+    const g = Math.round(lerp(0x7a, 0x1a, intensity));
+    const b = Math.round(lerp(0x4d, 0x1a, intensity));
+    return `rgb(${r}, ${g}, ${b})`;
+  };
+
+  const getXOffset = (slotOffset: number) => {
+    const distance = getVisualDistance(slotOffset);
+    const intensity = clamp(1 - distance, 0, 1);
+    return intensity * 12;
+  };
+
+  const slots = [-2, -1, 0, 1, 2, 3];
 
   return (
     <div data-testid="splash-screen" className="fixed inset-0 bg-[#5EE67E] overflow-hidden flex items-center z-50">
@@ -122,27 +162,28 @@ function MobileSplash() {
       >
         <div
           style={{
-            transform: `translateY(${translateY + LINE_HEIGHT * (startOffset - 2)}px)`,
-            transition: isTransitioning ? 'transform 600ms cubic-bezier(0.25, 0.1, 0.25, 1)' : 'none',
+            transform: `translateY(${-offset}px)`,
           }}
         >
-          {phrases.map((phrase, index) => {
-            const centerIndex = currentIndex - 2;
-            const isActive = index === centerIndex;
-            const opacity = getOpacity(index);
+          {slots.map((slotOffset) => {
+            const phrase = getPhraseForSlot(slotOffset);
+            const opacity = getOpacity(slotOffset);
+            const yPosition = (slotOffset + 2) * LINE_HEIGHT;
+            const xOffset = getXOffset(slotOffset);
+            const color = getColor(slotOffset);
 
             return (
               <h2
-                key={`${phrase}-${index}`}
-                className="font-black whitespace-nowrap"
+                key={slotOffset}
+                className="font-black whitespace-nowrap absolute left-0 right-0"
                 style={{
                   fontSize: '46px',
                   lineHeight: `${LINE_HEIGHT}px`,
                   height: `${LINE_HEIGHT}px`,
+                  top: `${yPosition}px`,
                   opacity: opacity,
-                  color: isActive ? '#1a1a1a' : '#3d7a4d',
-                  transform: `translateX(${isActive ? 12 : 0}px)`,
-                  transition: 'opacity 600ms cubic-bezier(0.25, 0.1, 0.25, 1), color 600ms cubic-bezier(0.25, 0.1, 0.25, 1), transform 600ms cubic-bezier(0.25, 0.1, 0.25, 1)',
+                  color: color,
+                  transform: `translateX(${xOffset}px)`,
                 }}
               >
                 {phrase}
