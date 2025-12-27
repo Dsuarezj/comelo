@@ -1,14 +1,27 @@
 const SW_URL = '/sw.js';
 
-function registerServiceWorker() {
-  if (!('serviceWorker' in navigator)) {
-    return;
+if ('serviceWorker' in navigator) {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', registerSW);
+  } else {
+    registerSW();
   }
-
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register(SW_URL, { scope: '/' }).catch(() => {});
-  });
 }
 
-registerServiceWorker();
+function registerSW() {
+  navigator.serviceWorker
+    .register(SW_URL, { scope: '/' })
+    .then((registration) => {
+      if (registration.installing) {
+        console.log('Service Worker instalando...');
+      } else if (registration.waiting) {
+        console.log('Service Worker esperando...');
+      } else if (registration.active) {
+        console.log('Service Worker activo:', registration.scope);
+      }
+    })
+    .catch((error) => {
+      console.error('Error registrando Service Worker:', error);
+    });
+}
 
