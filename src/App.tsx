@@ -18,24 +18,22 @@ import { translationService } from './services/TranslationService';
 import './i18n';
 
 const SPLASH_MIN_DURATION = 1_500;
-const HAS_ONBOARDING = LocalStorageService.get<boolean>(StorageKeys.HAS_ONBOARDING, false);
 
 async function initializeApp() {
   await sessionService.init();
   await translationService.warmVersions();
-  if (HAS_ONBOARDING) {
-    await translationService.preloadEssentials();
-  }
+  await translationService.preloadEssentials();
 }
 
 function AppContent() {
   const { hasUpdate, reloadForUpdate } = usePWA();
   const { isOnline, wasOffline } = useNetworkStatus();
   const location = useLocation();
+  const hasOnboarding = LocalStorageService.get<boolean>(StorageKeys.HAS_ONBOARDING, false);
 
   useSplashInit(SPLASH_MIN_DURATION, initializeApp);
 
-  if (!HAS_ONBOARDING && location.pathname !== '/onboarding') {
+  if (!hasOnboarding && location.pathname !== '/onboarding') {
     return <Navigate to="/onboarding" replace />;
   }
 

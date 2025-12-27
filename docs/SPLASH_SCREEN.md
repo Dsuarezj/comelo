@@ -33,6 +33,45 @@ function MyComponent() {
 3. Cuando `init` termina Y el tiempo mínimo ha pasado, el splash se desvanece
 4. Si se proporciona `onFadeStart`, se llama al inicio del fade-out
 
+## Uso con múltiples componentes
+
+El splash soporta **múltiples componentes** llamando a `show()` simultáneamente de forma **completamente desacoplada**.
+
+### Contador de pendientes
+
+Internamente, el splash mantiene un contador:
+- Cada `show()` → incrementa el contador
+- Cada `markReady()` → decrementa el contador
+- El splash solo se cierra cuando el contador llega a **0**
+
+### Ejemplo: App + Onboarding
+
+```tsx
+// App.tsx - se monta primero
+function AppContent() {
+  useSplashInit(1500, initializeApp);  // pendingCount = 1
+  // ...
+}
+
+// OnboardingSplashStep.tsx - se monta después
+function OnboardingSplashStep({ onNext }) {
+  useSplashInit(2500, () => sessionService.init(), onNext);  // pendingCount = 2
+  return null;
+}
+```
+
+**Flujo:**
+1. App: `show(1500)` → pendingCount = 1, splash visible
+2. OnboardingSplash: `show(2500, {onFadeStart: onNext})` → pendingCount = 2
+3. App termina init: `markReady()` → pendingCount = 1
+4. OnboardingSplash termina init: `markReady()` → pendingCount = 0 → fase 'ready'
+5. Timer termina → llama `onFadeStart` (`onNext`) → siguiente paso
+
+**Beneficios:**
+- Cada componente es independiente
+- No necesitan saber si otros usan el splash
+- El último `onFadeStart` registrado es el que se ejecuta
+
 ## Casos de Uso
 
 ### Inicialización de la app
@@ -103,7 +142,7 @@ function MyComponent() {
     
     await heavyOperation();
     
-    splash.markReady();  // Indica que la operación terminó
+    splash.markReady();
   };
   
   return <button onClick={handleAction}>Cargar</button>;
@@ -111,8 +150,8 @@ function MyComponent() {
 ```
 
 **Métodos:**
-- `show(minDuration, options?)`: Muestra el splash
-- `markReady()`: Indica que la inicialización terminó
+- `show(minDuration, options?)`: Muestra el splash e incrementa pendingCount
+- `markReady()`: Decrementa pendingCount, cierra si llega a 0
 
 ## Fases del Splash
 
@@ -120,26 +159,25 @@ function MyComponent() {
 idle → waiting → ready → closing → idle
   │       │        │        │
   │       │        │        └── Fade-out (400ms)
-  │       │        └── Esperando tiempo mínimo
-  │       └── Visible, esperando markReady()
+  │       │        └── pendingCount=0, esperando tiempo mínimo
+  │       └── Visible, pendingCount > 0
   └── Sin splash
 ```
 
-## Múltiples llamadas
+## Comportamiento del callback `onFadeStart`
 
-Si varios componentes llaman a `show()` mientras el splash está visible:
-- El splash NO se reinicia
-- El tiempo se extiende al mayor de los tiempos solicitados
+Cuando múltiples componentes llaman a `show()` con diferentes callbacks:
+- El **último** `onFadeStart` registrado es el que se ejecuta
+- Los callbacks anteriores son reemplazados (no combinados)
 
 ```tsx
 // Componente A
-useSplashInit(2000, initA);  // Splash aparece, 2s mínimo
+splash.show(2000);  // Sin callback
 
-// Componente B (se monta después)
-useSplashInit(3000, initB);  // Extiende a 3s mínimo
+// Componente B (después)
+splash.show(3000, { onFadeStart: myCallback });  // myCallback será ejecutado
 ```
 
 ## Transición suave
 
 El splash hace fade-out de 400ms, revelando el contenido debajo. Si usas `onFadeStart`, el siguiente contenido se renderiza durante el fade, creando una transición suave sin pantalla blanca.
-

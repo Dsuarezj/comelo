@@ -21,12 +21,14 @@ interface SplashState {
   phase: SplashPhase;
   targetEndTime: number;
   onFadeStart: (() => void) | null;
+  pendingCount: number;
 }
 
 const initialState: SplashState = {
   phase: 'idle',
   targetEndTime: 0,
   onFadeStart: null,
+  pendingCount: 0,
 };
 
 interface SplashProviderProps {
@@ -45,17 +47,27 @@ export function SplashProvider({ children }: SplashProviderProps) {
           phase: 'waiting',
           targetEndTime: newTargetEnd,
           onFadeStart: options?.onFadeStart ?? null,
+          pendingCount: 1,
         };
       }
       return {
         ...prev,
         targetEndTime: Math.max(prev.targetEndTime, newTargetEnd),
+        onFadeStart: options?.onFadeStart ?? prev.onFadeStart,
+        pendingCount: prev.pendingCount + 1,
       };
     });
   }, []);
 
   const markReady = useCallback(() => {
-    setState(prev => prev.phase === 'waiting' ? { ...prev, phase: 'ready' } : prev);
+    setState(prev => {
+      if (prev.phase !== 'waiting') return prev;
+      const newCount = prev.pendingCount - 1;
+      if (newCount > 0) {
+        return { ...prev, pendingCount: newCount };
+      }
+      return { ...prev, phase: 'ready', pendingCount: 0 };
+    });
   }, []);
 
   useEffect(() => {
