@@ -142,5 +142,8 @@
       "skipButton": "No tengo alergias",
       "searchMore": "buscar más"
     }
+  },
+  "manifest": {
+    "description": "App de nutrición inteligente para crear listas de compras personalizadas, descubrir recetas saludables adaptadas a tus necesidades y planificar tus comidas semanales de forma fácil y organizada"
   }
 }

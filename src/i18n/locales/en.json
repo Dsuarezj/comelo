@@ -142,5 +142,8 @@
       "skipButton": "I don't have allergies",
       "searchMore": "search more"
     }
+  },
+  "manifest": {
+    "description": "Smart nutrition app to create personalized shopping lists, discover healthy recipes tailored to your needs and plan your weekly meals easily and organized"
   }
 }

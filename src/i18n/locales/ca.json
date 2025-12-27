@@ -142,5 +142,8 @@
       "skipButton": "No tinc allergies",
       "searchMore": "cercar més"
     }
+  },
+  "manifest": {
+    "description": "App de nutricio intel·ligent per crear llistes de compres personalitzades, descobrir receptes saludables adaptades a les teves necessitats i planificar els teus àpats setmanals de forma facil i organitzada"
   }
 }
