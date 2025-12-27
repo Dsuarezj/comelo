@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
+import { StorageKeys } from '../utils/storage';
 
 vi.mock('../i18n', () => ({
   default: {},
@@ -48,7 +49,7 @@ describe('Navigation Integration Tests', () => {
   beforeEach(() => {
     sessionStorage.clear();
     localStorage.clear();
-    localStorage.setItem('comelo_has_onboarding', 'true');
+    localStorage.setItem(StorageKeys.HAS_ONBOARDING, 'true');
     vi.clearAllMocks();
     window.history.pushState({}, '', '/');
   });
@@ -121,7 +122,7 @@ describe('Navigation Integration Tests', () => {
       expect(screen.getByText('Mis Listas de Compras')).toBeInTheDocument();
     }, { timeout: 3000 });
 
-    const storedStack = sessionStorage.getItem('comelo_nav_stack');
+    const storedStack = sessionStorage.getItem(StorageKeys.NAV_STACK);
     expect(storedStack).toBeTruthy();
 
     const stack = JSON.parse(storedStack!);
@@ -144,7 +145,7 @@ describe('Navigation Integration Tests', () => {
       expect(screen.getByText('Mis Listas de Compras')).toBeInTheDocument();
     }, { timeout: 3000 });
 
-    let storedStack = sessionStorage.getItem('comelo_nav_stack');
+    let storedStack = sessionStorage.getItem(StorageKeys.NAV_STACK);
     expect(storedStack).toBeTruthy();
 
     const homeNavButton = screen.getByRole('button', { name: /inicio/i });
@@ -154,7 +155,7 @@ describe('Navigation Integration Tests', () => {
       expect(screen.getByText('Hola!')).toBeInTheDocument();
     }, { timeout: 3000 });
 
-    storedStack = sessionStorage.getItem('comelo_nav_stack');
+    storedStack = sessionStorage.getItem(StorageKeys.NAV_STACK);
     const stack = JSON.parse(storedStack!);
     expect(stack).toEqual([]);
   });

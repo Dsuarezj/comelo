@@ -1,5 +1,6 @@
 import i18n from '../i18n';
 import { sessionService } from './SessionService';
+import { StorageKeys } from '../utils/storage';
 
 type Language = 'es' | 'en' | 'ca';
 type RegionalLanguage = Language | string;
@@ -23,7 +24,7 @@ class TranslationService {
   private loadingPromises: Map<string, Promise<any>> = new Map();
 
   private getRegionalLanguage(): RegionalLanguage {
-    const savedLang = localStorage.getItem('comelo_language');
+    const savedLang = localStorage.getItem(StorageKeys.LANGUAGE);
     if (savedLang && savedLang.includes('-')) {
       return savedLang;
     }

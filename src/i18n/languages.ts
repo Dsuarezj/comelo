@@ -15,7 +15,11 @@ export const SUPPORTED_LANGUAGES: Language[] = [
 
 export const DEFAULT_FALLBACK_LANGUAGE = 'es';
 
-export const getLanguageByCode = (code: string): Language => {
+export const getLanguageByCode = (code: string | undefined): Language => {
+  if (!code) {
+    return SUPPORTED_LANGUAGES[0];
+  }
+
   const exact = SUPPORTED_LANGUAGES.find(lang => lang.code === code);
   if (exact) return exact;
 

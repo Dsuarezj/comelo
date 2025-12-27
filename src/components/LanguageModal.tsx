@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { SUPPORTED_LANGUAGES } from '../i18n/languages';
 import { useEffect, useRef } from 'react';
 import { translationService } from '../services/TranslationService';
+import { loadLanguage } from '../i18n';
+import { StorageKeys } from '../utils/storage';
 
 interface LanguageModalProps {
   isOpen: boolean;
@@ -22,8 +24,9 @@ export default function LanguageModal({ isOpen, onClose, onLanguageSelected }: L
   }, [isOpen]);
 
   const handleLanguageChange = async (langCode: string) => {
+    await loadLanguage(langCode);
     await i18n.changeLanguage(langCode);
-    localStorage.setItem('comelo_language', langCode);
+    localStorage.setItem(StorageKeys.LANGUAGE, langCode);
 
     translationService.clearCache();
     await translationService.preloadEssentials(langCode);

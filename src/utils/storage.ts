@@ -10,6 +10,7 @@ export const StorageKeys = {
   SEARCH_HISTORY: `${STORAGE_PREFIX}search_history`,
   COOKIE_CONSENT: `${STORAGE_PREFIX}cookie_consent`,
   HAS_ONBOARDING: `${STORAGE_PREFIX}has_onboarding`,
+  NAV_STACK: `${STORAGE_PREFIX}nav_stack`,
 } as const;
 
 export class LocalStorageService {

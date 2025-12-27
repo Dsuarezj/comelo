@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, ReactNode, useCallback, useEffect } from 'react';
+import { StorageKeys } from '../utils/storage';
 
 interface NavigationContextType {
   navigationStack: string[];
@@ -9,8 +10,6 @@ interface NavigationContextType {
 }
 
 const NavigationContext = createContext<NavigationContextType | undefined>(undefined);
-
-const NAV_STACK_KEY = 'comelo_nav_stack';
 
 export const useNavigationContext = () => {
   const context = useContext(NavigationContext);
@@ -27,7 +26,7 @@ interface NavigationProviderProps {
 export const NavigationProvider = ({ children }: NavigationProviderProps) => {
   const [navigationStack, setNavigationStack] = useState<string[]>(() => {
     try {
-      const saved = sessionStorage.getItem(NAV_STACK_KEY);
+      const saved = sessionStorage.getItem(StorageKeys.NAV_STACK);
       return saved ? JSON.parse(saved) : [];
     } catch {
       return [];
@@ -36,7 +35,7 @@ export const NavigationProvider = ({ children }: NavigationProviderProps) => {
 
   useEffect(() => {
     try {
-      sessionStorage.setItem(NAV_STACK_KEY, JSON.stringify(navigationStack));
+      sessionStorage.setItem(StorageKeys.NAV_STACK, JSON.stringify(navigationStack));
     } catch {}
   }, [navigationStack]);
 
