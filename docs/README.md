@@ -21,7 +21,15 @@ Esta carpeta contiene toda la documentación técnica del proyecto.
    - Testing y deployment
    - **Léelo** para entender la estructura
 
-3. **[📘 INDEXEDDB_EXPLAINED.md](./INDEXEDDB_EXPLAINED.md)**
+3. **[📋 FORM_FLOWS.md](./FORM_FLOWS.md)**
+   - Sistema genérico de formularios multi-paso
+   - Cómo crear nuevos flujos y pasos
+   - Navegación condicional y saltos
+   - Reutilización de pasos entre flujos
+   - Ejemplos completos
+   - **Léelo** antes de crear formularios multi-paso
+
+4. **[📘 INDEXEDDB_EXPLAINED.md](./INDEXEDDB_EXPLAINED.md)**
    - ¿Qué es IndexedDB?
    - ¿Dónde se guardan los datos?
    - LocalStorage vs IndexedDB vs Supabase
@@ -90,6 +98,7 @@ Esta carpeta contiene toda la documentación técnica del proyecto.
 | ¿Cómo empezar? | QUICK_START.md |
 | ¿Dónde se guardan mis datos? | INDEXEDDB_EXPLAINED.md |
 | ¿Cómo funciona la arquitectura? | SETUP_GUIDE.md |
+| ¿Cómo crear un formulario multi-paso? | FORM_FLOWS.md |
 | ¿Cómo sincronizar con Dropbox? | DROPBOX_INTEGRATION.md |
 | ¿Qué es IndexedDB? | INDEXEDDB_EXPLAINED.md → "¿Qué es IndexedDB?" |
 | ¿Cómo ver mis datos? | INDEXEDDB_EXPLAINED.md → "Cómo Ver tus Datos" |
@@ -205,4 +214,12 @@ Si encuentras algo confuso o faltante:
    - Checklist de validación
    - Ejemplos y errores comunes
    - **Léelo** ANTES de agregar cualquier receta nueva
+
+**[📋 FORM_FLOWS.md](./FORM_FLOWS.md)**
+   - Sistema genérico de formularios multi-paso
+   - Cómo crear nuevos flujos y pasos
+   - Navegación condicional y saltos
+   - Reutilización de pasos entre flujos
+   - Ejemplos completos
+   - **Léelo** antes de crear formularios multi-paso
 

@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Search, Check } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { OnboardingStepProps } from '../../types/onboarding';
-import OnboardingLayout from './OnboardingLayout';
-import allergensData from '../../data/allergens.json';
-import { LocalStorageService, StorageKeys } from '../../utils/storage';
-import { UserProfile, UserProfileSchema } from '../../types';
-import { useDataTranslation } from '../../hooks/useDataTranslation';
+import { FormStepProps } from '../../../types/form-flow';
+import FormLayout from '../../form-flow/FormLayout';
+import allergensData from '../../../data/allergens.json';
+import { LocalStorageService, StorageKeys } from '../../../utils/storage';
+import { UserProfile, UserProfileSchema } from '../../../types';
+import { useDataTranslation } from '../../../hooks/useDataTranslation';
 
 const sortedAllergens = [...allergensData].sort((a, b) => a.priority - b.priority);
 const first6Ids = new Set(sortedAllergens.slice(0, 6).map(a => a.id));
@@ -22,7 +22,7 @@ const getInitialShowAll = (): boolean => {
   return allergenIds.some(id => !first6Ids.has(id));
 };
 
-export default function OnboardingAllergensStep({ onNext, onBack, onClose, currentStep, totalSteps }: OnboardingStepProps) {
+export default function AllergensStep({ onNext, onBack, onClose, currentStep, totalSteps }: FormStepProps) {
   const { t } = useTranslation();
   const dt = useDataTranslation();
   const [selectedAllergens, setSelectedAllergens] = useState<Set<string>>(getInitialSelectedAllergens);
@@ -84,7 +84,7 @@ export default function OnboardingAllergensStep({ onNext, onBack, onClose, curre
   };
 
   return (
-    <OnboardingLayout
+    <FormLayout
       currentStep={currentStep}
       totalSteps={totalSteps}
       onClose={onClose}
@@ -154,6 +154,7 @@ export default function OnboardingAllergensStep({ onNext, onBack, onClose, curre
           )}
         </div>
       </div>
-    </OnboardingLayout>
+    </FormLayout>
   );
 }
+

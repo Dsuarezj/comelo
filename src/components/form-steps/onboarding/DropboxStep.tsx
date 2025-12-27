@@ -1,13 +1,13 @@
 import { useTranslation } from 'react-i18next';
-import { OnboardingStepProps } from '../../types/onboarding';
-import OnboardingLayout from './OnboardingLayout';
-import DropboxSyncIllustration from '../illustrations/DropboxSyncIllustration';
+import { FormStepProps } from '../../../types/form-flow';
+import FormLayout from '../../form-flow/FormLayout';
+import DropboxSyncIllustration from '../../illustrations/DropboxSyncIllustration';
 
-export default function OnboardingDropboxStep({ onNext, onBack, onClose, currentStep, totalSteps }: OnboardingStepProps) {
+export default function DropboxStep({ onNext, onBack, onClose, currentStep, totalSteps }: FormStepProps) {
   const { t } = useTranslation();
 
   return (
-    <OnboardingLayout
+    <FormLayout
       currentStep={currentStep}
       totalSteps={totalSteps}
       onClose={onClose}
@@ -31,6 +31,7 @@ export default function OnboardingDropboxStep({ onNext, onBack, onClose, current
           {t('onboarding.dropbox.description')}
         </p>
       </div>
-    </OnboardingLayout>
+    </FormLayout>
   );
 }
+

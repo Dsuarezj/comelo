@@ -13,7 +13,10 @@
     "add": "Afegir",
     "search": "Cercar",
     "close": "Tancar",
-    "back": "Tornar"
+    "back": "Tornar",
+    "continue": "Continuar",
+    "skip": "Saltar",
+    "comingSoon": "Properament"
   },
   "home": {
     "greeting": "Hola!",
@@ -149,6 +152,18 @@
       "saveButton": "Desar allergies",
       "skipButton": "No tinc allergies",
       "searchMore": "cercar més"
+    }
+  },
+  "planner": {
+    "exercise": {
+      "title": "Fas exercici?",
+      "description": "Aixo ens ajuda a ajustar les porcions i nutrients dels teus apats.",
+      "yes": "Si, faig exercici regularment",
+      "no": "No, prefereixo no fer exercici"
+    },
+    "training": {
+      "title": "Quin tipus d'entrenament fas?",
+      "description": "Selecciona el tipus d'activitat que realitzes per personalitzar millor el teu pla."
     }
   },
   "manifest": {

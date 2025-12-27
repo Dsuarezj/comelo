@@ -13,7 +13,10 @@
     "add": "Add",
     "search": "Search",
     "close": "Close",
-    "back": "Back"
+    "back": "Back",
+    "continue": "Continue",
+    "skip": "Skip",
+    "comingSoon": "Coming soon"
   },
   "home": {
     "greeting": "Hello!",
@@ -149,6 +152,18 @@
       "saveButton": "Save allergies",
       "skipButton": "I don't have allergies",
       "searchMore": "search more"
+    }
+  },
+  "planner": {
+    "exercise": {
+      "title": "Do you exercise?",
+      "description": "This helps us adjust portions and nutrients for your meals.",
+      "yes": "Yes, I exercise regularly",
+      "no": "No, I prefer not to exercise"
+    },
+    "training": {
+      "title": "What type of training do you do?",
+      "description": "Select the type of activity you do to better personalize your plan."
     }
   },
   "manifest": {

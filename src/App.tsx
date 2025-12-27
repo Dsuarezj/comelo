@@ -8,6 +8,7 @@ import CreateListPage from './pages/CreateListPage';
 import SearchRecipesPage from './pages/SearchRecipesPage';
 import PlanWeekPage from './pages/PlanWeekPage';
 import OnboardingPage from './pages/OnboardingPage';
+import PlannerSetupPage from './pages/PlannerSetupPage';
 import PWAUpdateBanner from './components/PWAUpdateBanner';
 import NetworkStatusBanner from './components/NetworkStatusBanner';
 import { usePWA } from './hooks/usePWA';
@@ -50,6 +51,7 @@ function AppContent() {
         <Route path="/create-list" element={<CreateListPage />} />
         <Route path="/search-recipes" element={<SearchRecipesPage />} />
         <Route path="/plan-week" element={<PlanWeekPage />} />
+        <Route path="/planner-setup" element={<PlannerSetupPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </>

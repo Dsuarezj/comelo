@@ -13,7 +13,10 @@
     "add": "Anadir",
     "search": "Buscar",
     "close": "Cerrar",
-    "back": "Volver"
+    "back": "Volver",
+    "continue": "Continuar",
+    "skip": "Saltar",
+    "comingSoon": "Proximamente"
   },
   "home": {
     "greeting": "Hola!",
@@ -149,6 +152,18 @@
       "saveButton": "Guardar alergias",
       "skipButton": "No tengo alergias",
       "searchMore": "buscar más"
+    }
+  },
+  "planner": {
+    "exercise": {
+      "title": "¿Haces ejercicio?",
+      "description": "Esto nos ayuda a ajustar las porciones y nutrientes de tus comidas.",
+      "yes": "Si, hago ejercicio regularmente",
+      "no": "No, prefiero no hacer ejercicio"
+    },
+    "training": {
+      "title": "¿Que tipo de entrenamiento haces?",
+      "description": "Selecciona el tipo de actividad que realizas para personalizar mejor tu plan."
     }
   },
   "manifest": {

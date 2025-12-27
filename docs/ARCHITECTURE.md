@@ -19,6 +19,14 @@ src/
 │   ├── RecipeCard.tsx
 │   ├── ListItem.tsx
 │   ├── EmptyState.tsx
+│   ├── form-flow/      📋 Sistema de formularios multi-paso
+│   │   ├── FormFlowRunner.tsx
+│   │   ├── FormLayout.tsx
+│   │   └── ProgressBar.tsx
+│   ├── form-steps/     📝 Pasos de formularios
+│   │   ├── onboarding/
+│   │   ├── planner/
+│   │   └── shared/
 │   └── index.ts
 │
 ├── modules/            🏛️ ORGANISMOS - Secciones complejas
@@ -31,14 +39,22 @@ src/
 │   ├── HomePage.tsx
 │   ├── ListsPage.tsx
 │   ├── RecipesPage.tsx
-│   └── ProfilePage.tsx
+│   ├── ProfilePage.tsx
+│   ├── OnboardingPage.tsx
+│   └── PlannerSetupPage.tsx
+│
+├── config/             ⚙️ CONFIGURACIONES
+│   └── forms/          📋 Configuraciones de flujos de formularios
+│       ├── onboarding.flow.ts
+│       └── planner.flow.ts
 │
 ├── services/           ⚙️ SERVICIOS - Lógica de negocio
 │   ├── SessionService.ts
 │   └── ShoppingListService.ts
 │
 ├── types/              📝 TIPOS - TypeScript + Zod
-│   └── index.ts
+│   ├── index.ts
+│   └── form-flow.ts
 │
 ├── utils/              🛠️ UTILIDADES
 │   └── storage.ts
@@ -241,10 +257,35 @@ Cuando detectes código duplicado:
 8. Exportar desde index.ts
 ```
 
+## 📋 Sistema de Formularios Multi-Paso
+
+El proyecto incluye un sistema genérico para crear flujos de formularios multi-paso con:
+- Navegación entre pasos
+- Validación por paso
+- Saltos condicionales
+- Redirección según origen
+- Reutilización de pasos entre flujos
+
+**Ver documentación completa:** [FORM_FLOWS.md](./FORM_FLOWS.md)
+
+### Estructura de Formularios
+
+```
+components/
+├── form-flow/          ← Sistema genérico (runner, layout, progress)
+└── form-steps/        ← Pasos específicos por dominio
+    ├── onboarding/    ← Pasos del onboarding
+    ├── planner/       ← Pasos del planificador
+    └── shared/        ← Pasos reutilizables
+
+config/forms/          ← Configuraciones de flujos
+```
+
 ## 📚 Más Información
 
 - [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md) - Guía completa del sistema de diseño
 - [QUICK_START.md](./QUICK_START.md) - Cómo crear componentes rápidamente
+- [FORM_FLOWS.md](./FORM_FLOWS.md) - Sistema de formularios multi-paso
 
 ---
 

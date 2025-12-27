@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
 import { ChevronLeft, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import OnboardingProgressBar from './OnboardingProgressBar';
+import ProgressBar from './ProgressBar';
 
-interface OnboardingLayoutProps {
+interface FormLayoutProps {
   children: ReactNode;
   currentStep: number;
   totalSteps: number;
@@ -11,12 +11,12 @@ interface OnboardingLayoutProps {
   onBack?: () => void;
   showBackButton?: boolean;
   primaryButtonText: string;
-  secondaryButtonText: string;
+  secondaryButtonText?: string;
   onPrimaryClick: () => void;
-  onSecondaryClick: () => void;
+  onSecondaryClick?: () => void;
 }
 
-export default function OnboardingLayout({
+export default function FormLayout({
   children,
   currentStep,
   totalSteps,
@@ -27,19 +27,19 @@ export default function OnboardingLayout({
   secondaryButtonText,
   onPrimaryClick,
   onSecondaryClick,
-}: OnboardingLayoutProps) {
+}: FormLayoutProps) {
   const { t } = useTranslation();
 
   return (
-    <div className="fixed inset-0 flex flex-col bg-background overflow-hidden" data-testid="onboarding-layout">
+    <div className="fixed inset-0 flex flex-col bg-background overflow-hidden" data-testid="form-layout">
       <div className="relative">
-        <OnboardingProgressBar currentStep={currentStep} totalSteps={totalSteps} />
+        <ProgressBar currentStep={currentStep} totalSteps={totalSteps} />
 
         <button
           onClick={onClose}
           className="absolute top-4 right-6 p-2 text-text-primary z-10"
           aria-label={t('common.close')}
-          data-testid="onboarding-close-button"
+          data-testid="form-close-button"
         >
           <X size={24} />
         </button>
@@ -51,14 +51,14 @@ export default function OnboardingLayout({
             onClick={onBack}
             className="self-start p-2 -ml-2 text-text-primary mb-2"
             aria-label={t('common.back')}
-            data-testid="onboarding-back-button"
+            data-testid="form-back-button"
           >
             <ChevronLeft size={24} />
           </button>
         )}
 
         <div className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide">
-          <div className="max-w-md mx-auto w-full h-full" data-testid="onboarding-content">
+          <div className="max-w-md mx-auto w-full h-full" data-testid="form-content">
             {children}
           </div>
         </div>
@@ -67,20 +67,23 @@ export default function OnboardingLayout({
           <button
             onClick={onPrimaryClick}
             className="w-full bg-primary-400 text-white rounded-full py-4 px-8 text-[17px] font-semibold"
-            data-testid="onboarding-primary-button"
+            data-testid="form-primary-button"
           >
             {primaryButtonText}
           </button>
 
-          <button
-            onClick={onSecondaryClick}
-            className="w-full text-text-primary font-semibold py-3 text-[17px]"
-            data-testid="onboarding-secondary-button"
-          >
-            {secondaryButtonText}
-          </button>
+          {secondaryButtonText && onSecondaryClick && (
+            <button
+              onClick={onSecondaryClick}
+              className="w-full text-text-primary font-semibold py-3 text-[17px]"
+              data-testid="form-secondary-button"
+            >
+              {secondaryButtonText}
+            </button>
+          )}
         </div>
       </div>
     </div>
   );
 }
+
