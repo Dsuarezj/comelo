@@ -1,9 +1,31 @@
-import { useEffect, useState, useRef, useCallback } from 'react';
+import { useEffect, useState, useRef, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Loader2, ArrowRight } from 'lucide-react';
 
 const LINE_HEIGHT = 72;
 const SCROLL_DURATION = 700;
+const SPLASH_PHRASES_CACHE_KEY = 'splash_phrases_cache';
+
+function getCachedPhrases(language: string): string[] | null {
+  try {
+    const cached = localStorage.getItem(`${SPLASH_PHRASES_CACHE_KEY}_${language}`);
+    if (cached) {
+      const parsed = JSON.parse(cached);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        return parsed;
+      }
+    }
+  } catch {
+  }
+  return null;
+}
+
+function setCachedPhrases(language: string, phrases: string[]) {
+  try {
+    localStorage.setItem(`${SPLASH_PHRASES_CACHE_KEY}_${language}`, JSON.stringify(phrases));
+  } catch {
+  }
+}
 
 function useIsDesktop() {
   const [isDesktop, setIsDesktop] = useState(false);
@@ -44,14 +66,28 @@ function DesktopSplash({ isClosing }: SplashProps) {
 }
 
 function MobileSplash({ isClosing }: SplashProps) {
-  const { t } = useTranslation();
+  const { t, ready, i18n: i18nInstance } = useTranslation();
   const [tick, setTick] = useState(0);
   const [offset, setOffset] = useState(0);
   const animationRef = useRef<number | null>(null);
   const startTimeRef = useRef<number>(0);
 
-  const basePhrases = t('splash.phrases', { returnObjects: true }) as string[];
-  const phraseCount = basePhrases.length;
+  const currentLanguage = i18nInstance.language || 'es';
+  const cachedPhrases = useMemo(() => getCachedPhrases(currentLanguage), [currentLanguage]);
+  const translatedPhrases = ready ? (t('splash.phrases', { returnObjects: true }) as string[]) : null;
+  
+  const basePhrases = useMemo(() => {
+    if (translatedPhrases && Array.isArray(translatedPhrases) && translatedPhrases.length > 0) {
+      setCachedPhrases(currentLanguage, translatedPhrases);
+      return translatedPhrases;
+    }
+    if (cachedPhrases) {
+      return cachedPhrases;
+    }
+    return [];
+  }, [translatedPhrases, cachedPhrases, currentLanguage]);
+
+  const phraseCount = basePhrases.length || 1;
   const centerY = LINE_HEIGHT * 2;
   const animationDuration = SCROLL_DURATION * 0.7;
 
@@ -186,7 +222,7 @@ function MobileSplash({ isClosing }: SplashProps) {
                   transform: `translateX(${xOffset}px)`,
                 }}
               >
-                {phrase}
+                {phrase || ''}
               </h2>
             );
           })}
