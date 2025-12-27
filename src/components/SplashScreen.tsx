@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Loader2 } from 'lucide-react';
+import { Loader2, ArrowRight } from 'lucide-react';
 
 const LINE_HEIGHT = 72;
 const SCROLL_DURATION = 700;
@@ -150,20 +150,7 @@ function MobileSplash({ isClosing }: SplashProps) {
           transform: 'translateY(-50%)',
         }}
       >
-        <svg
-          className="w-12 h-12"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M4 12H20M20 12L14 6M20 12L14 18"
-            stroke="#1a1a1a"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+<ArrowRight className="w-12 h-12 text-[#1a1a1a]" strokeWidth={2.5} />
       </div>
 
       <div

@@ -1,8 +1,8 @@
-interface DropboxSyncIconProps {
+interface DropboxSyncIllustrationProps {
   className?: string;
 }
 
-export default function DropboxSyncIcon({ className }: DropboxSyncIconProps) {
+export default function DropboxSyncIllustration({ className }: DropboxSyncIllustrationProps) {
   return (
     <svg viewBox="0 0 400 400" className={className}>
       <g transform="translate(200, 200)">
