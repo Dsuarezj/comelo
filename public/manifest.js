@@ -40,10 +40,40 @@
   const baseManifestResponse = await fetch('/manifest.json');
   const baseManifest = await baseManifestResponse.json();
   
+  const baseUrl = window.location.origin;
+
+  const normalizeUrl = (url) => {
+    if (!url) return url;
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      return url;
+    }
+    if (url.startsWith('./')) {
+      return new URL(url.substring(2), baseUrl).href;
+    }
+    if (url.startsWith('/')) {
+      return new URL(url, baseUrl).href;
+    }
+    return new URL(url, baseUrl).href;
+  };
+
   const manifest = {
     ...baseManifest,
     description: description || baseManifest.description,
-    lang: detectedLang || baseManifest.lang
+    lang: detectedLang || baseManifest.lang,
+    start_url: normalizeUrl(baseManifest.start_url),
+    scope: normalizeUrl(baseManifest.scope),
+    icons: baseManifest.icons?.map(icon => ({
+      ...icon,
+      src: normalizeUrl(icon.src)
+    })) || [],
+    shortcuts: baseManifest.shortcuts?.map(shortcut => ({
+      ...shortcut,
+      url: normalizeUrl(shortcut.url),
+      icons: shortcut.icons?.map(icon => ({
+        ...icon,
+        src: normalizeUrl(icon.src)
+      })) || []
+    })) || []
   };
 
   let link = document.querySelector('link[rel="manifest"]');

@@ -3,8 +3,8 @@
   "name": "Comelo - Tu Asistente de Nutrición",
   "short_name": "Comelo",
   "description": "App de nutrición inteligente para crear listas de compras personalizadas, descubrir recetas saludables adaptadas a tus necesidades y planificar tus comidas semanales de forma fácil y organizada",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#01EF41",
   "theme_color": "#01EF41",
@@ -56,10 +56,10 @@
       "name": "Nueva Lista",
       "short_name": "Lista",
       "description": "Crear una nueva lista de compras",
-      "url": "/lists/new",
+      "url": "./create-list",
       "icons": [
         {
-          "src": "/icons/icons-app/android/android-launchericon-96-96.png",
+          "src": "./icons/icons-app/android/android-launchericon-96-96.png",
           "sizes": "96x96",
           "type": "image/png"
         }
@@ -69,10 +69,10 @@
       "name": "Recetas",
       "short_name": "Recetas",
       "description": "Explorar recetas saludables",
-      "url": "/recipes",
+      "url": "./recipes",
       "icons": [
         {
-          "src": "/icons/icons-app/android/android-launchericon-96-96.png",
+          "src": "./icons/icons-app/android/android-launchericon-96-96.png",
           "sizes": "96x96",
           "type": "image/png"
         }
