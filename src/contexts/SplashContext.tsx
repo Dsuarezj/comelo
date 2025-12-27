@@ -100,3 +100,17 @@ export function useSplash(): SplashContextType {
   return context;
 }
 
+export function useSplashInit(
+  minDuration: number,
+  init: () => Promise<void>,
+  onFadeStart?: () => void
+) {
+  const splash = useSplash();
+
+  useEffect(() => {
+    splash.show(minDuration, { onFadeStart });
+    init().finally(() => splash.markReady());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+}
+

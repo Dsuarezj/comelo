@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
-import { AppProviders } from './contexts';
+import { AppProviders, useSplashInit } from './contexts';
 import HomePage from './pages/HomePage';
 import ShoppingListsPage from './pages/ShoppingListsPage';
 import ShoppingListDetailPage from './pages/ShoppingListDetailPage';
@@ -16,39 +15,27 @@ import { useNetworkStatus } from './hooks/useNetworkStatus';
 import { LocalStorageService, StorageKeys } from './utils/storage';
 import { sessionService } from './services/SessionService';
 import { translationService } from './services/TranslationService';
-import { useSplash } from './contexts';
 import './i18n';
 
 const SPLASH_MIN_DURATION = 1_500;
+const HAS_ONBOARDING = LocalStorageService.get<boolean>(StorageKeys.HAS_ONBOARDING, false);
+
+async function initializeApp() {
+  await sessionService.init();
+  await translationService.warmVersions();
+  if (HAS_ONBOARDING) {
+    await translationService.preloadEssentials();
+  }
+}
 
 function AppContent() {
   const { hasUpdate, reloadForUpdate } = usePWA();
   const { isOnline, wasOffline } = useNetworkStatus();
   const location = useLocation();
-  const hasOnboarding = LocalStorageService.get<boolean>(StorageKeys.HAS_ONBOARDING, false);
-  const splash = useSplash();
 
-  useEffect(() => {
-    splash.show(SPLASH_MIN_DURATION);
+  useSplashInit(SPLASH_MIN_DURATION, initializeApp);
 
-    const initializeApp = async () => {
-      try {
-        await sessionService.init();
-        await translationService.warmVersions();
-        if (hasOnboarding) {
-          await translationService.preloadEssentials();
-        }
-      } catch (error) {
-        console.error('Error initializing services:', error);
-      }
-      splash.markReady();
-    };
-
-    initializeApp();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  if (!hasOnboarding && location.pathname !== '/onboarding') {
+  if (!HAS_ONBOARDING && location.pathname !== '/onboarding') {
     return <Navigate to="/onboarding" replace />;
   }
 
