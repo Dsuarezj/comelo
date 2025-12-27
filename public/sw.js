@@ -10,6 +10,7 @@ const APP_SHELL_URLS = [
   '/',
   '/index.html',
   '/manifest.json',
+  '/versions.json',
 ];
 
 const PRECACHE_URLS = Array.from(
