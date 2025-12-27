@@ -1,0 +1,61 @@
+User-agent: *
+Allow: /
+Disallow: /sw.js
+Disallow: /manifest.js
+Disallow: /versions.json
+Disallow: /icons/icons-app/icons.json
+Disallow: /api/
+Disallow: /_next/
+Disallow: /.well-known/
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /*.map$
+Disallow: /*.config.js$
+Disallow: /*.config.json$
+Disallow: /dist/
+Disallow: /.env
+Disallow: /.git/
+Disallow: /onboarding
+
+User-agent: Googlebot
+Allow: /
+Disallow: /sw.js
+Disallow: /manifest.js
+Disallow: /versions.json
+Disallow: /icons/icons-app/icons.json
+Disallow: /api/
+Disallow: /_next/
+Disallow: /.well-known/
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /*.map$
+Disallow: /*.config.js$
+Disallow: /*.config.json$
+Disallow: /dist/
+Disallow: /.env
+Disallow: /.git/
+Disallow: /onboarding
+
+User-agent: Bingbot
+Allow: /
+Disallow: /sw.js
+Disallow: /manifest.js
+Disallow: /versions.json
+Disallow: /icons/icons-app/icons.json
+Disallow: /api/
+Disallow: /_next/
+Disallow: /.well-known/
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /*.map$
+Disallow: /*.config.js$
+Disallow: /*.config.json$
+Disallow: /dist/
+Disallow: /.env
+Disallow: /.git/
+Disallow: /onboarding
+
+Crawl-delay: 1
+
+Sitemap: https://comelo.vercel.app/sitemap.xml
+
