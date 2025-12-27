@@ -12,7 +12,7 @@ interface SplashContextType {
 
 const SplashContext = createContext<SplashContextType | null>(null);
 
-const DEFAULT_MIN_DURATION = 1_500;
+const DEFAULT_MIN_DURATION = 2_000;
 const FADE_OUT_DURATION = 400;
 
 type SplashPhase = 'idle' | 'waiting' | 'ready' | 'closing';
