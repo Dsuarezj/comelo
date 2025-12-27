@@ -1,47 +1,24 @@
-import { useState, useEffect, useRef } from 'react';
-import SplashScreen from '../SplashScreen';
+import { useEffect } from 'react';
 import { OnboardingStepProps } from '../../types/onboarding';
 import { sessionService } from '../../services/SessionService';
+import { useSplash } from '../../contexts';
+
+const SPLASH_MIN_DURATION_DESKTOP = 3_500;
+const SPLASH_MIN_DURATION_MOBILE = 2_500;
 
 export default function OnboardingSplashStep({ onNext }: OnboardingStepProps) {
-  const [isLoading, setIsLoading] = useState(true);
-  const onNextRef = useRef(onNext);
-  const hasInitialized = useRef(false);
-  
-  onNextRef.current = onNext;
+  const splash = useSplash();
+  const isDesktop = window.innerWidth >= 768;
+  const minDuration = isDesktop ? SPLASH_MIN_DURATION_DESKTOP : SPLASH_MIN_DURATION_MOBILE;
 
   useEffect(() => {
-    if (hasInitialized.current) return;
-    hasInitialized.current = true;
-    
-    const initialize = async () => {
-      const isDesktop = window.innerWidth >= 768;
-      const minDuration = isDesktop ? 3_500 : 2_500;
-      const startTime = Date.now();
+    splash.show(minDuration, { onFadeStart: onNext });
 
-      try {
-        await sessionService.init();
-      } catch (error) {
-        console.error('Error initializing services:', error);
-      }
-
-      const elapsed = Date.now() - startTime;
-      const remainingTime = Math.max(0, minDuration - elapsed);
-
-      if (remainingTime > 0) {
-        await new Promise(resolve => setTimeout(resolve, remainingTime));
-      }
-
-      setIsLoading(false);
-      onNextRef.current();
-    };
-
-    initialize();
+    sessionService.init()
+      .catch(error => console.error('Error initializing services:', error))
+      .finally(() => splash.markReady());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!isLoading) {
-    return null;
-  }
-
-  return <SplashScreen />;
+  return null;
 }

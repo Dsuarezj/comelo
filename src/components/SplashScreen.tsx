@@ -5,11 +5,6 @@ import { Loader2 } from 'lucide-react';
 const LINE_HEIGHT = 72;
 const SCROLL_DURATION = 700;
 
-interface SplashScreenProps {
-  duration?: number;
-  onComplete?: () => void;
-}
-
 function useIsDesktop() {
   const [isDesktop, setIsDesktop] = useState(false);
 
@@ -26,9 +21,20 @@ function useIsDesktop() {
   return isDesktop;
 }
 
-function DesktopSplash() {
+interface SplashProps {
+  isClosing?: boolean;
+}
+
+function DesktopSplash({ isClosing }: SplashProps) {
   return (
-    <div data-testid="splash-screen" className="fixed inset-0 bg-gray-100 flex flex-col items-center justify-center z-50">
+    <div
+      data-testid="splash-screen"
+      className="fixed inset-0 bg-gray-100 flex flex-col items-center justify-center z-50"
+      style={{
+        opacity: isClosing ? 0 : 1,
+        transition: 'opacity 400ms ease-out'
+      }}
+    >
       <Loader2 className="w-16 h-16 text-gray-400 animate-spin mb-6" />
       <p className="text-gray-600 text-lg text-center max-w-md px-4">
         Tenemos un espacio para publicidad que llega a muchos usuarios
@@ -37,7 +43,7 @@ function DesktopSplash() {
   );
 }
 
-function MobileSplash() {
+function MobileSplash({ isClosing }: SplashProps) {
   const { t } = useTranslation();
   const [tick, setTick] = useState(0);
   const [offset, setOffset] = useState(0);
@@ -129,7 +135,14 @@ function MobileSplash() {
   const slots = [-2, -1, 0, 1, 2, 3];
 
   return (
-    <div data-testid="splash-screen" className="fixed inset-0 bg-[#5EE67E] overflow-hidden flex items-center z-50">
+    <div
+      data-testid="splash-screen"
+      className="fixed inset-0 bg-[#5EE67E] overflow-hidden flex items-center z-50"
+      style={{
+        opacity: isClosing ? 0 : 1,
+        transition: 'opacity 400ms ease-out'
+      }}
+    >
       <div
         className="absolute left-6 z-20"
         style={{
@@ -196,15 +209,7 @@ function MobileSplash() {
   );
 }
 
-export default function SplashScreen({ duration, onComplete }: SplashScreenProps) {
+export default function SplashScreen({ isClosing }: SplashProps) {
   const isDesktop = useIsDesktop();
-
-  useEffect(() => {
-    if (duration && onComplete) {
-      const timer = setTimeout(onComplete, duration);
-      return () => clearTimeout(timer);
-    }
-  }, [duration, onComplete]);
-
-  return isDesktop ? <DesktopSplash /> : <MobileSplash />;
+  return isDesktop ? <DesktopSplash isClosing={isClosing} /> : <MobileSplash isClosing={isClosing} />;
 }

@@ -1,53 +1,92 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
 import SplashScreen from '../components/SplashScreen';
 
+interface SplashOptions {
+  onFadeStart?: () => void;
+}
+
 interface SplashContextType {
-  show: (task?: () => Promise<void> | void, minDuration?: number) => Promise<void>;
-  hide: () => void;
-  isVisible: boolean;
+  show: (minDuration?: number, options?: SplashOptions) => void;
+  markReady: () => void;
 }
 
 const SplashContext = createContext<SplashContextType | null>(null);
+
+const DEFAULT_MIN_DURATION = 1_500;
+const FADE_OUT_DURATION = 400;
+
+type SplashPhase = 'idle' | 'waiting' | 'ready' | 'closing';
+
+interface SplashState {
+  phase: SplashPhase;
+  targetEndTime: number;
+  onFadeStart: (() => void) | null;
+}
+
+const initialState: SplashState = {
+  phase: 'idle',
+  targetEndTime: 0,
+  onFadeStart: null,
+};
 
 interface SplashProviderProps {
   children: ReactNode;
 }
 
 export function SplashProvider({ children }: SplashProviderProps) {
-  const [isVisible, setIsVisible] = useState(false);
+  const [state, setState] = useState<SplashState>(initialState);
 
-  const show = async (task?: () => Promise<void> | void, minDuration = 0): Promise<void> => {
-    setIsVisible(true);
-    const startTime = Date.now();
-
-    if (task) {
-      try {
-        const result = task();
-        if (result instanceof Promise) {
-          await result;
-        }
-      } catch (error) {
-        console.error('Error en tarea del splash:', error);
+  const show = useCallback((minDuration: number = DEFAULT_MIN_DURATION, options?: SplashOptions) => {
+    const newTargetEnd = Date.now() + minDuration;
+    
+    setState(prev => {
+      if (prev.phase === 'idle') {
+        return {
+          phase: 'waiting',
+          targetEndTime: newTargetEnd,
+          onFadeStart: options?.onFadeStart ?? null,
+        };
       }
-    }
+      return {
+        ...prev,
+        targetEndTime: Math.max(prev.targetEndTime, newTargetEnd),
+      };
+    });
+  }, []);
 
-    const elapsed = Date.now() - startTime;
-    const remainingTime = Math.max(0, minDuration - elapsed);
+  const markReady = useCallback(() => {
+    setState(prev => prev.phase === 'waiting' ? { ...prev, phase: 'ready' } : prev);
+  }, []);
 
-    if (remainingTime > 0) {
-      await new Promise(resolve => setTimeout(resolve, remainingTime));
-    }
+  useEffect(() => {
+    if (state.phase !== 'ready') return;
 
-    setIsVisible(false);
-  };
+    const remaining = Math.max(0, state.targetEndTime - Date.now());
 
-  const hide = () => {
-    setIsVisible(false);
-  };
+    const timer = setTimeout(() => {
+      setState(prev => {
+        prev.onFadeStart?.();
+        return { ...prev, phase: 'closing' };
+      });
+    }, remaining);
+
+    return () => clearTimeout(timer);
+  }, [state.phase, state.targetEndTime]);
+
+  useEffect(() => {
+    if (state.phase !== 'closing') return;
+
+    const timer = setTimeout(() => setState(initialState), FADE_OUT_DURATION);
+
+    return () => clearTimeout(timer);
+  }, [state.phase]);
+
+  const isVisible = state.phase !== 'idle';
+  const isClosing = state.phase === 'closing';
 
   return (
-    <SplashContext.Provider value={{ show, hide, isVisible }}>
-      {isVisible && <SplashScreen />}
+    <SplashContext.Provider value={{ show, markReady }}>
+      {isVisible && <SplashScreen isClosing={isClosing} />}
       {children}
     </SplashContext.Provider>
   );

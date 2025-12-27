@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { AppProviders } from './contexts';
 import HomePage from './pages/HomePage';
 import ShoppingListsPage from './pages/ShoppingListsPage';
@@ -16,17 +16,21 @@ import { useNetworkStatus } from './hooks/useNetworkStatus';
 import { LocalStorageService, StorageKeys } from './utils/storage';
 import { sessionService } from './services/SessionService';
 import { translationService } from './services/TranslationService';
-import SplashScreen from './components/SplashScreen';
+import { useSplash } from './contexts';
 import './i18n';
+
+const SPLASH_MIN_DURATION = 1_500;
 
 function AppContent() {
   const { hasUpdate, reloadForUpdate } = usePWA();
   const { isOnline, wasOffline } = useNetworkStatus();
   const location = useLocation();
   const hasOnboarding = LocalStorageService.get<boolean>(StorageKeys.HAS_ONBOARDING, false);
-  const [isInitialized, setIsInitialized] = useState(false);
+  const splash = useSplash();
 
   useEffect(() => {
+    splash.show(SPLASH_MIN_DURATION);
+
     const initializeApp = async () => {
       try {
         await sessionService.init();
@@ -37,11 +41,12 @@ function AppContent() {
       } catch (error) {
         console.error('Error initializing services:', error);
       }
-      setIsInitialized(true);
+      splash.markReady();
     };
 
     initializeApp();
-  }, [hasOnboarding]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (!hasOnboarding && location.pathname !== '/onboarding') {
     return <Navigate to="/onboarding" replace />;
