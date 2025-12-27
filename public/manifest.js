@@ -37,89 +37,13 @@
     }
   }
 
-  const lang = detectedLang;
-
+  const baseManifestResponse = await fetch('/manifest.json');
+  const baseManifest = await baseManifestResponse.json();
+  
   const manifest = {
-    id: "com.comelo.app",
-    name: "Comelo - Tu Asistente de Nutrición",
-    short_name: "Comelo",
-    description: description,
-    start_url: "/",
-    scope: "/",
-    display: "standalone",
-    background_color: "#01EF41",
-    theme_color: "#01EF41",
-    orientation: "portrait-primary",
-    categories: ["health", "food", "lifestyle"],
-    lang: lang,
-    dir: "ltr",
-    prefer_related_applications: false,
-    icons: [
-      {
-        src: "/icons/icons-app/android/android-launchericon-48-48.png",
-        sizes: "48x48",
-        type: "image/png",
-        purpose: "any"
-      },
-      {
-        src: "/icons/icons-app/android/android-launchericon-72-72.png",
-        sizes: "72x72",
-        type: "image/png",
-        purpose: "any"
-      },
-      {
-        src: "/icons/icons-app/android/android-launchericon-96-96.png",
-        sizes: "96x96",
-        type: "image/png",
-        purpose: "any"
-      },
-      {
-        src: "/icons/icons-app/android/android-launchericon-144-144.png",
-        sizes: "144x144",
-        type: "image/png",
-        purpose: "any"
-      },
-      {
-        src: "/icons/icons-app/android/android-launchericon-192-192.png",
-        sizes: "192x192",
-        type: "image/png",
-        purpose: "any maskable"
-      },
-      {
-        src: "/icons/icons-app/android/android-launchericon-512-512.png",
-        sizes: "512x512",
-        type: "image/png",
-        purpose: "any maskable"
-      }
-    ],
-    shortcuts: [
-      {
-        name: "Nueva Lista",
-        short_name: "Lista",
-        description: "Crear una nueva lista de compras",
-        url: "/lists/new",
-        icons: [
-          {
-            src: "/icon.png",
-            sizes: "96x96",
-            type: "image/png"
-          }
-        ]
-      },
-      {
-        name: "Recetas",
-        short_name: "Recetas",
-        description: "Explorar recetas saludables",
-        url: "/recipes",
-        icons: [
-          {
-            src: "/icon.png",
-            sizes: "96x96",
-            type: "image/png"
-          }
-        ]
-      }
-    ]
+    ...baseManifest,
+    description: description || baseManifest.description,
+    lang: detectedLang || baseManifest.lang
   };
 
   let link = document.querySelector('link[rel="manifest"]');
