@@ -177,7 +177,7 @@ function MobileSplash() {
                 key={slotOffset}
                 className="font-black whitespace-nowrap absolute left-0 right-0"
                 style={{
-                  fontSize: '46px',
+                  fontSize: 'clamp(24px, 7.5vw, 40px)',
                   lineHeight: `${LINE_HEIGHT}px`,
                   height: `${LINE_HEIGHT}px`,
                   top: `${yPosition}px`,
