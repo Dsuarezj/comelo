@@ -47,10 +47,6 @@ function AppContent() {
     return <Navigate to="/onboarding" replace />;
   }
 
-  if (!isInitialized) {
-    return <SplashScreen />;
-  }
-
   return (
     <>
       <PWAUpdateBanner show={hasUpdate} onUpdate={reloadForUpdate} />
